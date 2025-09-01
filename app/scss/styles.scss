@@ -1,0 +1,41 @@
+// sass --watch app/scss/styles.scss app/globals.css
+
+//USES
+@use './components/navBar';
+
+
+//FONT FACES
+
+//MODERNIZ
+@font-face {
+    font-family: 'Moderniz';
+    src: url('/fonts/Moderniz.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+//INTER
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+//ESTILOS GLOBALES
+
+* {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-family: 'Inter';
+}
+
+body {
+    background-color: #ffffff;
+    min-height: 100vh;
+}

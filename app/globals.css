@@ -1,42 +1,50 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+  width: 100%;
+  height: 11svh;
+  background-color: red;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+#navLinks {
+  display: flex;
+  gap: 4svw;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.navLink {
+  text-decoration: none;
+  color: #0A001A;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Moderniz";
+  src: url("/fonts/Moderniz.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
-
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: "Inter";
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  background-color: #ffffff;
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
+/*# sourceMappingURL=globals.css.map */
