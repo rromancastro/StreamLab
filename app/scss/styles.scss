@@ -2,6 +2,10 @@
 
 //USES
 @use './components/navBar';
+@use './components/header';
+@use './components/turnera';
+
+@use './sections/firstSection';
 
 
 //FONT FACES
@@ -10,7 +14,7 @@
 @font-face {
     font-family: 'Moderniz';
     src: url('/fonts/Moderniz.otf') format('opentype');
-    font-weight: 500;
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
@@ -23,6 +27,35 @@
     font-style: normal;
     font-display: swap;
 }
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
 
 
 //ESTILOS GLOBALES

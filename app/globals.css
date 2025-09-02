@@ -1,29 +1,208 @@
 nav {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
   width: 100%;
-  height: 11svh;
-  background-color: red;
+  height: 17svh;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(13px);
+  box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.13) inset;
+}
+
+#navLogo {
+  display: flex;
+  width: 200px;
+  height: 38px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.navLogoImage {
+  position: absolute;
+  top: 0;
+  transition: 0.5s;
 }
 
 #navLinks {
   display: flex;
-  gap: 4svw;
+  gap: 16px;
 }
 
 .navLink {
   text-decoration: none;
   color: #0A001A;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
+  width: 136px;
+}
+.navLink:hover {
+  color: #7B2CBF;
+}
+.navLink:active {
+  color: #C77DFF;
+  text-shadow: 0px 0px 4px #C77DFF;
+}
+
+#header {
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+}
+
+#headerImage {
+  position: absolute;
+  object-fit: contain;
+  top: 70px;
+  height: auto;
+  width: 780px;
+  mix-blend-mode: darken;
+  z-index: 100;
+}
+
+#headerImage2 {
+  position: absolute;
+  object-fit: contain;
+  top: 70px;
+  height: auto;
+  width: 780px;
+  z-index: 50;
+}
+
+.sliderContainer {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  bottom: -70px;
+}
+
+.sliderTrack {
+  display: flex;
+  width: max-content;
+  animation: scroll 15s linear infinite;
+}
+
+.sliderText {
+  font-size: 96px;
+  font-family: "Moderniz";
+  font-weight: 900;
+  white-space: nowrap;
+  margin-right: 50px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+#turneraContainer {
+  width: 848px;
+  height: 848px;
+  background-image: url("/turnera/bg.png ");
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 32px;
+  padding: 32px;
+  box-shadow: 0px 24px 24px -2px rgba(0, 0, 0, 0.4), 0px 4px 8px -2px rgba(0, 0, 0, 0.6);
+  z-index: 50;
+  position: absolute;
+  bottom: 10svh;
+  align-self: center;
+}
+
+#turneraH2 {
+  font-family: "Moderniz";
+  font-weight: 900;
+  font-size: 72px;
+  text-align: right;
+  color: #ffffff;
+  line-height: 84px;
+}
+
+#turneraUtilities {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+
+#selectersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#fechaContainer {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 48px;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+#fechaContainer #fechaContainerLabel {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 300;
+}
+#fechaContainer #seleccionarFechaContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+#fechaContainer #seleccionarFechaContainer p {
+  font-size: 16px;
+  color: #8C8C8C;
+  font-weight: 300;
+}
+#fechaContainer #seleccionarFechaContainer #seleccionarFechaIcon {
+  transition: 0.5s;
+  rotate: 180deg;
+  color: #8C8C8C;
+  position: absolute;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  padding: 10px;
+  border-radius: 18px;
+}
+#fechaContainer #seleccionarFechaContainer #seleccionarFechaIcon:hover {
+  cursor: pointer;
+  background-color: rgba(123, 44, 191, 0.2);
+  color: #E0AAFF;
+}
+#fechaContainer #datePicker {
+  position: absolute;
+}
+
+#firstSection {
+  width: 100%;
+  height: 240svh;
+  display: flex;
+  flex-direction: column;
 }
 
 @font-face {
   font-family: "Moderniz";
   src: url("/fonts/Moderniz.otf") format("opentype");
-  font-weight: 500;
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
@@ -31,6 +210,34 @@ nav {
   font-family: "Inter";
   src: url("/fonts/Inter.ttf") format("truetype");
   font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: 200;
   font-style: normal;
   font-display: swap;
 }

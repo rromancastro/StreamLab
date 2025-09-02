@@ -1,21 +1,48 @@
 nav {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0px 40px;
     width: 100%;
-    height: 11svh;
-    background-color: red;
+    height: 17svh;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(13px);
+    box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.13) inset;
+}
+
+#navLogo {
+    display: flex;
+    width: 200px;
+    height: 38px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.navLogoImage {
+    position: absolute;
+    top: 0;
+    transition: .5s
 }
 
 #navLinks {
     display: flex;
-    gap: 4svw;
+    gap: 16px;
 }
 
 .navLink {
     text-decoration: none;
     color: #0A001A;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
+    width: 136px;
+    &:hover {
+        color: #7B2CBF;
+    }
+    &:active {
+        color: #C77DFF;
+        text-shadow: 0px 0px 4px #C77DFF;
+    }
 }
