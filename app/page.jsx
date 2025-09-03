@@ -1,5 +1,5 @@
 import { NavBar } from "./components";
-import { FirstSection } from "./sections";
+import { FirstSection, SecondSection, ThirdSection } from "./sections";
 
 export default function Home() {
 
@@ -7,5 +7,7 @@ export default function Home() {
     return (<>
         <NavBar />
         <FirstSection />
+        <SecondSection />
+        <ThirdSection />
     </>)
 }

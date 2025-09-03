@@ -1,0 +1,55 @@
+#secondSection {
+    width: 100%;
+    height: 300svh;
+    background-color: green;
+}
+
+#secondSectionSticky {
+    height: 100svh;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    p {
+        color: #000100;
+        &:nth-child(1) {
+            font-size: 24px;
+            font-weight: 700;
+            transition: .8s;
+        }
+        &:nth-child(5) {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1;
+            text-align: center;
+            margin-top: 30px;
+            transition: .8s;
+        }
+    }
+    .animationTextUp {
+        height: 72px;
+        width: 100%;
+        overflow: hidden;
+        p {
+            font-size: 72px;
+            font-weight: 900;
+            font-family: "Moderniz";
+            line-height: 1;
+            text-align: center;
+            position: absolute;
+            right: 0;
+            left: 0;
+            span {
+                color: #5A189A;
+                font-size: 72px;
+                font-weight: 900;
+                font-family: "Moderniz";
+            }
+        }
+    }
+    
+}

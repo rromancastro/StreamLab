@@ -4,6 +4,14 @@ import { useState } from "react";
 
 export const NavBar = () => {
 
+    //menu
+    const [dropMenu, setDropMenu] = useState(false);
+
+    const handleDropMenu = (e) => {
+        e.preventDefault();
+        setDropMenu(true);
+    }
+
     //animacion logo
     const [positionTop1, setPositionTop1] = useState(0);
     const [positionTop2, setPositionTop2] = useState(38);
@@ -24,11 +32,14 @@ export const NavBar = () => {
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2}} className="navLogoImage"/>
             </div>
 
-            <div id="navLinks">
-                <a href="#" className="navLink">RESERVAS</a>
-                <a href="#" className="navLink">ESTUDIO</a>
-                <a href="#" className="navLink">NOSOTROS</a>
-                <a href="#" className="navLink">CONTACTO</a>
+            <div id="navMenu">
+                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, zIndex: dropMenu ? 0 : 100}}>MENÚ</button>
+                <div id="navLinks" onMouseOut={()=>setDropMenu(false)} style={{position: 'absolute', opacity: dropMenu ? 1 : 0, zIndex: dropMenu ? 100 : 0, right: dropMenu ? 0 : -500, transition: 'opacity 0s, z-index 0s, right .5s'}}>
+                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">RESERVAS</a>
+                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">ESTUDIO</a>
+                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">NOSOTROS</a>
+                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">CONTACTO</a>
+                </div>
             </div>
         </nav>
     )

@@ -1,15 +1,15 @@
 "use client";
-import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { useRef, useState } from "react";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
 
 export const Turnera = () => {
 
     const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date());
-    const [diaSeleccionado, setDiaSeleccionado] = useState(fechaSeleccionada.getDay());
-    const [mesSeleccionado, setMesSeleccionado] = useState(fechaSeleccionada.getMonth());
+    const diaSeleccionado = fechaSeleccionada.getDay();
+    const mesSeleccionado = fechaSeleccionada.getMonth();
     const [showCalendar, setShowCalendar] = useState(false);
 
     const meses = [
@@ -27,6 +27,16 @@ export const Turnera = () => {
         "Diciembre"
     ]
 
+    //controlar calendario
+    const calendarRef = useRef(null);
+
+    const prevMonth = () => {
+        setFechaSeleccionada(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    };
+    const nextMonth = () => {
+        setFechaSeleccionada(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    };
+
     return (
         <div id="turneraContainer">
             <h2 id="turneraH2">RESERVA<br />
@@ -39,17 +49,28 @@ export const Turnera = () => {
                         <p id="fechaContainerLabel">Fecha</p>
                         <div id="seleccionarFechaContainer">
                             <p>{diaSeleccionado}.{meses[mesSeleccionado].toUpperCase().slice(0, 3)}</p>
-                            <IoTriangleSharp id="seleccionarFechaIcon" />
+                            <IoTriangleSharp style={{rotate: showCalendar ? '0deg' : '180deg'}} onClick={()=>setShowCalendar(!showCalendar)} id="seleccionarFechaIcon" />
                         </div>
-                        <DatePicker id="datePicker" selected={fechaSeleccionada} onChange={(date) => fechaSeleccionada(date)} />
                     </div>
                     <div>fecha</div>
                 </div>
+                {showCalendar &&<div id="calendarContainer">
+                    <div id="calendarNav">
+                        <IoTriangleSharp onClick={prevMonth} className="calendarRowsIcon" style={{rotate: '-90deg'}} size={35}/>
+                        <p>{fechaSeleccionada.toLocaleString('es-ES', { month: 'long', year: 'numeric' })}</p>
+                        <IoTriangleSharp onClick={nextMonth} className="calendarRowsIcon" style={{rotate: '90deg'}} size={35}/>
+                    </div>
+                    <Calendar
+                        onChange={setFechaSeleccionada}
+                        value={fechaSeleccionada}
+                        showNavigation={false}
+                    />
+                </div>}
                 <div>
                     <button>1</button>
                     <button>2</button>
                 </div>
-                <button>Reservar</button>
+                <button id="buttonReservar">Reservar</button>
             </div>
         </div>
     )

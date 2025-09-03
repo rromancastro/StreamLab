@@ -7,15 +7,11 @@ nav {
   width: 100%;
   height: 17svh;
   z-index: 200;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(13px);
-  box-shadow: 0px 14px 15px rgba(0, 0, 0, 0.13) inset;
 }
 
 #navLogo {
   display: flex;
-  width: 200px;
+  width: 250px;
   height: 38px;
   overflow: hidden;
   cursor: pointer;
@@ -27,9 +23,42 @@ nav {
   transition: 0.5s;
 }
 
+#navMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 14svh;
+  overflow: hidden;
+  border-radius: 0px 16px 16px 0px;
+}
+
+#navMenuButton {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(13px);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05) inset;
+  border-radius: 16px;
+  width: 136px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 #navLinks {
   display: flex;
   gap: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(13px);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05) inset;
+  border-radius: 16px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 32px;
+  transition: 0.5s;
 }
 
 .navLink {
@@ -143,6 +172,7 @@ nav {
 }
 
 #fechaContainer {
+  position: relative;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   backdrop-filter: blur(30px);
@@ -173,7 +203,7 @@ nav {
   font-weight: 300;
 }
 #fechaContainer #seleccionarFechaContainer #seleccionarFechaIcon {
-  transition: 0.5s;
+  transition: background-color 0.5s, color 0.5s, rotate 0s;
   rotate: 180deg;
   color: #8C8C8C;
   position: absolute;
@@ -188,21 +218,259 @@ nav {
   background-color: rgba(123, 44, 191, 0.2);
   color: #E0AAFF;
 }
-#fechaContainer #datePicker {
+
+#calendarContainer {
   position: absolute;
+  top: 48px;
+  right: 0;
+  z-index: 600;
+  backdrop-filter: blur(30px);
+  background-color: rgba(10, 0, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+}
+#calendarContainer .react-calendar {
+  background-color: transparent;
+  border: none;
+}
+#calendarContainer .react-calendar__month-view__weekdays__weekday {
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 12px;
+}
+#calendarContainer .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+#calendarContainer .react-calendar__tile {
+  font-size: 16px;
+  color: #8C8C8C;
+  border-radius: 8px;
+  padding: 10px 0;
+  transition: none;
+}
+#calendarContainer .react-calendar__tile--active {
+  background: #2563eb !important;
+  color: white !important;
+  border-radius: 8px;
+}
+#calendarContainer #calendarNav {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  align-items: center;
+}
+#calendarContainer #calendarNav p {
+  color: #ffffff;
+  font-size: 16px;
+}
+#calendarContainer .calendarRowsIcon {
+  color: #ffffff;
+  transition: 0.5s;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#calendarContainer .calendarRowsIcon:hover {
+  background-color: rgba(123, 44, 191, 0.2);
+  color: #E0AAFF;
+}
+
+#buttonReservar {
+  background-color: rgba(123, 44, 191, 0.6);
+  width: 100%;
+  height: 64px;
+  border-radius: 16px;
+  font-size: 24px;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.1019607843) inset, 2px 2px 2px rgba(255, 255, 255, 0.1019607843) inset, -2px -2px 0 rgba(0, 0, 0, 0.1019607843) inset, -4px -4px 4 0 rgba(0, 0, 0, 0.1019607843) inset;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  z-index: 50;
+}
+#buttonReservar:hover {
+  background-color: rgba(199, 125, 255, 0.6);
+  cursor: pointer;
 }
 
 #firstSection {
   width: 100%;
-  height: 240svh;
+  height: 270svh;
   display: flex;
   flex-direction: column;
+}
+
+#secondSection {
+  width: 100%;
+  height: 300svh;
+  background-color: green;
+}
+
+#secondSectionSticky {
+  height: 100svh;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+#secondSectionSticky p {
+  color: #000100;
+}
+#secondSectionSticky p:nth-child(1) {
+  font-size: 24px;
+  font-weight: 700;
+  transition: 0.8s;
+}
+#secondSectionSticky p:nth-child(5) {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
+  margin-top: 30px;
+  transition: 0.8s;
+}
+#secondSectionSticky .animationTextUp {
+  height: 72px;
+  width: 100%;
+  overflow: hidden;
+}
+#secondSectionSticky .animationTextUp p {
+  font-size: 72px;
+  font-weight: 900;
+  font-family: "Moderniz";
+  line-height: 1;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+#secondSectionSticky .animationTextUp p span {
+  color: #5A189A;
+  font-size: 72px;
+  font-weight: 900;
+  font-family: "Moderniz";
+}
+
+#thirdSection {
+  width: 100%;
+  height: 500svh;
+}
+
+#thirdSectionSticky {
+  height: 100svh;
+  position: sticky;
+  display: flex;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+#thirdSectionSticky p {
+  color: #ffffff;
+}
+
+#thirdSectionTitle {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 50%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+#thirdSectionDiv1 {
+  width: 450px;
+  position: absolute;
+  top: 14svh;
+  overflow: hidden;
+  left: 9svw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#thirdSectionDiv2 {
+  width: 450px;
+  position: absolute;
+  top: 14svh;
+  overflow: hidden;
+  right: 9svw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#thirdSectionDiv3 {
+  width: 450px;
+  position: absolute;
+  bottom: 14svh;
+  overflow: hidden;
+  left: 9svw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#thirdSectionDiv4 {
+  width: 450px;
+  position: absolute;
+  bottom: 14svh;
+  overflow: hidden;
+  right: 9svw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.thirdSectionP {
+  font-size: 16px;
+  font-weight: 300;
+  transition: 0.7s ease-in-out;
+}
+
+.animationTextHorizontal {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.animationTextHorizontal p {
+  position: absolute;
+  text-wrap: nowrap;
+  font-family: "Moderniz";
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  transition: 0.5s ease-in-out;
+}
+
+.animationLineaHorizontal {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.animationTextHorizontalLinea {
+  height: 2px;
+  background-color: #E0AAFF;
+  transition: 0.7s ease-in-out;
 }
 
 @font-face {
   font-family: "Moderniz";
   src: url("/fonts/Moderniz.otf") format("opentype");
   font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter.ttf") format("truetype");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -231,13 +499,6 @@ nav {
   font-family: "Inter";
   src: url("/fonts/Inter.ttf") format("truetype");
   font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter.ttf") format("truetype");
-  font-weight: 200;
   font-style: normal;
   font-display: swap;
 }

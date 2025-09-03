@@ -1,0 +1,102 @@
+#thirdSection {
+    width: 100%;
+    height: 500svh;
+}
+
+#thirdSectionSticky {
+    height: 100svh;
+    position: sticky;
+    display: flex;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    p {
+        color: #ffffff;
+    }
+}
+
+#thirdSectionTitle {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 50%;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#thirdSectionDiv1 {
+    width: 450px;
+    position: absolute;
+    top: 14svh;
+    overflow: hidden;
+    left: 9svw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#thirdSectionDiv2 {
+    width: 450px;
+    position: absolute;
+    top: 14svh;
+    overflow: hidden;
+    right: 9svw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#thirdSectionDiv3 {
+    width: 450px;
+    position: absolute;
+    bottom: 14svh;
+    overflow: hidden;
+    left: 9svw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#thirdSectionDiv4 {
+    width: 450px;
+    position: absolute;
+    bottom: 14svh;
+    overflow: hidden;
+    right: 9svw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.thirdSectionP {
+    font-size: 16px;
+    font-weight: 300;
+    transition: .7s ease-in-out;
+}
+
+.animationTextHorizontal {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    p {
+        position: absolute;
+        text-wrap: nowrap;
+        font-family: "Moderniz";
+        font-size: 40px;
+        font-weight: 900;
+        line-height: 1;
+        transition: .5s ease-in-out;
+    }
+}
+
+.animationLineaHorizontal {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.animationTextHorizontalLinea {
+    height: 2px;
+    background-color: #E0AAFF;
+    transition: .7s ease-in-out;
+}
