@@ -8,7 +8,7 @@
     position: absolute;
     object-fit: contain;
     top: 70px;
-    height: auto;
+    height: 820px;
     width: 780px;
     mix-blend-mode: darken;
     z-index: 100;
@@ -18,7 +18,7 @@
     position: absolute;
     object-fit: contain;
     top: 70px;
-    height: auto;
+    height: 820px;
     width: 780px;
     z-index: 50;
 }
@@ -27,7 +27,7 @@
     position: absolute;
     overflow: hidden;
     width: 100%;
-    bottom: -70px;
+    top: 580px;
 }
 
 .sliderTrack {

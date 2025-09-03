@@ -86,7 +86,7 @@ nav {
   position: absolute;
   object-fit: contain;
   top: 70px;
-  height: auto;
+  height: 820px;
   width: 780px;
   mix-blend-mode: darken;
   z-index: 100;
@@ -96,7 +96,7 @@ nav {
   position: absolute;
   object-fit: contain;
   top: 70px;
-  height: auto;
+  height: 820px;
   width: 780px;
   z-index: 50;
 }
@@ -105,7 +105,7 @@ nav {
   position: absolute;
   overflow: hidden;
   width: 100%;
-  bottom: -70px;
+  top: 580px;
 }
 
 .sliderTrack {
@@ -145,7 +145,7 @@ nav {
   box-shadow: 0px 24px 24px -2px rgba(0, 0, 0, 0.4), 0px 4px 8px -2px rgba(0, 0, 0, 0.6);
   z-index: 50;
   position: absolute;
-  bottom: 10svh;
+  top: 800px;
   align-self: center;
 }
 
@@ -304,7 +304,6 @@ nav {
 #secondSection {
   width: 100%;
   height: 300svh;
-  background-color: green;
 }
 
 #secondSectionSticky {
