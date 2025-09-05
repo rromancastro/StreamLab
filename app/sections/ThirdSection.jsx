@@ -73,7 +73,7 @@ export const ThirdSection = () => {
                 <div className="animationLineaHorizontal">
                     <div className="animationTextHorizontalLinea" style={{width: '317px', right: scrollPercentage >= 98 ? 0 : '-450px'}}></div>
                 </div>
-                <p style={{opacity: scrollPercentage >= 100 ? 1 : 0}} className="thirdSectionP"><LuMapPin color="#ffffff"/> Lorem ipsum dolor sit amet consectetur.</p>
+                <p style={{opacity: scrollPercentage >= 100 ? 1 : 0}} className="thirdSectionP"><LuMapPin color="#ffffff"/> UBICACIÓN ACCESIBLE</p>
             </div>
             <p  style={{opacity: scrollPercentage >= 64 ? 1 : 0, transition: '.5s'}} id="thirdSectionTitle">¿QUE INCLUYEN?</p>
         </section>

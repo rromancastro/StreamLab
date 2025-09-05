@@ -33,12 +33,12 @@ export const NavBar = () => {
             </div>
 
             <div id="navMenu">
-                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, zIndex: dropMenu ? 0 : 100}}>MENÚ</button>
-                <div id="navLinks" onMouseOut={()=>setDropMenu(false)} style={{position: 'absolute', opacity: dropMenu ? 1 : 0, zIndex: dropMenu ? 100 : 0, right: dropMenu ? 0 : -500, transition: 'opacity 0s, z-index 0s, right .5s'}}>
-                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">RESERVAS</a>
-                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">ESTUDIO</a>
-                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">NOSOTROS</a>
-                    <a href="#" onMouseOver={()=>setDropMenu(true)} className="navLink">CONTACTO</a>
+                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s'}}>MENÚ</button>
+                <div id="navLinks" onMouseLeave={()=>setDropMenu(false)} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
+                    <a href="#" className="navLink">RESERVAS</a>
+                    <a href="#" className="navLink">ESTUDIO</a>
+                    <a href="#" className="navLink">NOSOTROS</a>
+                    <a href="#" className="navLink">CONTACTO</a>
                 </div>
             </div>
         </nav>

@@ -315,7 +315,7 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 #secondSectionSticky p {
   color: #000100;
@@ -334,7 +334,8 @@ nav {
   transition: 0.8s;
 }
 #secondSectionSticky .animationTextUp {
-  height: 72px;
+  display: flex;
+  height: 82px;
   width: 100%;
   overflow: hidden;
 }
@@ -348,11 +349,18 @@ nav {
   right: 0;
   left: 0;
 }
-#secondSectionSticky .animationTextUp p span {
+#secondSectionSticky .animationTextUp span {
   color: #5A189A;
-  font-size: 72px;
   font-weight: 900;
   font-family: "Moderniz";
+  transition: 0.3s;
+  line-height: 1;
+  top: 12px;
+  font-size: 72px;
+  position: absolute;
+  right: 0;
+  left: 620;
+  text-align: center;
 }
 
 #thirdSection {
@@ -457,6 +465,14 @@ nav {
   height: 2px;
   background-color: #E0AAFF;
   transition: 0.7s ease-in-out;
+}
+
+#fourthSection {
+  height: 300svh;
+}
+
+#fourthSectionSticky {
+  height: 150svh;
 }
 
 @font-face {
