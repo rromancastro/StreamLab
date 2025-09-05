@@ -6,9 +6,6 @@ export const ThirdSection = () => {
 
     const [scrollPercentage, setScrollPercentage] = useState(0);
     useEffect(() => {
-        console.log(scrollPercentage);
-    }, [scrollPercentage]);
-    useEffect(() => {
         const handleScroll = () => {
           const scrollTop = window.scrollY;
           const docHeight = document.documentElement.scrollHeight - window.innerHeight;
