@@ -13,10 +13,10 @@ export const SecondSection = () => {
   }, [scrollYProgress]);
 
     const opacityText1 = useTransform(scrollYProgress, [0.28, 0.31], [0, 1]);
-    const yText1 = useTransform(scrollYProgress, [0.31, 0.34], [92, 12]);
+    const yText1 = useTransform(scrollYProgress, [0.31, 0.34], [95, 12]);
     const scaleH2 = useTransform(scrollYProgress, [0.34, 0.355, 0.37], [0, 1.2, 1]);
-    const yText2 = useTransform(scrollYProgress, [0.40, 0.43], [92, 12]);
-    const yText3 = useTransform(scrollYProgress, [0.43, 0.46], [92, 12]);
+    const yText2 = useTransform(scrollYProgress, [0.40, 0.43], [95, 12]);
+    const yText3 = useTransform(scrollYProgress, [0.43, 0.46], [95, 12]);
     const opacityFinal = useTransform(scrollYProgress, [0.46, 0.49], [0, 1]);
 
     // const [scaleH2, setScaleH2] = useState(1);
