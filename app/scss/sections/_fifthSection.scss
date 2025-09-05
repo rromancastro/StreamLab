@@ -1,0 +1,43 @@
+#fifthSection {
+    height: 100svh;
+    width: 100%;
+    background-image: url('/fifthSection/banner.png');
+    background-size: cover;
+    background-position: center;
+    h2 {
+        font-family: "Moderniz";
+        font-weight: 900;
+        font-size: 64px;
+        color: #ffffff;
+        position: absolute;
+        bottom: 3svw;
+        left: 3svw;
+    }
+}
+
+#fifthSectionCards {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: auto;
+    justify-self: flex-end;
+    gap: 1svh;
+    bottom: 3svh;
+}
+
+.fifthSectionCard {
+    width: 350px;
+    height: 80px;
+    padding: 0px 32px;
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #ffffff10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    p {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}

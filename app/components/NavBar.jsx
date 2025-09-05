@@ -1,8 +1,16 @@
 'use client';
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image"
 import { useState } from "react";
 
 export const NavBar = () => {
+
+    const {scrollYProgress} = useScroll();
+    const [isWhite, setIsWhite] = useState(false);
+
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        setIsWhite(latest >= 0.62 && latest < 0.82 || latest == 1);
+    });
 
     //menu
     const [dropMenu, setDropMenu] = useState(false);
@@ -28,17 +36,17 @@ export const NavBar = () => {
     return (
         <nav>
             <div id="navLogo" onClick={handClickLogo}>
-                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1}} className="navLogoImage"/>
-                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2}} className="navLogoImage"/>
+                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"/>
+                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"/>
             </div>
 
             <div id="navMenu">
-                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s'}}>MENÚ</button>
+                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>MENÚ</button>
                 <div id="navLinks" onMouseLeave={()=>setDropMenu(false)} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
-                    <a href="#" className="navLink">RESERVAS</a>
-                    <a href="#" className="navLink">ESTUDIO</a>
-                    <a href="#" className="navLink">NOSOTROS</a>
-                    <a href="#" className="navLink">CONTACTO</a>
+                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>RESERVAS</motion.a>
+                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>ESTUDIO</motion.a>
+                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>NOSOTROS</motion.a>
+                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>CONTACTO</motion.a>
                 </div>
             </div>
         </nav>

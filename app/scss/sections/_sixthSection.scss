@@ -1,0 +1,64 @@
+#sixthSection {
+    height: 500svh;
+    background-color: red;
+}
+
+#sixthSectionSticky {
+    height: 200svh;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15svh;
+    .animationTextUp {
+        display: flex;
+        height: 82px;
+        width: 100%;
+        overflow: hidden;
+        p {
+            font-size: 72px;
+            font-weight: 900;
+            font-family: "Moderniz";
+            line-height: 1;
+            text-align: center;
+            position: absolute;
+            right: 0;
+            left: 0;
+            color: #000100;
+        }
+    }
+}
+
+#sixthSectionTitle {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.sixtSectionImg {
+    width: 365px;
+    height: 464px;
+    object-fit: cover;
+    position: absolute;
+}
+
+#sixthSectionLineaVioleta {
+    position: absolute;
+    height: 101px;
+    width: 93svw;
+    align-self: flex-start;
+    background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
+    mix-blend-mode: darken;
+    top: 760px;
+}
+
+#sixthSectionFinalText {
+    position: absolute;
+    top: 1000px;
+    width: 60svw;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000100;
+}

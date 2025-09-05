@@ -1,8 +1,33 @@
 #fourthSection {
-    height: 300svh;
+    height: 350svh;
 }
 
 #fourthSectionSticky {
     height: 150svh;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20svh;
+    gap: 10px;
+    .animationTextUp {
+        display: flex;
+        height: 82px;
+        width: 100%;
+        overflow: hidden;
+        p {
+            font-size: 72px;
+            font-weight: 900;
+            font-family: "Moderniz";
+            line-height: 1;
+            text-align: center;
+            position: absolute;
+            right: 0;
+            left: 0;
+        color: #000100;
+        }
+    }
 }
 

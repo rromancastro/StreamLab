@@ -35,24 +35,18 @@ nav {
 
 #navMenuButton {
     height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(13px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05) inset;
     border-radius: 16px;
     width: 136px;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
 
 #navLinks {
     display: flex;
     gap: 16px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(13px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05) inset;
     border-radius: 16px;
     height: 100%;
     justify-content: center;
@@ -63,7 +57,6 @@ nav {
 
 .navLink {
     text-decoration: none;
-    color: #0A001A;
     font-size: 20px;
     font-weight: 600;
     width: 136px;
