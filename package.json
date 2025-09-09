@@ -24,5 +24,11 @@
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
     "eslint-config-next": "15.5.2"
+  },
+  "overrides": {
+    "react-card-flip": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }
