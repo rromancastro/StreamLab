@@ -9,15 +9,16 @@ export const EighthSection = () => {
     const {scrollYProgress} = useScroll();
 
     //textos
-    const opacityText1 = useTransform(scrollYProgress, [0.73, 0.76], [0, 1]);
-    const yText1 = useTransform(scrollYProgress, [0.76, 0.79], [95, 12]);
-    const yText2 = useTransform(scrollYProgress, [0.79, 0.82], [95, 12]);
-    const yText3 = useTransform(scrollYProgress, [0.82, 0.85], [95, 12]);
-    const yText4 = useTransform(scrollYProgress, [0.85, 0.88], [95, 12]);
-    const yText5 = useTransform(scrollYProgress, [0.85, 0.88], [95, 12]);
-    const yText6 = useTransform(scrollYProgress, [0.85, 0.88], [95, 12]);
-    const yText7 = useTransform(scrollYProgress, [0.85, 0.88], [95, 12]);
-    const opacityText2 = useTransform(scrollYProgress, [0.73, 0.76], [0, 1]);
+    const opacityText1 = useTransform(scrollYProgress, [0.7, 0.72], [0, 1]);
+    const yText1 = useTransform(scrollYProgress, [0.72, 0.74], [95, 12]);
+    const yText2 = useTransform(scrollYProgress, [0.74, 0.76], [95, 12]);
+    const yText3 = useTransform(scrollYProgress, [0.76, 0.78], [95, 12]);
+    const yText4 = useTransform(scrollYProgress, [0.78, 0.80], [95, 12]);
+    const opacityRedes = useTransform(scrollYProgress, [0.80, 0.82], [0, 1]);
+    const yText5 = useTransform(scrollYProgress, [0.82, 0.84], [95, 12]);
+    const yText6 = useTransform(scrollYProgress, [0.84, 0.86], [95, 12]);
+    const yText7 = useTransform(scrollYProgress, [0.86, 0.88], [95, 12]);
+    const opacityText2 = useTransform(scrollYProgress, [0.88, 0.9], [0, 1]);
 
     //uses redes
     const [useWhatsapp, setUseWhatsapp] = useState(false);
@@ -39,7 +40,7 @@ export const EighthSection = () => {
             <div className='animationTextUp'>
                 <motion.p style={{top: yText4}}>ESTOS MEDIOS</motion.p>
             </div>
-            <div id="eighthSectionRedesContainer">
+            <motion.div style={{opacity: opacityRedes}} id="eighthSectionRedesContainer">
                 <div className="eighthSectionRed" onMouseLeave={()=>setUseWhatsapp(false)}>
                     <p style={{top: useWhatsapp ? '-24px' : 0}} onClick={()=>setUseWhatsapp(true)}>WHATSAPP</p>
                     <p style={{top: useWhatsapp ? 0 : '24px'}}>11 6544879 <RxCopy onClick={() => navigator.clipboard.writeText("11 6544879")} width={24} height={24} className="copyIcon"/></p>
@@ -52,7 +53,7 @@ export const EighthSection = () => {
                     <p style={{top: useRedes ? '-24px' : 0}} onClick={()=>setUseRedes(true)}>REDES</p>
                     <p style={{top: useRedes ? 0 : '24px'}}><a href="#">X</a><a href="#">IG</a><a href="#">LI</a></p>
                 </div>
-            </div>
+            </motion.div>
             <div className='animationTextUp'>
                 <motion.p style={{top: yText5}}>O</motion.p>
             </div>

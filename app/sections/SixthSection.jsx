@@ -5,23 +5,23 @@ export const SixthSection = () => {
     const { scrollYProgress } = useScroll();
 
     //textos
-    const opacityText1 = useTransform(scrollYProgress, [0.46, 0.475], [0, 1]);
-    const yText1 = useTransform(scrollYProgress, [0.475, 0.49], [95, 12]);
-    const yText2 = useTransform(scrollYProgress, [0.49, 0.505], [95, 12]);
-    const yText3 = useTransform(scrollYProgress, [0.505, 0.52], [95, 12]);
-    const yText4 = useTransform(scrollYProgress, [0.52, 0.535], [95, 12]);
-    const yText5 = useTransform(scrollYProgress, [0.535, 0.55], [95, 12]);
-    const opacityFinal = useTransform(scrollYProgress, [0.55, 565], [0, 1]);
+    const opacityText1 = useTransform(scrollYProgress, [0.48, 0.495], [0, 1]);
+    const yText1 = useTransform(scrollYProgress, [0.495, 0.51], [95, 12]);
+    const yText2 = useTransform(scrollYProgress, [0.51, 0.525], [95, 12]);
+    const yText3 = useTransform(scrollYProgress, [0.525, 0.54], [95, 12]);
+    const yText4 = useTransform(scrollYProgress, [0.54, 0.555], [95, 12]);
+    const yText5 = useTransform(scrollYProgress, [0.555, 0.57], [95, 12]);
+    const opacityFinal = useTransform(scrollYProgress, [0.595, 0.6], [0, 1]);
 
     //imagenes
-    const xImagen1 = useTransform(scrollYProgress, [0.55, 0.565], [0, -125]);
-    const yImagen1 = useTransform(scrollYProgress, [0.55, 0.565], [800, 380]);
+    const xImagen1 = useTransform(scrollYProgress, [0.57, 0.585], [0, -125]);
+    const yImagen1 = useTransform(scrollYProgress, [0.57, 0.585], [800, 380]);
 
-    const xImagen2 = useTransform(scrollYProgress, [0.55, 0.565], [0, 175]);
-    const yImagen2 = useTransform(scrollYProgress, [0.55, 0.565], [800, 380]);
+    const xImagen2 = useTransform(scrollYProgress, [0.57, 0.585], [0, 175]);
+    const yImagen2 = useTransform(scrollYProgress, [0.57, 0.585], [800, 380]);
 
     //linea violeta
-    const xLineaVioleta = useTransform(scrollYProgress, [0.97, 0.98], [-1500, 0]);
+    const xLineaVioleta = useTransform(scrollYProgress, [0.585, 0.59], [-1500, 0]);
 
 
     return <section id="sixthSection">

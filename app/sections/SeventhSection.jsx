@@ -5,8 +5,8 @@ export const SeventhSection = () => {
 
     const {scrollYProgress} = useScroll();
 
-    const rotacion1 = useTransform(scrollYProgress, [0.96, 1], [12, 0]);
-    const rotacion2 = useTransform(scrollYProgress, [0.96, 1], [12, 0]);
+    const rotacion1 = useTransform(scrollYProgress, [0.63, 0.66], [12, 0]);
+    const rotacion2 = useTransform(scrollYProgress, [0.63, 0.66], [12, 0]);
 
     return <section id="seventhSection">
         <section id="seventhSectionSticky">
