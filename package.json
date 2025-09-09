@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint",
-    "postinstall": "npm install --legacy-peer-deps"
+    "lint": "eslint"
   },
   "dependencies": {
     "date-fns": "^4.1.0",
@@ -24,11 +23,5 @@
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
     "eslint-config-next": "15.5.2"
-  },
-  "overrides": {
-    "react-card-flip": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    }
   }
 }

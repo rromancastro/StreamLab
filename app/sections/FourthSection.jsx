@@ -31,7 +31,7 @@ export const FourthSection = () => {
     const opacityCard3 = useTransform(scrollYProgress, [0.40, 0.41], [0, 1]);
 
     return <section id="fourthSection">
-        <motion.section id="fourthSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+        <motion.section id="fourthSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.32 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
             <div className='animationTextUp'>
                 <motion.p style={{top: yText1}}>RESERVA</motion.p>
             </div>
