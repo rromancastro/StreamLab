@@ -42,6 +42,19 @@ nav {
     cursor: pointer;
     background-color: transparent;
     border: none;
+    color: #0A001A;
+}
+
+#navMenuButtonWhite {
+    height: 100%;
+    border-radius: 16px;
+    width: 136px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
 }
 
 #navLinks {
@@ -60,6 +73,22 @@ nav {
     font-size: 20px;
     font-weight: 600;
     width: 136px;
+    color: #0A001A;
+    &:hover {
+        color: #7B2CBF;
+    }
+    &:active {
+        color: #C77DFF;
+        text-shadow: 0px 0px 4px #C77DFF;
+    }
+}
+
+.navLinkWhite {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    width: 136px;
+    color: #ffffff;
     &:hover {
         color: #7B2CBF;
     }

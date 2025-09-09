@@ -4,3 +4,34 @@
     display: flex;
     flex-direction: column;
 }
+
+.sliderContainer {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100svh;
+    top: 580px;
+}
+
+.sliderTrack {
+    display: flex;
+    width: max-content;
+    animation: scroll 15s linear infinite;
+}
+
+.sliderText {
+    font-size: 96px;
+    font-family: "Moderniz";
+    font-weight: 900;
+    white-space: nowrap;
+    margin-right: 50px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

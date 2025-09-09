@@ -12,7 +12,7 @@ export const ThirdSection = () => {
     });
 
     return <section id="thirdSection">
-        <motion.section id="thirdSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.32 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+        <motion.section id="thirdSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
             <div id="thirdSectionDiv1">
                 <div className="animationTextHorizontal">
                     <motion.p style={{left: progress >= 0.1966 ? 0 : '-450px'}}>EQUIPAMIENTO</motion.p>

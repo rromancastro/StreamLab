@@ -9,7 +9,7 @@ export const NavBar = () => {
     const [isWhite, setIsWhite] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setIsWhite(latest >= 0.92 && latest < 0.97);
+        setIsWhite(latest >= 0.922 && latest < 0.974);
     });
 
     //menu
@@ -41,12 +41,12 @@ export const NavBar = () => {
             </div>
 
             <div id="navMenu">
-                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>MENÚ</button>
+                <button id={isWhite ? "navMenuButton" : "navMenuButtonWhite"} onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>MENÚ</button>
                 <div id="navLinks" onMouseLeave={()=>setDropMenu(false)} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
-                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>RESERVAS</motion.a>
-                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>ESTUDIO</motion.a>
-                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>NOSOTROS</motion.a>
-                    <motion.a href="#" className='navLink' style={{color: isWhite ? '#ffffff' : '#0A001A'}}>CONTACTO</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >RESERVAS</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >ESTUDIO</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >NOSOTROS</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >CONTACTO</motion.a>
                 </div>
             </div>
         </nav>
