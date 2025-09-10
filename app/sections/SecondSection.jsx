@@ -1,6 +1,7 @@
 "use client";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
+import { TextUpComponent } from "../components";
 
 export const SecondSection = () => {
     const { scrollYProgress } = useScroll();
@@ -33,12 +34,8 @@ export const SecondSection = () => {
                 <motion.p style={{top: yText1, right: 250}}>TURNOS DE </motion.p>
                 <motion.span style={{scale: scaleH2}}>2 HS</motion.span>
             </div>
-            <div className='animationTextUp'>
-                <motion.p style={{top: yText2}}>DE LUNES A</motion.p>
-            </div>
-            <div className='animationTextUp'>
-                <motion.p style={{top: yText3}}>SABADOS</motion.p>
-            </div>
+            <TextUpComponent top={yText2} textContent={"DE LUNES A"} />
+            <TextUpComponent top={yText3} textContent={"SABADOS"} />
             <motion.p style={{opacity: opacityFinal}}>Elegí un día y un horario que este disponible. Reservá, venís, grabas y listo! Tambíen<br />podes elegir entre nuestros combos si sos un streamer regular. Y si queres te ayudamos<br />con la producción, edición, hosting y otras cositas.</motion.p>
         </motion.section>
     </section>

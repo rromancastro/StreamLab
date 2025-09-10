@@ -1,7 +1,7 @@
 'use client';
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image"
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const NavBar = () => {
 
@@ -12,15 +12,29 @@ export const NavBar = () => {
         setIsWhite(latest >= 0.922 && latest < 0.974);
     });
 
-    //menu
+    // menu
     const [dropMenu, setDropMenu] = useState(false);
+    const closeTimeout = useRef(null);
 
     const handleDropMenu = (e) => {
         e.preventDefault();
+        if (closeTimeout.current) clearTimeout(closeTimeout.current); // si había un cierre programado, lo cancelo
         setDropMenu(true);
-    }
+    };
 
-    //animacion logo
+    const handleMouseLeave = () => {
+        // programo el cierre con delay de 2s
+        closeTimeout.current = setTimeout(() => {
+            setDropMenu(false);
+        }, 2000);
+    };
+
+    const handleMouseEnter = () => {
+        // si el mouse vuelve a entrar, cancelo el cierre
+        if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    };
+
+    // animacion logo
     const [positionTop1, setPositionTop1] = useState(0);
     const [positionTop2, setPositionTop2] = useState(38);
 
@@ -31,22 +45,26 @@ export const NavBar = () => {
             setPositionTop1(0);
             setPositionTop2(38);
         }, 1000);
-    }
+    };
 
     return (
         <nav>
             <div id="navLogo" onClick={handClickLogo}>
-                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"/>
-                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"/>
+                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
+                />
+                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
+                />
             </div>
 
             <div id="navMenu">
-                <button id={isWhite ? "navMenuButton" : "navMenuButtonWhite"} onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>MENÚ</button>
-                <div id="navLinks" onMouseLeave={()=>setDropMenu(false)} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >RESERVAS</motion.a>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >ESTUDIO</motion.a>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >NOSOTROS</motion.a>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'} >CONTACTO</motion.a>
+                <button id={isWhite ? "navMenuButton" : "navMenuButtonWhite"} onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>
+                    MENÚ
+                </button>
+                <div id="navLinks" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>RESERVAS</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>ESTUDIO</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>NOSOTROS</motion.a>
+                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>CONTACTO</motion.a>
                 </div>
             </div>
         </nav>
