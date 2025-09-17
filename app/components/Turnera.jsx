@@ -4,6 +4,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
+import { apiCall } from "../helpers/apiCall";
 
 export const Turnera = () => {
 
@@ -36,6 +37,9 @@ export const Turnera = () => {
     const nextMonth = () => {
         setFechaSeleccionada(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
     };
+
+    //get reservas
+    apiCall('reservas').then(data => console.log(data));
 
     return (
         <div id="turneraContainer">
