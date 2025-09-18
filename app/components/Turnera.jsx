@@ -9,7 +9,8 @@ import { apiCall } from "../helpers/apiCall";
 export const Turnera = () => {
 
     const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date());
-    const diaSeleccionado = fechaSeleccionada.getDay();
+    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const diaSeleccionado = fechaSeleccionada.getDate();
     const mesSeleccionado = fechaSeleccionada.getMonth();
     const [showCalendar, setShowCalendar] = useState(false);
 
@@ -32,10 +33,15 @@ export const Turnera = () => {
     const calendarRef = useRef(null);
 
     const prevMonth = () => {
-        setFechaSeleccionada(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+        setCurrentMonth(
+        (prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1)
+        );
     };
+
     const nextMonth = () => {
-        setFechaSeleccionada(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+        setCurrentMonth(
+        (prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1)
+        );
     };
 
     //get reservas
@@ -61,13 +67,25 @@ export const Turnera = () => {
                 {showCalendar &&<div id="calendarContainer">
                     <div id="calendarNav">
                         <IoTriangleSharp onClick={prevMonth} className="calendarRowsIcon" style={{rotate: '-90deg'}} size={35}/>
-                        <p>{fechaSeleccionada.toLocaleString('es-ES', { month: 'long', year: 'numeric' })}</p>
+                        <p>
+                            {currentMonth
+                            .toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })
+                            .replace(' de ', ' ')
+                            .replace(/^\w/, (c) => c.toUpperCase())}
+                        </p>
                         <IoTriangleSharp onClick={nextMonth} className="calendarRowsIcon" style={{rotate: '90deg'}} size={35}/>
                     </div>
                     <Calendar
                         onChange={setFechaSeleccionada}
                         value={fechaSeleccionada}
                         showNavigation={false}
+                        activeStartDate={currentMonth}
+                        tileDisabled={({ date: currentDate, view }) => {
+                            if (view === "month") {
+                            return currentDate.getMonth() !== currentMonth.getMonth();
+                            }
+                            return false;
+                        }}
                     />
                 </div>}
                 <div>

@@ -114,15 +114,37 @@
         .react-calendar__tile {
             font-size: 16px;
             color: #8C8C8C;
-            border-radius: 8px;
-            padding: 10px 0;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            transition: none;
+        }
+        .react-calendar__tile:hover {
+            color: #B8B7B7;
+            background-color: #7B2CBF33;
+        }
+        // dia actual
+        .react-calendar__tile--now {
+            font-size: 16px;
+            color: #8C8C8C;
+            border-radius: 50%;
+            background-color: transparent;
+            width: 50px;
+            height: 50px;
             transition: none;
         }
         //dia seleccionado
         .react-calendar__tile--active {
-            background: #2563eb !important;
-            color: white !important;
-            border-radius: 8px;
+            background: #5A189A !important;
+            color: #E0AAFF !important;
+            border-radius: 50%;
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+        }
+        //dias que no son del mes
+        .react-calendar__month-view__days__day--neighboringMonth {
+            opacity: 0;
         }
         //nav personalizado
         #calendarNav {
