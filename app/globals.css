@@ -31,6 +31,8 @@ nav {
   height: 14svh;
   overflow: hidden;
   border-radius: 0px 16px 16px 0px;
+  transform: rotate(0deg);
+  transform-origin: right center;
 }
 
 #navMenuButton {
@@ -42,7 +44,6 @@ nav {
   cursor: pointer;
   background-color: transparent;
   border: none;
-  color: #0A001A;
 }
 
 #navMenuButtonWhite {
@@ -98,6 +99,17 @@ nav {
   text-shadow: 0px 0px 4px #C77DFF;
 }
 
+@media (max-width: 862px) {
+  nav {
+    padding: 5svw;
+  }
+  #navMenu {
+    transform: rotate(-90deg);
+    position: absolute;
+    top: -50;
+    left: -50;
+  }
+}
 #header {
   height: 100svh;
   display: flex;
@@ -123,6 +135,13 @@ nav {
   z-index: 50;
 }
 
+@media (max-width: 862px) {
+  #headerImage2, #headerImage {
+    height: auto;
+    width: 100svw;
+    margin-top: 40px;
+  }
+}
 #turneraContainer {
   width: 848px;
   height: 848px;
@@ -307,6 +326,17 @@ nav {
   cursor: pointer;
 }
 
+@media (max-width: 862px) {
+  #turneraContainer {
+    width: 95svw;
+    height: 95svw;
+    top: 620;
+  }
+  #turneraH2 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
 .s4Card {
   width: 240px;
   height: 360px;
@@ -597,6 +627,11 @@ nav {
   background-color: rgba(123, 44, 191, 0.2);
 }
 
+@media (max-width: 862px) {
+  .s4Card {
+    transition: 0.5s ease-in-out;
+  }
+}
 #firstSection {
   width: 100%;
   height: 270svh;
@@ -632,6 +667,15 @@ nav {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+@media (max-width: 862px) {
+  #firstSection {
+    height: 100%;
+    padding-bottom: 70svw;
+  }
+  .sliderText {
+    font-size: 48px;
   }
 }
 #secondSection {
@@ -694,9 +738,47 @@ nav {
   text-align: center;
 }
 
+@media (max-width: 862px) {
+  #secondSection {
+    height: 100svh;
+  }
+  #secondSectionSticky p {
+    color: #000100;
+    transition: 0.5s ease-in-out;
+  }
+  #secondSectionSticky p:nth-child(1) {
+    font-size: 16px;
+  }
+  #secondSectionSticky p:nth-child(5) {
+    font-size: 20px;
+    margin-top: 14px;
+  }
+  #secondSectionSticky .animationTextUp {
+    height: 40px;
+  }
+  #secondSectionSticky .animationTextUp p {
+    font-size: 30px;
+    transition: 0.5s ease-in-out;
+  }
+  #secondSectionSticky .animationTextUp span {
+    color: #5A189A;
+    transition: 0.5s ease-in-out;
+    font-weight: 900;
+    font-family: "Moderniz";
+    transition: 0.3s;
+    line-height: 1;
+    top: 12px;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    left: 260;
+    text-align: center;
+  }
+}
 #thirdSection {
   width: 100%;
   height: 500svh;
+  display: none;
 }
 
 #thirdSectionSticky {
@@ -831,6 +913,18 @@ nav {
   color: #000100;
 }
 
+@media (max-width: 862px) {
+  #fourthSection {
+    height: 100svh;
+  }
+  #fourthSectionSticky .animationTextUp {
+    height: 42px;
+  }
+  #fourthSectionSticky .animationTextUp p {
+    font-size: 32px;
+    transition: 0.5s ease-in-out;
+  }
+}
 #fifthSection {
   height: 100svh;
   width: 100%;
@@ -875,6 +969,14 @@ nav {
   font-weight: 600;
 }
 
+@media (max-width: 862px) {
+  #fifthSection h2 {
+    font-size: 32px;
+  }
+  #fifthSectionCards {
+    display: none;
+  }
+}
 #sixthSection {
   height: 500svh;
 }
@@ -939,6 +1041,36 @@ nav {
   color: #000100;
 }
 
+@media (max-width: 862px) {
+  #sixthSection {
+    height: 100svh;
+  }
+  #sixthSectionSticky .animationTextUp {
+    height: 40px;
+  }
+  #sixthSectionSticky .animationTextUp p {
+    font-size: 30px;
+    transition: 0.5s ease-in-out;
+  }
+  #sixthSectionTitle {
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+  }
+  #sixthSectionFinalText {
+    font-size: 14px;
+    transition: 0.5s ease-in-out;
+    top: 80svh;
+  }
+  #sixthSectionLineaVioleta {
+    transition: 1s ease-in-out;
+    top: 560px;
+  }
+  .sixtSectionImg {
+    transition: 0.5s ease-in-out;
+    width: 265px;
+    height: 364px;
+  }
+}
 #seventhSection {
   height: 200svh;
 }
@@ -1105,6 +1237,38 @@ nav {
   margin-top: 20px;
 }
 
+@media (max-width: 862px) {
+  #eighthSection {
+    height: 100svh;
+  }
+  #eighthSectionSticky {
+    justify-content: center;
+    padding-top: 0;
+  }
+  #eighthSectionSticky .animationTextUp {
+    height: 40px;
+  }
+  #eighthSectionSticky .animationTextUp p {
+    font-size: 30px;
+    transition: 0.5s ease-in-out;
+  }
+  #eigthSectionTitle {
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+    margin-bottom: 30px;
+  }
+  #eigthSectionUbi {
+    font-size: 16px;
+    transition: 0.5s ease-in-out;
+  }
+  #eighthSectionRedesContainer {
+    transition: 0.5s ease-in-out;
+    gap: 0;
+  }
+  .eighthSectionRed {
+    width: 130px;
+  }
+}
 #ninthSection {
   height: 350svh;
   width: 100%;
@@ -1186,6 +1350,39 @@ nav {
   color: #5A189A;
 }
 
+@media (max-width: 862px) {
+  #ninthSection {
+    height: 100svh;
+  }
+  #ninthSectionSticky .animationTextUp {
+    height: 40px;
+  }
+  #ninthSectionSticky .animationTextUp p {
+    font-size: 30px;
+    transition: 0.5s ease-in-out;
+  }
+  #ninthSectionTextContainer {
+    top: 35svh;
+  }
+  #ninthSectionRedesContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: auto;
+    bottom: 8svh;
+    gap: 20px;
+    transition: 0.5s ease-in-out;
+  }
+  #ninthSectionRedesContainer a {
+    justify-self: center;
+  }
+  #ninthSectionBanner {
+    transition: 0.5s ease-in-out;
+  }
+  #ninthSectionCopyright {
+    transition: 0.5s ease-in-out;
+  }
+}
 @font-face {
   font-family: "Moderniz";
   src: url("/fonts/Moderniz.otf") format("opentype");

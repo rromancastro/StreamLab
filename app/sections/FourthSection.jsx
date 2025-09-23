@@ -1,9 +1,53 @@
 "use client";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { S4Card1, S4Card2, S4Card3 } from "../components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 export const FourthSection = () => {
+
+     //responsive
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 863);
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const [animationStep, setAnimationStep] = useState(0);
+    const { ref, inView } = useInView({
+        threshold: 0.3,
+        triggerOnce: true,
+    });
+
+    useEffect(() => {
+        if (inView) {
+            setTimeout(() => {
+                setAnimationStep(1);
+            }, 500);
+            setTimeout(() => {
+                setAnimationStep(2);
+            }, 1000);
+            setTimeout(() => {
+                setAnimationStep(3);
+            },  1500);
+            setTimeout(() => {
+                setAnimationStep(4);
+            }, 2000);
+            setTimeout(() => {
+                setAnimationStep(5);
+            }, 2500);
+            setTimeout(() => {
+                setAnimationStep(6);
+            }, 3000);
+        }
+    }, [inView]);
+
+
+    //scroll
+
     const { scrollYProgress } = useScroll();
     const [progress, setProgress] = useState(0);
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -31,7 +75,7 @@ export const FourthSection = () => {
     const opacityCard3 = useTransform(scrollYProgress, [0.40, 0.41], [0, 1]);
 
     return <section id="fourthSection">
-        <motion.section id="fourthSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+        {!isMobile ? <motion.section id="fourthSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
             <div className='animationTextUp'>
                 <motion.p style={{top: yText1}}>RESERVA</motion.p>
             </div>
@@ -48,5 +92,26 @@ export const FourthSection = () => {
             <S4Card2 y={yCard2} x={xCard2} opacity={opacityCard2} />
             <S4Card1 y={yCard1} x={xCard1} opacity={opacityCard1} rotate={rotateCard1}/>
         </motion.section>
+        :
+        <section ref={ref} id="fourthSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+            <div className='animationTextUp'>
+                <p style={{top: animationStep >=1 ? 12 : 52}}>RESERVA</p>
+            </div>
+            <div className='animationTextUp'>
+                <p style={{top: animationStep >=2 ? 12 : 52}}>TU TURNO</p>
+            </div>
+            <div className='animationTextUp'>
+                <p style={{top: animationStep >=3 ? 12 : 52}}>TU COMBO, O</p>
+            </div>
+            <div className='animationTextUp'>
+                <p style={{top: animationStep >=4 ? 12 : 52}}>LO QUE QUIERAS.</p>
+            </div>
+            <div style={{display: 'flex', width: '100%', height: '360px', justifyContent: 'flex-start', marginTop: '32px', paddingLeft:"30px", overflowX: 'scroll'}}>
+                <S4Card3 y={0} x={animationStep >= 6 ? 520 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
+                <S4Card2 y={0} x={animationStep >= 6 ? 260 : 0} opacity={animationStep >= 5 ? 1 : 0} />
+                <S4Card1 y={0} x={animationStep >= 6 ? 0 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
+            </div>
+        </section>
+    }
     </section>
 }

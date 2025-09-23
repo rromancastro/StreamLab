@@ -2,7 +2,7 @@ export const FifthSection = () => {
     return <section id="fifthSection">
         <h2>EL<br />
             LABORATORIO<br />
-            DEL STREAMING
+            DE STREAMING
         </h2>
         <div id="fifthSectionCards">
             <div className="fifthSectionCard">

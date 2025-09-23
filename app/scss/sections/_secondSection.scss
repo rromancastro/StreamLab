@@ -58,3 +58,43 @@
     }
     
 }
+
+@media (max-width: 862px) {
+    #secondSection {
+        height: 100svh;
+    }
+    #secondSectionSticky {
+        p {
+            color: #000100;
+            transition: .5s ease-in-out;
+            &:nth-child(1) {
+                font-size: 16px;
+            }
+            &:nth-child(5) {
+                font-size: 20px;
+                margin-top: 14px;
+            }
+        }
+        .animationTextUp {
+            height: 40px;
+            p {
+                font-size: 30px;
+                transition: .5s ease-in-out;
+            }
+            span {
+                color: #5A189A;
+                transition: .5s ease-in-out;
+                font-weight: 900;
+                font-family: "Moderniz";
+                transition: .3s;
+                line-height: 1;
+                top: 12px;
+                font-size: 30px;
+                position: absolute;
+                right: 0;
+                left: 260;
+                text-align: center;
+            }
+        }
+    }
+}

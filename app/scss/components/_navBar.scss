@@ -31,6 +31,8 @@ nav {
     height: 14svh;
     overflow: hidden;
     border-radius: 0px 16px 16px 0px;
+    transform: rotate(0deg);
+    transform-origin: right center;
 }
 
 #navMenuButton {
@@ -42,7 +44,6 @@ nav {
     cursor: pointer;
     background-color: transparent;
     border: none;
-    color: #0A001A;
 }
 
 #navMenuButtonWhite {
@@ -95,5 +96,17 @@ nav {
     &:active {
         color: #C77DFF;
         text-shadow: 0px 0px 4px #C77DFF;
+    }
+}
+
+@media (max-width: 862px) {
+    nav {
+        padding: 5svw;
+    }
+    #navMenu {
+        transform: rotate(-90deg);
+        position: absolute;
+        top: -50;
+        left: -50;
     }
 }

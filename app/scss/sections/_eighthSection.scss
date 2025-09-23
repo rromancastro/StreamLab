@@ -94,3 +94,36 @@
     gap: 10px;
     margin-top: 20px;
 }
+
+@media (max-width: 862px) {
+    #eighthSection {
+        height: 100svh;
+    }
+    #eighthSectionSticky {
+        justify-content: center;
+        padding-top: 0;
+        .animationTextUp {
+            height: 40px;
+            p {
+                font-size: 30px;
+                transition: .5s ease-in-out;
+            }
+        }
+    }
+    #eigthSectionTitle {
+        font-size: 16px;
+        transition: .5s ease-in-out;
+        margin-bottom: 30px;
+    }
+    #eigthSectionUbi {
+        font-size: 16px;
+        transition: .5s ease-in-out;
+    }
+    #eighthSectionRedesContainer {
+        transition: .5s ease-in-out;
+        gap: 0;
+    }
+    .eighthSectionRed {
+        width: 130px;
+    }
+}

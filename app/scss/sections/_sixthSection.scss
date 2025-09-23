@@ -61,3 +61,36 @@
     font-size: 16px;
     color: #000100;
 }
+
+@media (max-width: 862px) {
+    #sixthSection {
+        height: 100svh;
+    }
+    #sixthSectionSticky {
+        .animationTextUp {
+            height: 40px;
+            p {
+                font-size: 30px;
+                transition: .5s ease-in-out;
+            }
+        }
+    }
+    #sixthSectionTitle {
+        font-size: 16px;
+        transition: .5s ease-in-out;
+    }
+    #sixthSectionFinalText {
+        font-size: 14px;
+        transition: .5s ease-in-out;
+        top: 80svh;
+    }
+    #sixthSectionLineaVioleta {
+        transition: 1s ease-in-out;
+        top: 560px;
+    }
+    .sixtSectionImg {
+        transition: .5s ease-in-out;
+        width: 265px;
+        height: 364px;
+    }
+}

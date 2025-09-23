@@ -26,8 +26,22 @@
             position: absolute;
             right: 0;
             left: 0;
-        color: #000100;
+            color: #000100;
         }
     }
 }
 
+@media (max-width: 862px) {
+    #fourthSection {
+        height: 100svh;
+    }
+    #fourthSectionSticky {
+        .animationTextUp {
+            height: 42px;
+            p {
+                font-size: 32px;
+                transition: .5s ease-in-out;
+            }
+        }
+    }
+}

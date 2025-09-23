@@ -35,3 +35,14 @@
     transform: translateX(-50%);
   }
 }
+
+@media (max-width: 862px) {
+    #firstSection {
+      height: 100%;
+      padding-bottom: 70svw;
+    }
+    .sliderText {
+        font-size: 48px;
+    }
+
+}

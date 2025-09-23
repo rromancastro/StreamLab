@@ -78,3 +78,39 @@
         color: #5A189A;
     }
 }
+
+@media (max-width: 862px) {
+    #ninthSection {
+        height: 100svh;
+    }
+    #ninthSectionSticky {
+        .animationTextUp {
+            height: 40px;
+            p {
+                font-size: 30px;
+                transition: .5s ease-in-out;
+            }
+        }
+    }
+    #ninthSectionTextContainer {
+        top: 35svh;
+    }
+    #ninthSectionRedesContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        height: auto;
+        bottom: 8svh;
+        gap: 20px;
+        transition: .5s ease-in-out;
+        a {
+            justify-self: center;
+        }
+    }
+    #ninthSectionBanner {
+        transition: .5s ease-in-out;
+    }
+    #ninthSectionCopyright {
+        transition: .5s ease-in-out;
+    }
+}
