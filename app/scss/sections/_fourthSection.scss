@@ -33,9 +33,11 @@
 
 @media (max-width: 862px) {
     #fourthSection {
-        height: 100vh;
+        height: 100%;
     }
     #fourthSectionSticky {
+        height: 100%;
+        padding-bottom: 40px;
         .animationTextUp {
             height: 42px;
             p {
