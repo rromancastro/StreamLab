@@ -100,8 +100,9 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         height: auto;
-        top: 85vh;
-        gap: 20px;
+        bottom: 8vh;
+        height: 6vh;
+        gap: 10px;
         transition: .5s ease-in-out;
         a {
             justify-self: center;
@@ -112,5 +113,8 @@
     }
     #ninthSectionCopyright {
         transition: .5s ease-in-out;
+        height: 5vh;
+        right: 0;
+        left: 0;
     }
 }

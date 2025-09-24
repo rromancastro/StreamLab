@@ -56,9 +56,8 @@ export const NavBar = () => {
             return () => window.removeEventListener("resize", handleResize);
         }, []);
 
-    return (
-        <nav>
-            {!isMobile ? <><div id="navLogo" onClick={handClickLogo}>
+    return (<nav>
+        <div id="navLogo" onClick={handClickLogo}>
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
@@ -74,26 +73,7 @@ export const NavBar = () => {
                     <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>NOSOTROS</motion.a>
                     <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>CONTACTO</motion.a>
                 </div>
-            </div></>
-            :
-            <><div id="navLogo">
-                <Image src="/logoMobile.png" alt="Logo" width={36} height={40} style={{top: positionTop1}} className="navLogoImage"
-                />
             </div>
-            <div id="navMenu" >
-                <button id="navMenuButton" onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: '#0A001A'}}>
-                    MENÚ
-                </button>
-                <div id="navLinks" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
-                    <motion.a href="#" className={'navLink'}>RESERVAS</motion.a>
-                    <motion.a href="#" className={'navLink'}>ESTUDIO</motion.a>
-                    <motion.a href="#" className={'navLink'}>NOSOTROS</motion.a>
-                    <motion.a href="#" className={'navLink'}>CONTACTO</motion.a>
-                </div>
-            </div></>
-            }
-
-            
         </nav>
     )
 }

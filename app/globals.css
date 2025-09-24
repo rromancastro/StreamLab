@@ -99,22 +99,6 @@ nav {
   text-shadow: 0px 0px 4px #C77DFF;
 }
 
-@media (max-width: 862px) {
-  nav {
-    padding: 5vw;
-  }
-  #navMenu {
-    transform: rotate(-90deg);
-    position: absolute;
-    top: -50;
-    left: -320;
-    width: 700px;
-  }
-  .navLink {
-    font-size: 16px;
-    width: 100px;
-  }
-}
 #header {
   height: 100vh;
   display: flex;
@@ -1392,8 +1376,9 @@ nav {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     height: auto;
-    top: 85vh;
-    gap: 20px;
+    bottom: 8vh;
+    height: 6vh;
+    gap: 10px;
     transition: 0.5s ease-in-out;
   }
   #ninthSectionRedesContainer a {
@@ -1404,6 +1389,9 @@ nav {
   }
   #ninthSectionCopyright {
     transition: 0.5s ease-in-out;
+    height: 5vh;
+    right: 0;
+    left: 0;
   }
 }
 @font-face {

@@ -98,20 +98,3 @@ nav {
         text-shadow: 0px 0px 4px #C77DFF;
     }
 }
-
-@media (max-width: 862px) {
-    nav {
-        padding: 5vw;
-    }
-    #navMenu {
-        transform: rotate(-90deg);
-        position: absolute;
-        top: -50;
-        left: -320;
-        width: 700px;
-    }
-    .navLink {
-        font-size: 16px;
-        width: 100px;
-    }
-}
