@@ -1,16 +1,16 @@
 #fourthSection {
-    height: 350svh;
+    height: 350vh;
 }
 
 #fourthSectionSticky {
-    height: 150svh;
+    height: 150vh;
     position: sticky;
     top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 20svh;
+    padding-top: 20vh;
     gap: 10px;
     .animationTextUp {
         display: flex;
@@ -33,7 +33,7 @@
 
 @media (max-width: 862px) {
     #fourthSection {
-        height: 100svh;
+        height: 100vh;
     }
     #fourthSectionSticky {
         .animationTextUp {

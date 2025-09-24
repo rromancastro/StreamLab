@@ -1,16 +1,16 @@
 #sixthSection {
-    height: 500svh;
+    height: 500vh;
 }
 
 #sixthSectionSticky {
-    height: 200svh;
+    height: 200vh;
     position: sticky;
     top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15svh;
+    padding-top: 15vh;
     .animationTextUp {
         display: flex;
         height: 82px;
@@ -46,7 +46,7 @@
 #sixthSectionLineaVioleta {
     position: absolute;
     height: 101px;
-    width: 93svw;
+    width: 93vw;
     align-self: flex-start;
     background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
     mix-blend-mode: darken;
@@ -56,7 +56,7 @@
 #sixthSectionFinalText {
     position: absolute;
     top: 1000px;
-    width: 60svw;
+    width: 60vw;
     font-weight: 400;
     font-size: 16px;
     color: #000100;
@@ -64,7 +64,7 @@
 
 @media (max-width: 862px) {
     #sixthSection {
-        height: 100svh;
+        height: 100vh;
     }
     #sixthSectionSticky {
         .animationTextUp {
@@ -82,7 +82,7 @@
     #sixthSectionFinalText {
         font-size: 14px;
         transition: .5s ease-in-out;
-        top: 80svh;
+        top: 80vh;
     }
     #sixthSectionLineaVioleta {
         transition: 1s ease-in-out;

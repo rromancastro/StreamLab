@@ -1,6 +1,6 @@
 #firstSection {
     width: 100%;
-    height: 270svh;
+    height: 270vh;
     display: flex;
     flex-direction: column;
 }
@@ -9,7 +9,7 @@
     position: absolute;
     overflow: hidden;
     width: 100%;
-    height: 100svh;
+    height: 100vh;
     top: 580px;
 }
 
@@ -39,7 +39,7 @@
 @media (max-width: 862px) {
     #firstSection {
       height: 100%;
-      padding-bottom: 70svw;
+      padding-bottom: 70vw;
     }
     .sliderText {
         font-size: 48px;

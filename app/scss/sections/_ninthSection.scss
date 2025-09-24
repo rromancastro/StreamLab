@@ -1,17 +1,17 @@
 #ninthSection {
-    height: 350svh;
+    height: 350vh;
     width: 100%;
 }
 
 #ninthSectionSticky {
-    height: 100svh;
+    height: 100vh;
     position: sticky;
     top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15svh;
+    padding-top: 15vh;
     gap: 10px;
     .animationTextUp {
         display: flex;
@@ -44,12 +44,12 @@
     position: absolute;
     height: auto;
     width: 100%;
-    top: 25svh;
+    top: 25vh;
 }
 
 #ninthSectionRedesContainer {
     position: absolute;
-    bottom: 13svh;
+    bottom: 13vh;
     display: flex;
     gap: 50px;
     a {
@@ -69,7 +69,7 @@
 
 #ninthSectionCopyright {
     position: absolute;
-    bottom: 2svh;
+    bottom: 2vh;
     text-align: center;
     font-size: 12px;
     font-weight: 400;
@@ -81,7 +81,7 @@
 
 @media (max-width: 862px) {
     #ninthSection {
-        height: 100svh;
+        height: 100vh;
     }
     #ninthSectionSticky {
         .animationTextUp {
@@ -93,14 +93,14 @@
         }
     }
     #ninthSectionTextContainer {
-        top: 35svh;
+        top: 35vh;
     }
     #ninthSectionRedesContainer {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         height: auto;
-        bottom: 8svh;
+        bottom: 8vh;
         gap: 20px;
         transition: .5s ease-in-out;
         a {

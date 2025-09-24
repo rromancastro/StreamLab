@@ -5,7 +5,7 @@ nav {
   align-items: center;
   padding: 0px 40px;
   width: 100%;
-  height: 17svh;
+  height: 17vh;
   z-index: 200;
 }
 
@@ -28,7 +28,7 @@ nav {
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 14svh;
+  height: 14vh;
   overflow: hidden;
   border-radius: 0px 16px 16px 0px;
   transform: rotate(0deg);
@@ -101,7 +101,7 @@ nav {
 
 @media (max-width: 862px) {
   nav {
-    padding: 5svw;
+    padding: 5vw;
   }
   #navMenu {
     transform: rotate(-90deg);
@@ -111,7 +111,7 @@ nav {
   }
 }
 #header {
-  height: 100svh;
+  height: 100vh;
   display: flex;
   justify-content: center;
 }
@@ -138,7 +138,7 @@ nav {
 @media (max-width: 862px) {
   #headerImage2, #headerImage {
     height: auto;
-    width: 100svw;
+    width: 100vw;
     margin-top: 40px;
   }
 }
@@ -328,8 +328,8 @@ nav {
 
 @media (max-width: 862px) {
   #turneraContainer {
-    width: 95svw;
-    height: 95svw;
+    width: 95vw;
+    height: 95vw;
     top: 620;
   }
   #turneraH2 {
@@ -634,7 +634,7 @@ nav {
 }
 #firstSection {
   width: 100%;
-  height: 270svh;
+  height: 270vh;
   display: flex;
   flex-direction: column;
 }
@@ -643,7 +643,7 @@ nav {
   position: absolute;
   overflow: hidden;
   width: 100%;
-  height: 100svh;
+  height: 100vh;
   top: 580px;
 }
 
@@ -672,7 +672,7 @@ nav {
 @media (max-width: 862px) {
   #firstSection {
     height: 100%;
-    padding-bottom: 70svw;
+    padding-bottom: 70vw;
   }
   .sliderText {
     font-size: 48px;
@@ -680,11 +680,11 @@ nav {
 }
 #secondSection {
   width: 100%;
-  height: 350svh;
+  height: 350vh;
 }
 
 #secondSectionSticky {
-  height: 100svh;
+  height: 100vh;
   position: sticky;
   top: 0;
   width: 100%;
@@ -740,7 +740,7 @@ nav {
 
 @media (max-width: 862px) {
   #secondSection {
-    height: 100svh;
+    height: 100vh;
   }
   #secondSectionSticky p {
     color: #000100;
@@ -777,12 +777,12 @@ nav {
 }
 #thirdSection {
   width: 100%;
-  height: 500svh;
+  height: 500vh;
   display: none;
 }
 
 #thirdSectionSticky {
-  height: 100svh;
+  height: 100vh;
   position: sticky;
   display: flex;
   top: 0;
@@ -806,9 +806,9 @@ nav {
 #thirdSectionDiv1 {
   width: 450px;
   position: absolute;
-  top: 14svh;
+  top: 14vh;
   overflow: hidden;
-  left: 9svw;
+  left: 9vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -817,9 +817,9 @@ nav {
 #thirdSectionDiv2 {
   width: 450px;
   position: absolute;
-  top: 14svh;
+  top: 14vh;
   overflow: hidden;
-  right: 9svw;
+  right: 9vw;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -828,9 +828,9 @@ nav {
 #thirdSectionDiv3 {
   width: 450px;
   position: absolute;
-  bottom: 14svh;
+  bottom: 14vh;
   overflow: hidden;
-  left: 9svw;
+  left: 9vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -839,9 +839,9 @@ nav {
 #thirdSectionDiv4 {
   width: 450px;
   position: absolute;
-  bottom: 14svh;
+  bottom: 14vh;
   overflow: hidden;
-  right: 9svw;
+  right: 9vw;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -881,18 +881,18 @@ nav {
 }
 
 #fourthSection {
-  height: 350svh;
+  height: 350vh;
 }
 
 #fourthSectionSticky {
-  height: 150svh;
+  height: 150vh;
   position: sticky;
   top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20svh;
+  padding-top: 20vh;
   gap: 10px;
 }
 #fourthSectionSticky .animationTextUp {
@@ -915,7 +915,7 @@ nav {
 
 @media (max-width: 862px) {
   #fourthSection {
-    height: 100svh;
+    height: 100vh;
   }
   #fourthSectionSticky .animationTextUp {
     height: 42px;
@@ -926,7 +926,7 @@ nav {
   }
 }
 #fifthSection {
-  height: 100svh;
+  height: 100vh;
   width: 100%;
   background-image: url("/fifthSection/banner.png");
   background-size: cover;
@@ -938,8 +938,8 @@ nav {
   font-size: 64px;
   color: #ffffff;
   position: absolute;
-  bottom: 3svw;
-  left: 3svw;
+  bottom: 3vw;
+  left: 3vw;
 }
 
 #fifthSectionCards {
@@ -948,8 +948,8 @@ nav {
   position: absolute;
   height: auto;
   justify-self: flex-end;
-  gap: 1svh;
-  bottom: 3svh;
+  gap: 1vh;
+  bottom: 3vh;
 }
 
 .fifthSectionCard {
@@ -978,18 +978,18 @@ nav {
   }
 }
 #sixthSection {
-  height: 500svh;
+  height: 500vh;
 }
 
 #sixthSectionSticky {
-  height: 200svh;
+  height: 200vh;
   position: sticky;
   top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15svh;
+  padding-top: 15vh;
 }
 #sixthSectionSticky .animationTextUp {
   display: flex;
@@ -1025,7 +1025,7 @@ nav {
 #sixthSectionLineaVioleta {
   position: absolute;
   height: 101px;
-  width: 93svw;
+  width: 93vw;
   align-self: flex-start;
   background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
   mix-blend-mode: darken;
@@ -1035,7 +1035,7 @@ nav {
 #sixthSectionFinalText {
   position: absolute;
   top: 1000px;
-  width: 60svw;
+  width: 60vw;
   font-weight: 400;
   font-size: 16px;
   color: #000100;
@@ -1043,7 +1043,7 @@ nav {
 
 @media (max-width: 862px) {
   #sixthSection {
-    height: 100svh;
+    height: 100vh;
   }
   #sixthSectionSticky .animationTextUp {
     height: 40px;
@@ -1059,7 +1059,7 @@ nav {
   #sixthSectionFinalText {
     font-size: 14px;
     transition: 0.5s ease-in-out;
-    top: 80svh;
+    top: 80vh;
   }
   #sixthSectionLineaVioleta {
     transition: 1s ease-in-out;
@@ -1072,11 +1072,11 @@ nav {
   }
 }
 #seventhSection {
-  height: 200svh;
+  height: 200vh;
 }
 
 #seventhSectionSticky {
-  height: 100svh;
+  height: 100vh;
   position: sticky;
   top: 0;
   width: 100%;
@@ -1145,19 +1145,19 @@ nav {
   }
 }
 #eighthSection {
-  height: 750svh;
+  height: 750vh;
   width: 100%;
 }
 
 #eighthSectionSticky {
-  height: 110svh;
+  height: 110vh;
   position: sticky;
   top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 13svh;
+  padding-top: 13vh;
 }
 #eighthSectionSticky .animationTextUp {
   display: flex;
@@ -1186,7 +1186,7 @@ nav {
 #eighthSectionRedesContainer {
   display: flex;
   gap: 30px;
-  margin: 3svh 0;
+  margin: 3vh 0;
 }
 
 .eighthSectionRed {
@@ -1239,7 +1239,7 @@ nav {
 
 @media (max-width: 862px) {
   #eighthSection {
-    height: 100svh;
+    height: 100vh;
   }
   #eighthSectionSticky {
     justify-content: center;
@@ -1270,19 +1270,19 @@ nav {
   }
 }
 #ninthSection {
-  height: 350svh;
+  height: 350vh;
   width: 100%;
 }
 
 #ninthSectionSticky {
-  height: 100svh;
+  height: 100vh;
   position: sticky;
   top: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15svh;
+  padding-top: 15vh;
   gap: 10px;
 }
 #ninthSectionSticky .animationTextUp {
@@ -1315,12 +1315,12 @@ nav {
   position: absolute;
   height: auto;
   width: 100%;
-  top: 25svh;
+  top: 25vh;
 }
 
 #ninthSectionRedesContainer {
   position: absolute;
-  bottom: 13svh;
+  bottom: 13vh;
   display: flex;
   gap: 50px;
 }
@@ -1340,7 +1340,7 @@ nav {
 
 #ninthSectionCopyright {
   position: absolute;
-  bottom: 2svh;
+  bottom: 2vh;
   text-align: center;
   font-size: 12px;
   font-weight: 400;
@@ -1352,7 +1352,7 @@ nav {
 
 @media (max-width: 862px) {
   #ninthSection {
-    height: 100svh;
+    height: 100vh;
   }
   #ninthSectionSticky .animationTextUp {
     height: 40px;
@@ -1362,14 +1362,14 @@ nav {
     transition: 0.5s ease-in-out;
   }
   #ninthSectionTextContainer {
-    top: 35svh;
+    top: 35vh;
   }
   #ninthSectionRedesContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     height: auto;
-    bottom: 8svh;
+    bottom: 8vh;
     gap: 20px;
     transition: 0.5s ease-in-out;
   }

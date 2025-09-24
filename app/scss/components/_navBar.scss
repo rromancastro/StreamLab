@@ -5,7 +5,7 @@ nav {
     align-items: center;
     padding: 0px 40px;
     width: 100%;
-    height: 17svh;
+    height: 17vh;
     z-index: 200;
 }
 
@@ -28,7 +28,7 @@ nav {
     justify-content: flex-end;
     align-items: center;
     width: 100%;
-    height: 14svh;
+    height: 14vh;
     overflow: hidden;
     border-radius: 0px 16px 16px 0px;
     transform: rotate(0deg);
@@ -101,7 +101,7 @@ nav {
 
 @media (max-width: 862px) {
     nav {
-        padding: 5svw;
+        padding: 5vw;
     }
     #navMenu {
         transform: rotate(-90deg);

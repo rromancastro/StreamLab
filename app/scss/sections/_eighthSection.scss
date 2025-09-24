@@ -1,17 +1,17 @@
 #eighthSection {
-    height: 750svh;
+    height: 750vh;
     width: 100%;
 }
 
 #eighthSectionSticky {
-    height: 110svh;
+    height: 110vh;
     position: sticky;
     top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 13svh;
+    padding-top: 13vh;
     .animationTextUp {
         display: flex;
         height: 54px;
@@ -40,7 +40,7 @@
 #eighthSectionRedesContainer {
     display: flex;
     gap: 30px;
-    margin: 3svh 0;
+    margin: 3vh 0;
 }
 
 .eighthSectionRed {
@@ -97,7 +97,7 @@
 
 @media (max-width: 862px) {
     #eighthSection {
-        height: 100svh;
+        height: 100vh;
     }
     #eighthSectionSticky {
         justify-content: center;
