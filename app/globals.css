@@ -1033,11 +1033,11 @@ nav {
 
 @media (max-width: 862px) {
   #sixthSection {
-    height: 100vh;
-    background-color: red;
+    height: 900px;
   }
   #sixthSectionSticky {
     padding-top: 10vh;
+    height: 100%;
   }
   #sixthSectionSticky .animationTextUp {
     height: 40px;
@@ -1053,7 +1053,7 @@ nav {
   #sixthSectionFinalText {
     font-size: 14px;
     transition: 0.5s ease-in-out;
-    top: 70vh;
+    top: 630px;
     width: 90vw;
   }
   #sixthSectionLineaVioleta {

@@ -118,8 +118,8 @@ export const SixthSection = () => {
                 <p style={{top: animationStep >= 6 ? 12 : 50 }}>CURIOSOS</p>
             </div>
 
-            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: animationStep >= 7 ? "0%" : '0' , top: animationStep >= 7 ? '30.5vh' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
-            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: animationStep >= 7 ? "10%": '0' , top: animationStep >= 7 ? '30.5vh' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
+            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: animationStep >= 7 ? "0%" : '0' , top: animationStep >= 7 ? '260px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
+            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: animationStep >= 7 ? "5%": '0' , top: animationStep >= 7 ? '260px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
         
             <div id="sixthSectionLineaVioleta" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>
 
