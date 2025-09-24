@@ -81,11 +81,12 @@
 
 @media (max-width: 862px) {
     #ninthSection {
-        height: 100vh;
+        height: 900px;
         width: 100%;
         overflow: hidden;
     }
     #ninthSectionSticky {
+        height: 900px;
         .animationTextUp {
             height: 40px;
             p {
@@ -95,15 +96,15 @@
         }
     }
     #ninthSectionTextContainer {
-        top: 35vh;
+        top: 350px;
     }
     #ninthSectionRedesContainer {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         height: auto;
-        bottom: 9vh;
-        height: 6vh;
+        bottom: 65px;
+        height: auto;
         gap: 10px;
         transition: .5s ease-in-out;
         a {
@@ -115,7 +116,7 @@
     }
     #ninthSectionCopyright {
         transition: .5s ease-in-out;
-        height: 5vh;
+        bottom: 10px;
         right: 0;
         left: 0;
     }
