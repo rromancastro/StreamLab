@@ -1034,6 +1034,10 @@ nav {
 @media (max-width: 862px) {
   #sixthSection {
     height: 100vh;
+    background-color: red;
+  }
+  #sixthSectionSticky {
+    padding-top: 10vh;
   }
   #sixthSectionSticky .animationTextUp {
     height: 40px;
@@ -1049,12 +1053,12 @@ nav {
   #sixthSectionFinalText {
     font-size: 14px;
     transition: 0.5s ease-in-out;
-    top: 720px;
+    top: 70vh;
     width: 90vw;
   }
   #sixthSectionLineaVioleta {
     transition: 1s ease-in-out;
-    top: 560px;
+    top: 500px;
     width: 100%;
   }
   .sixtSectionImg {
@@ -1376,7 +1380,7 @@ nav {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     height: auto;
-    bottom: 8vh;
+    bottom: 9vh;
     height: 6vh;
     gap: 10px;
     transition: 0.5s ease-in-out;

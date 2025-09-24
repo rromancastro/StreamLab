@@ -65,8 +65,10 @@
 @media (max-width: 862px) {
     #sixthSection {
         height: 100vh;
+        background-color: red;
     }
     #sixthSectionSticky {
+        padding-top: 10vh;
         .animationTextUp {
             height: 40px;
             p {
@@ -82,12 +84,12 @@
     #sixthSectionFinalText {
         font-size: 14px;
         transition: .5s ease-in-out;
-        top: 720px;
+        top: 70vh;
         width: 90vw;
     }
     #sixthSectionLineaVioleta {
         transition: 1s ease-in-out;
-        top: 560px;
+        top: 500px;
         width: 100%;
     }
     .sixtSectionImg {
