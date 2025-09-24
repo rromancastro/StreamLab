@@ -1152,6 +1152,14 @@ nav {
     transform: translateX(0);
   }
 }
+@media (max-width: 862px) {
+  .sliderText2, .sliderText3 {
+    font-size: 48px;
+  }
+  #seventhSection, #seventhSectionSticky {
+    height: 40vh;
+  }
+}
 #eighthSection {
   height: 750vh;
   width: 100%;
