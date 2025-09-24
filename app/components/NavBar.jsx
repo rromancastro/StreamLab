@@ -18,19 +18,17 @@ export const NavBar = () => {
 
     const handleDropMenu = (e) => {
         e.preventDefault();
-        if (closeTimeout.current) clearTimeout(closeTimeout.current); // si había un cierre programado, lo cancelo
+        if (closeTimeout.current) clearTimeout(closeTimeout.current); 
         setDropMenu(true);
     };
 
     const handleMouseLeave = () => {
-        // programo el cierre con delay de 2s
         closeTimeout.current = setTimeout(() => {
             setDropMenu(false);
         }, 2000);
     };
 
     const handleMouseEnter = () => {
-        // si el mouse vuelve a entrar, cancelo el cierre
         if (closeTimeout.current) clearTimeout(closeTimeout.current);
     };
 

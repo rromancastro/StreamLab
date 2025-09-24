@@ -100,7 +100,7 @@ export const NinthSection = () => {
         </section>
         :
         <section ref={ref} id="ninthSectionSticky">
-            <img style={{filter: animationStep >= 1 ? 'brightness(1)' : 'brightness(0.3)', width: animationStep >= 2 ? '95%' : '100%', height: animationStep >= 2 ? '80svh' : '100svh', top: animationStep >= 2 ? '3svh' : 0, borderRadius: animationStep >= 2 ? 360 : 0}} src={"/ninthSection/banner.png"} alt="Imagen banner" id="ninthSectionBanner"/>
+            <img style={{filter: animationStep >= 1 ? 'brightness(1)' : 'brightness(0.3)', width: animationStep >= 2 ? '95%' : '100%', height: animationStep >= 2 ? '80svh' : '100vh', top: animationStep >= 2 ? '3svh' : 0, borderRadius: animationStep >= 2 ? 360 : 0}} src={"/ninthSection/banner.png"} alt="Imagen banner" id="ninthSectionBanner"/>
             <div id="ninthSectionTextContainer">
                 <div className='animationTextUp'>
                     <p style={{top: animationStep >= 3 ? 12 : 50}}>CONTEMOS</p>

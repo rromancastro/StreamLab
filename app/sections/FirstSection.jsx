@@ -24,7 +24,7 @@ export const FirstSection = () => {
                 <span className="sliderText">EXPERIMENTA EL STREAMING</span>
                 <span className="sliderText">EXPERIMENTA EL STREAMING</span>
             </div>
-        </motion.div> : <div style={{top: '430px'}} className="sliderContainer">
+        </motion.div> : <div style={{top: '390px'}} className="sliderContainer">
             <div className="sliderTrack">
                 <span className="sliderText">EXPERIMENTA EL STREAMING</span>
                 <span className="sliderText">EXPERIMENTA EL STREAMING</span>

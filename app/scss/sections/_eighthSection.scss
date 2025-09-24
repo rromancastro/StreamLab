@@ -125,5 +125,12 @@
     }
     .eighthSectionRed {
         width: 130px;
+        height: 20px;
+        p {
+            font-size: 16px;
+            &:nth-child(2) {
+                font-size: 12px;
+            }
+        }
     }
 }

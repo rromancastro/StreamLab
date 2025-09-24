@@ -107,6 +107,11 @@ nav {
         transform: rotate(-90deg);
         position: absolute;
         top: -50;
-        left: -50;
+        left: -320;
+        width: 700px;
+    }
+    .navLink {
+        font-size: 16px;
+        width: 100px;
     }
 }

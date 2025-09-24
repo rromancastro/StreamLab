@@ -107,7 +107,12 @@ nav {
     transform: rotate(-90deg);
     position: absolute;
     top: -50;
-    left: -50;
+    left: -320;
+    width: 700px;
+  }
+  .navLink {
+    font-size: 16px;
+    width: 100px;
   }
 }
 #header {
@@ -330,7 +335,7 @@ nav {
   #turneraContainer {
     width: 95vw;
     height: 95vw;
-    top: 620;
+    top: 550;
   }
   #turneraH2 {
     font-size: 22px;
@@ -1270,6 +1275,13 @@ nav {
   }
   .eighthSectionRed {
     width: 130px;
+    height: 20px;
+  }
+  .eighthSectionRed p {
+    font-size: 16px;
+  }
+  .eighthSectionRed p:nth-child(2) {
+    font-size: 12px;
   }
 }
 #ninthSection {
@@ -1372,7 +1384,7 @@ nav {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     height: auto;
-    bottom: 8vh;
+    top: 85vh;
     gap: 20px;
     transition: 0.5s ease-in-out;
   }
