@@ -118,10 +118,10 @@ export const SixthSection = () => {
                 <p style={{top: animationStep >= 6 ? 12 : 50 }}>CURIOSOS</p>
             </div>
 
-            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: animationStep >= 7 ? "0%" : '0' , top: animationStep >= 7 ? 350 : '100svh', opacity: animationStep >= 7 ? 1 : 0}} />
-            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: animationStep >= 7 ? "10%": '0' , top: animationStep >= 7 ? 350 : '100svh', opacity: animationStep >= 7 ? 1 : 0}} />
+            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: animationStep >= 7 ? "0%" : '0' , top: animationStep >= 7 ? 330 : '100svh', opacity: animationStep >= 7 ? 1 : 0}} />
+            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: animationStep >= 7 ? "10%": '0' , top: animationStep >= 7 ? 330 : '100svh', opacity: animationStep >= 7 ? 1 : 0}} />
         
-            <div id="sixthSectionLineaVioleta" style={{left: animationStep >= 8 ? 0 : -862 }}></div>
+            <div id="sixthSectionLineaVioleta" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>
 
             <p id="sixthSectionFinalText" style={{opacity: animationStep >= 9 ? 1 : 0 }}>Lorem ipsum dolor sit amet consectetur. Donec elementum sem pharetra elit odio nunc luctus dolor. Turpis hendrerit ultrices sagittis integer metus nibh nisl in. Felis sed sit proin faucibus a pellentesque ac eu cras. Facilisis et ullamcorper aliquam enim convallis non lacus convallis. Odio varius nibh volutpat tincidunt egestas aliquam pellentesque amet. Ligula enim dictum vitae sit interdum tincidunt duis enim lectus. Purus mauris et vitae mi massa vitae. Id rhoncus enim quam sed interdum senectus morbi massa. Enim quis mi sed egestas in quam arcu.</p>
         </section>
