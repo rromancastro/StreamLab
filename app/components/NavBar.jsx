@@ -1,7 +1,7 @@
 'use client';
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image"
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const NavBar = () => {
 
@@ -45,14 +45,31 @@ export const NavBar = () => {
         }, 1000);
     };
 
+    
+        //responsive
+        const [isMobile, setIsMobile] = useState(false);
+    
+        useEffect(() => {
+            const handleResize = () => setIsMobile(window.innerWidth < 863);
+            handleResize();
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
     return (
         <nav>
-            <div id="navLogo" onClick={handClickLogo}>
+            {!isMobile ? <div id="navLogo" onClick={handClickLogo}>
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
             </div>
+            :
+            <div id="navLogo">
+                <Image src="/logoMobile.png" alt="Logo" width={36} height={40} style={{top: positionTop1}} className="navLogoImage"
+                />
+            </div>
+            }
 
             <div id="navMenu">
                 <button id={isWhite ? "navMenuButton" : "navMenuButtonWhite"} onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>
