@@ -8,7 +8,7 @@ export const S4Card3 = ({x, y, opacity, rotate}) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     return (
-        <motion.article style={{x, y, opacity, rotate}} onMouseEnter={() => setIsFlipped(!isFlipped)} onMouseLeave={() => setIsFlipped(!isFlipped)} className="s4Card">
+        <motion.article style={{x, y, opacity, rotate}} onMouseEnter={() => setIsFlipped(!isFlipped)} onMouseLeave={() => setIsFlipped(!isFlipped)} id="s4card3" className="s4Card">
             <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
                 <div id="s4Card3Front" key="front">
                     <p>EXTRAS</p>

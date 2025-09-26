@@ -621,6 +621,7 @@ nav {
 @media (max-width: 862px) {
   .s4Card {
     transition: 0.5s ease-in-out;
+    position: relative;
   }
 }
 #firstSection {
@@ -1253,6 +1254,7 @@ nav {
   }
   #eighthSectionSticky {
     justify-content: center;
+    height: 100vh;
     padding-top: 0;
   }
   #eighthSectionSticky .animationTextUp {
