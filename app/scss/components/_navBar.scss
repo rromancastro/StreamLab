@@ -98,3 +98,64 @@ nav {
         text-shadow: 0px 0px 4px #C77DFF;
     }
 }
+
+
+//mobile
+#navLogoMobile {
+    display: none;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 100;
+}
+
+#navMenuMobileContainer {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    right: 16px;
+    top: 26px;
+    rotate: -90deg;
+}
+
+#navMenuMobileButton {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #252424;
+    transition: .5s ease-in-out;
+}
+
+#navLinksMobile {
+    position: absolute;
+    top: 0;
+    transition: .5s ease-in-out;
+    display: flex;
+    gap: 10px;
+    .navLinkMobile {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: #252424;
+        &:hover {
+            color: #7B2CBF;
+        }
+        &:active {
+            color: #C77DFF;
+            text-shadow: 0px 0px 4px #C77DFF;
+        }
+    }
+}
+
+@media (max-width: 862px) {
+    nav {
+        display: none;
+    }
+    #navLogoMobile {
+        display: flex;
+    }
+    #navMenuMobileContainer {
+        display: flex;
+    }
+}
