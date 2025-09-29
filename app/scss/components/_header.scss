@@ -3,7 +3,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    overflow-x: hidden;
 }
 
 #headerImage {
@@ -30,5 +29,6 @@
         height: auto;
         width: 430px;
         margin-top: 40px;
+        overflow-x: hidden;
     }
 }
