@@ -104,13 +104,13 @@ nav {
   position: fixed;
   top: 16px;
   left: 16px;
-  z-index: 100;
+  z-index: 200;
 }
 
 #navMenuMobileContainer {
   display: none;
   position: fixed;
-  z-index: 100;
+  z-index: 200;
   right: 0px;
   top: 26px;
   rotate: -90deg;
@@ -1600,6 +1600,10 @@ body {
   background-color: #ffffff;
   width: 100%;
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /*# sourceMappingURL=globals.css.map */

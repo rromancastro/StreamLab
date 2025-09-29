@@ -68,10 +68,10 @@ export const NavBar = () => {
                     MENÚ
                 </button>
                 <div id="navLinks" onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} style={{position: 'absolute', zIndex: 100, right: dropMenu ? 0 : -700, transition: 'opacity 0s, z-index 0s, right .5s'}}>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>RESERVAS</motion.a>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>ESTUDIO</motion.a>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>NOSOTROS</motion.a>
-                    <motion.a href="#" className={isWhite ? 'navLinkWhite' : 'navLink'}>CONTACTO</motion.a>
+                    <motion.a href="#turneraContainer" className={isWhite ? 'navLinkWhite' : 'navLink'}>RESERVAS</motion.a>
+                    <motion.a href="#thirdSection" className={isWhite ? 'navLinkWhite' : 'navLink'}>ESTUDIO</motion.a>
+                    <motion.a href="#sixthSection" className={isWhite ? 'navLinkWhite' : 'navLink'}>NOSOTROS</motion.a>
+                    <motion.a href="#eighthSection" className={isWhite ? 'navLinkWhite' : 'navLink'}>CONTACTO</motion.a>
                 </div>
             </div>
         </nav>

@@ -36,10 +36,10 @@ export const NavBarMobile = () => {
         <div id="navMenuMobileContainer">
             <button style={{opacity: dropMenu ? '0' : '1'}} onClick={handleDropMenu} onMouseOut={handleMouseLeave} onMouseOver={handleMouseEnter} id="navMenuMobileButton">MENÚ</button>
             <div style={{right: dropMenu ? 0 : -390}} id="navLinksMobile">
-                <a href="#" className="navLinkMobile">RESERVAS</a>
-                <a href="#" className="navLinkMobile">ESTUDIO</a>
-                <a href="#" className="navLinkMobile">NOSOTROS</a>
-                <a href="#" className="navLinkMobile">CONTACTO</a>
+                <a href="#turneraContainer" className="navLinkMobile">RESERVAS</a>
+                <a href="#thirdSectionMobile" className="navLinkMobile">ESTUDIO</a>
+                <a href="#sixthSection" className="navLinkMobile">NOSOTROS</a>
+                <a href="#eighthSection" className="navLinkMobile">CONTACTO</a>
             </div>
         </div>
     </>)
