@@ -1,5 +1,5 @@
 import { NavBar, NavBarMobile } from "./components";
-import { EighthSection, FifthSection, FirstSection, FourthSection, SecondSection, SeventhSection, SixthSection, ThirdSection } from "./sections";
+import { EighthSection, FifthSection, FirstSection, FourthSection, SecondSection, SeventhSection, SixthSection, ThirdSection, ThirdSectionMobile } from "./sections";
 import { NinthSection } from "./sections/NinthSection";
 
 export default function Home() {
@@ -11,6 +11,7 @@ export default function Home() {
         <FirstSection />
         <SecondSection />
         <ThirdSection />
+        <ThirdSectionMobile />
         <FourthSection />
         <FifthSection />
         <SixthSection />

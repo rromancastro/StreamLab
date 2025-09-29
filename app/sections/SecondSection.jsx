@@ -80,7 +80,7 @@ export const SecondSection = () => {
             <motion.p style={{opacity: opacityFinal}}>Elegí un día y un horario que este disponible. Reservá, venís, grabas y listo! Tambíen<br />podes elegir entre nuestros combos si sos un streamer regular. Y si queres te ayudamos<br />con la producción, edición, hosting y otras cositas.</motion.p>
         </motion.section> :
         <section id="secondSection">
-            <section ref={ref} id="secondSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.32 ? '#7B2CBF' : 'transparent', transition: '.5s'}}>
+            <section ref={ref} id="secondSectionSticky" style={{backgroundColor: isMobile ? progress >= 0.21 && progress <= 0.44 ? '#7B2CBF' : '#ffffff' : progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
                 <p style={{ opacity: animationStep >=1 ? 1 : 0 }}>¿CÓMO FUNCIONA?</p>
                 <div className='animationTextUp'>
                     <p style={{top: animationStep >=2 ? 12 : 52, right: 100}}>TURNOS DE </p>

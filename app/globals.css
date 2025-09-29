@@ -111,7 +111,7 @@ nav {
   display: none;
   position: fixed;
   z-index: 100;
-  right: 16px;
+  right: 0px;
   top: 26px;
   rotate: -90deg;
 }
@@ -160,7 +160,6 @@ nav {
 #header {
   height: 100vh;
   width: 100%;
-  overflow: hidden;
   display: flex;
   justify-content: center;
 }
@@ -727,6 +726,9 @@ nav {
   .sliderText {
     font-size: 48px;
   }
+  .sliderContainer {
+    top: 390px;
+  }
 }
 #secondSection {
   width: 100%;
@@ -792,17 +794,22 @@ nav {
   #secondSection {
     height: 100vh;
   }
+  #secondSectionSticky {
+    gap: 0;
+  }
   #secondSectionSticky p {
     color: #000100;
     transition: 0.5s ease-in-out;
   }
   #secondSectionSticky p:nth-child(1) {
     font-size: 16px;
+    margin-bottom: 32px;
   }
   #secondSectionSticky p:nth-child(5) {
     font-size: 14px;
     margin-top: 0;
     width: 80%;
+    margin-top: 32px;
   }
   #secondSectionSticky .animationTextUp {
     height: 40px;
@@ -829,7 +836,6 @@ nav {
 #thirdSection {
   width: 100%;
   height: 500vh;
-  display: none;
 }
 
 #thirdSectionSticky {
@@ -931,6 +937,71 @@ nav {
   transition: 0.7s ease-in-out;
 }
 
+@media (max-width: 862px) {
+  #thirdSection {
+    display: none;
+  }
+}
+#thirdSectionMobile {
+  display: none;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 128px 0;
+  gap: 48px;
+}
+
+#thirdSectionMobileTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.thirdSectionMobileCard {
+  width: 90%;
+  max-width: 390px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.thirdSectionMobileSubtitle {
+  font-size: 24px;
+  font-weight: 900;
+  font-family: "Moderniz";
+  color: #ffffff;
+}
+
+.thirdSectionMobileLine {
+  height: 2px;
+  width: 100%;
+  background-color: #E0AAFF;
+  margin: 24px 0;
+}
+
+.thirdSectionMobileP {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.thirdSectionMobileUbi {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 862px) {
+  #thirdSectionMobile {
+    display: flex;
+  }
+}
 #fourthSection {
   height: 350vh;
 }
@@ -966,11 +1037,14 @@ nav {
 
 @media (max-width: 862px) {
   #fourthSection {
-    height: 100%;
+    height: 100vh;
   }
   #fourthSectionSticky {
-    height: 100%;
-    padding-bottom: 40px;
+    height: 100vh;
+    padding-bottom: 0px;
+    justify-content: center;
+    padding-top: 0;
+    gap: 0px;
   }
   #fourthSectionSticky .animationTextUp {
     height: 42px;
@@ -998,7 +1072,7 @@ nav {
 }
 
 #fifthSectionCards {
-  display: flex;
+  display: none;
   flex-direction: column;
   position: absolute;
   height: auto;
@@ -1114,16 +1188,17 @@ nav {
   #sixthSectionTitle {
     font-size: 16px;
     transition: 0.5s ease-in-out;
+    margin-bottom: 32px;
   }
   #sixthSectionFinalText {
     font-size: 14px;
     transition: 0.5s ease-in-out;
-    top: 630px;
+    top: 670px;
     width: 90vw;
   }
   #sixthSectionLineaVioleta {
     transition: 1s ease-in-out;
-    top: 500px;
+    top: 520px;
     width: 100%;
   }
   .sixtSectionImg {
@@ -1325,7 +1400,7 @@ nav {
   #eigthSectionTitle {
     font-size: 16px;
     transition: 0.5s ease-in-out;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
   }
   #eigthSectionUbi {
     font-size: 16px;
@@ -1337,13 +1412,15 @@ nav {
   }
   .eighthSectionRed {
     width: 130px;
-    height: 20px;
+    height: 33px;
   }
   .eighthSectionRed p {
     font-size: 16px;
   }
   .eighthSectionRed p:nth-child(2) {
     font-size: 12px;
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 #ninthSection {

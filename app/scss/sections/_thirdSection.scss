@@ -1,7 +1,6 @@
 #thirdSection {
     width: 100%;
     height: 500vh;
-    display: none;
 }
 
 #thirdSectionSticky {
@@ -100,4 +99,10 @@
     height: 2px;
     background-color: #E0AAFF;
     transition: .7s ease-in-out;
+}
+
+@media (max-width: 862px) {
+    #thirdSection {
+        display: none;
+    }
 }

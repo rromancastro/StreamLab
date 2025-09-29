@@ -114,7 +114,7 @@
     #eigthSectionTitle {
         font-size: 16px;
         transition: .5s ease-in-out;
-        margin-bottom: 30px;
+        margin-bottom: 32px;
     }
     #eigthSectionUbi {
         font-size: 16px;
@@ -126,11 +126,13 @@
     }
     .eighthSectionRed {
         width: 130px;
-        height: 20px;
+        height: 33px;
         p {
             font-size: 16px;
             &:nth-child(2) {
                 font-size: 12px;
+                display: flex;
+                flex-direction: column-reverse;
             }
         }
     }
