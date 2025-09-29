@@ -31,7 +31,7 @@ export const ThirdSectionMobile = () => {
     });
 
 
-    return <section id="thirdSectionMobile"  style={{backgroundColor: progress >= 0.21 && progress <= 0.44 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+    return <section id="thirdSectionMobile"  style={{backgroundColor: progress >= 0.21 && progress <= 0.41 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
         <h2 id="thirdSectionMobileTitle">¿QUE INCLUYEN?</h2>
 
         <article style={{opacity: inView1 ? 1 : 0, transition: '.5s', transform: inView1 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref1} className="thirdSectionMobileCard">

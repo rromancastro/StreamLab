@@ -93,7 +93,7 @@ export const FourthSection = () => {
             <S4Card1 y={yCard1} x={xCard1} opacity={opacityCard1} rotate={rotateCard1}/>
         </motion.section>
         :
-        <section ref={ref} id="fourthSectionSticky" style={{backgroundColor: isMobile ? progress >= 0.21 && progress <= 0.44 ? '#7B2CBF' : '#ffffff' : progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+        <section ref={ref} id="fourthSectionSticky" style={{backgroundColor: isMobile ? progress >= 0.21 && progress <= 0.41 ? '#7B2CBF' : '#ffffff' : progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
             <div className='animationTextUp'>
                 <p style={{top: animationStep >=1 ? 12 : 52}}>RESERVA</p>
             </div>
