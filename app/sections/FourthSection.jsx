@@ -101,10 +101,10 @@ export const FourthSection = () => {
                 <p style={{top: animationStep >=2 ? 12 : 52}}>TU TURNO</p>
             </div>
             <div className='animationTextUp'>
-                <p style={{top: animationStep >=3 ? 12 : 52}}>TU COMBO, O</p>
+                <p style={{top: animationStep >=3 ? 12 : 52}}>TU COMBO, O LO</p>
             </div>
             <div className='animationTextUp'>
-                <p style={{top: animationStep >=4 ? 12 : 52}}>LO QUE QUIERAS.</p>
+                <p style={{top: animationStep >=4 ? 12 : 52}}>QUE QUIERAS.</p>
             </div>
             <div style={{display: 'flex', width: '100%', height: '440px', justifyContent: 'flex-start',overflowX: 'scroll', alignItems: 'center', scrollbarWidth: 'none', msOverflowStyle: 'none', gap: '20px', padding: '20px'}}>
                 <S4Card1 y={0} x={0} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>

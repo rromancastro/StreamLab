@@ -37,7 +37,7 @@ export const ThirdSectionMobile = () => {
         <article style={{opacity: inView1 ? 1 : 0, transition: '.5s', transform: inView1 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref1} className="thirdSectionMobileCard">
             <p className="thirdSectionMobileSubtitle">EQUIPAMIENTO</p>
             <p className="thirdSectionMobileSubtitle">PROFESIONAL</p>
-            <div className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.21 && progress <= 0.44 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">Lorem ipsum dolor sit amet consectetur. Parturient vel ultrices fermentum interdum lobortis libero volutpat sit nulla. Feugiat sed enim id vulputate libero. Enim aliquam suspendisse arcu vitae imperdiet netus nunc.</p>
         </article>
 
@@ -45,7 +45,7 @@ export const ThirdSectionMobile = () => {
             <p className="thirdSectionMobileSubtitle">TURNOS</p>
             <p className="thirdSectionMobileSubtitle">FLEXIBLES</p>
             <p className="thirdSectionMobileSubtitle">DE 2 HORAS</p>
-            <div className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.21 && progress <= 0.44 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">Lorem ipsum dolor sit amet consectetur. Parturient vel ultrices fermentum interdum lobortis libero volutpat sit nulla. Feugiat sed enim id vulputate libero. Enim aliquam suspendisse arcu vitae imperdiet netus nunc.</p>
         </article>
 
@@ -53,14 +53,14 @@ export const ThirdSectionMobile = () => {
             <p className="thirdSectionMobileSubtitle">ASISTENCIA</p>
             <p className="thirdSectionMobileSubtitle">TECNICA</p>
             <p className="thirdSectionMobileSubtitle">INCLUIDA</p>
-            <div className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.21 && progress <= 0.44 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">Lorem ipsum dolor sit amet consectetur. Parturient vel ultrices fermentum interdum lobortis libero volutpat sit nulla. Feugiat sed enim id vulputate libero. Enim aliquam suspendisse arcu vitae imperdiet netus nunc.</p>
         </article>
 
         <article style={{opacity: inView4 ? 1 : 0, transition: '.5s', transform: inView4 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref4} className="thirdSectionMobileCard">
             <p className="thirdSectionMobileSubtitle">UBICACION</p>
             <p className="thirdSectionMobileSubtitle">ACCESIBLE</p>
-            <div className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.21 && progress <= 0.44 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileUbi"><LuMapPin color="#ffffff"/> UBICACIÓN ACCESIBLE</p>
         </article>
     </section>
