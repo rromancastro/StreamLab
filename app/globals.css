@@ -111,9 +111,10 @@ nav {
   display: none;
   position: fixed;
   z-index: 200;
-  right: 0px;
-  top: 26px;
+  top: 16px;
   rotate: -90deg;
+  right: -15px;
+  padding: 16px;
 }
 
 #navMenuMobileButton {
@@ -127,10 +128,15 @@ nav {
 
 #navLinksMobile {
   position: absolute;
-  top: 0;
   transition: 0.5s ease-in-out;
   display: flex;
   gap: 10px;
+  padding: 16px;
+  backdrop-filter: blur(12px);
+  border-radius: 16px 0 0 0;
+  border: 0.5px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.4);
+  top: 0;
 }
 #navLinksMobile .navLinkMobile {
   text-decoration: none;
@@ -184,6 +190,9 @@ nav {
 }
 
 @media (max-width: 862px) {
+  #header {
+    overflow-x: hidden;
+  }
   #headerImage2, #headerImage {
     height: auto;
     width: 430px;
@@ -1595,13 +1604,11 @@ nav {
   padding: 0;
   position: relative;
   font-family: "Inter";
-  outline: 1px solid red;
 }
 
 body {
   background-color: #ffffff;
   width: 100%;
-  overflow-x: hidden;
 }
 
 html {

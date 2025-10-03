@@ -25,6 +25,9 @@
 }
 
 @media (max-width: 862px) {
+    #header {
+        overflow-x: hidden;
+    }
     #headerImage2, #headerImage {
         height: auto;
         width: 430px;

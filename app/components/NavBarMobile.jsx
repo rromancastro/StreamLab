@@ -35,7 +35,7 @@ export const NavBarMobile = () => {
         <Image src="/logoMobile.png" alt="Logo" width={36} height={40} id="navLogoMobile"/>
         <div id="navMenuMobileContainer">
             <button style={{opacity: dropMenu ? '0' : '1'}} onClick={handleDropMenu} onMouseOut={handleMouseLeave} onMouseOver={handleMouseEnter} id="navMenuMobileButton">MENÚ</button>
-            <div style={{right: dropMenu ? 0 : -390}} id="navLinksMobile">
+            <div style={{right: dropMenu ? -13 : -410}} id="navLinksMobile">
                 <a href="#turneraContainer" className="navLinkMobile">RESERVAS</a>
                 <a href="#thirdSectionMobile" className="navLinkMobile">ESTUDIO</a>
                 <a href="#sixthSection" className="navLinkMobile">NOSOTROS</a>
