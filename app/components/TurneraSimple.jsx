@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
-import { apiCall, getAllReservas } from "../helpers/apiCall";
+import { getAllReservas } from "../helpers/apiCall";
 import Image from "next/image";
 
 export const TurneraSimple = ({setTurnera}) => {
@@ -56,7 +56,7 @@ export const TurneraSimple = ({setTurnera}) => {
         } else {
             console.log('no reservado');
         }
-    }, [fechaSeleccionada]);
+    }, [fechaSeleccionada, reservas, diasReservados]);
 
     const horarios = [
         "10-12 hs",
@@ -67,6 +67,40 @@ export const TurneraSimple = ({setTurnera}) => {
         "20-22 hs",
         "22-00 hs",
     ]
+
+    //primer Horario
+    useEffect(() => {
+        const fechaISO = fechaSeleccionada.toISOString().slice(0, 10);
+
+        if (diasReservados.includes(fechaISO)) {
+            const diaSeleccionado = reservas.filter(
+                reserva => reserva.fecha_inicio.slice(0, 10) === fechaISO
+            );
+
+            const horasOcupadas = diaSeleccionado.map(dia =>
+                dia.fecha_inicio.slice(11, 13)
+            );
+
+            setHorariosReservados(horasOcupadas);
+
+            const horariosDisponibles = horarios.findIndex(
+                horario => !horasOcupadas.includes(horario.slice(0, 2))
+            );
+
+            if (horariosDisponibles !== -1) {
+                setHorarioSeleccionado(horariosDisponibles + 1);
+            } else {
+                setHorarioSeleccionado(null);
+            }
+
+            console.log("Horarios reservados:", horasOcupadas);
+        } else {
+            setHorariosReservados([]);
+            setHorarioSeleccionado(1);
+            console.log("No reservado");
+        }
+    }, [fechaSeleccionada, reservas, diasReservados]);
+
     //controlar calendario
     const calendarRef = useRef(null);
 
