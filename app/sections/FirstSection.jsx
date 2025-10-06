@@ -1,5 +1,5 @@
 "use client";
-import { Header, Turnera } from "../components"
+import { Header, TurneraMensual, TurneraSimple } from "../components"
 import { useEffect, useState } from "react";
 
 export const FirstSection = () => {
@@ -13,6 +13,8 @@ export const FirstSection = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    const [turnera, setTurnera] = useState('simple');
 
     return <section id="firstSection">
         <Header />
@@ -28,6 +30,8 @@ export const FirstSection = () => {
             </div>
         </div>
         }
-        <Turnera />
+        {
+            turnera === 'simple' ? <TurneraSimple setTurnera={setTurnera} /> : <TurneraMensual setTurnera={setTurnera} />
+        }
     </section>
 }

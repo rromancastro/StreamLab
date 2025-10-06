@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
-    gap: 32px;
+    gap: 24px;
     padding: 32px;
     box-shadow: 0px 24px 24px -2px rgb(0, 0, 0, 0.4), 0px 4px 8px -2px rgb(0, 0, 0, 0.6);
     z-index: 50;
@@ -17,7 +17,7 @@
     align-self: center;
 }
 
-#turneraH2 {
+.turneraH2 {
     font-family: "Moderniz";
     font-weight: 900;
     font-size: 72px;
@@ -26,22 +26,22 @@
     line-height: 84px;
 }
 
-#turneraUtilities {
+.turneraUtilities {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 24px;
 }
 
-#selectersContainer {
+.selectersContainer {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-#fechaContainer {
+.fechaContainer {
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -51,12 +51,12 @@
     grid-template-rows: 1fr;
     align-items: center;
     justify-items: center;
-    #fechaContainerLabel {
+    .fechaContainerLabel {
         font-size: 16px;
         color: #ffffff;
         font-weight: 300;
     }
-    #seleccionarFechaContainer {
+    .seleccionarFechaContainer {
         display: flex;
         width: 100%;
         justify-content: center;
@@ -66,9 +66,9 @@
         p {
             font-size: 16px;
             color: #8C8C8C;
-            font-weight: 300;
+            font-weight: 400;
         }
-        #seleccionarFechaIcon {
+        .seleccionarFechaIcon {
             transition: background-color .5s, color .5s, rotate 0s;
             rotate: 180deg;
             color: #8C8C8C;
@@ -87,12 +87,12 @@
     }
 }
 
-#calendarContainer {
+.calendarContainer {
         position: absolute;
         top: 48px;
         right: 0;
         z-index: 600;
-        backdrop-filter: blur(30px);
+        backdrop-filter: blur(12px);
         background-color: #0A001A99;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
@@ -121,7 +121,7 @@
         }
         .react-calendar__tile:hover {
             color: #B8B7B7;
-            background-color: #7B2CBF33;
+            background-color: #7B2CBF33!important; 
         }
         // dia actual
         .react-calendar__tile--now {
@@ -135,19 +135,17 @@
         }
         //dia seleccionado
         .react-calendar__tile--active {
-            background: #5A189A !important;
+            background-color: #5A189A !important;
             color: #E0AAFF !important;
             border-radius: 50%;
             font-size: 16px;
-            width: 50px;
-            height: 50px;
         }
         //dias que no son del mes
         .react-calendar__month-view__days__day--neighboringMonth {
             opacity: 0;
         }
         //nav personalizado
-        #calendarNav {
+        .calendarNav {
             display: flex;
             justify-content: space-between;
             border: none;
@@ -155,10 +153,11 @@
             p {
                 color: #ffffff;
                 font-size: 16px;
+                font-weight: 300;
             }
         }
         .calendarRowsIcon {
-            color: #ffffff;
+            color: #B8B7B7;
             transition: .5s;
             padding: 10px;
             border-radius: 50%;
@@ -170,8 +169,75 @@
         }
     }
 
-#buttonReservar {
-    background-color: #7B2CBF99;
+
+.selectTipoTurno {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    button {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        background-color: #FFFFFF1A;
+        backdrop-filter: blur(12px);
+        border: 0.5px solid #ffffff2f;
+        div {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+    }
+    p {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+
+.selectTurno {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.turnosContainer {
+    width: 376px;
+    height: 155px;
+    position: absolute;
+    background-color: rgba(10, 0, 26, 0.6);
+    backdrop-filter: blur(12px);
+    background-color: #0A001A99;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 16px;
+    top: 120px;
+    right: 0;
+    z-index: 100;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    p {
+        color: #8c8c8c;
+        font-size: 16px;
+        font-weight: 500;
+        gap: 16px;
+        cursor: pointer;
+    }
+}
+
+.turnosContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.buttonReservar {
+    background-color: #5A189A99;
     width: 100%;
     height: 64px;
     border-radius: 16px;
@@ -188,13 +254,270 @@
     }
 }
 
+//STEP 2
+.turneraStep2Title {
+    color: #ffffff;
+    text-align: end;
+    font-family: "Moderniz";
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 50px;
+}
+
+.turneraStep2Inputs {
+    width: 100%;
+    height: 48px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 1fr;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    align-items: center;
+    justify-items: center;
+}
+
+.turneraStep2Inputs p {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 400;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.turneraStep2Inputs input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #8C8C8C;
+    font-weight: 400;
+    text-align: start;
+    padding: 0 20px;
+    outline: none;
+    color: #ffffff;
+    &:hover {
+        color: #E0AAFF;
+    }
+    &::placeholder {
+        color: #8C8C8C;
+    }
+}
+
+.turneraStep2Buttons {
+    margin-top: 72px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+    height: 64px;
+    align-items: center;
+    button {
+        background-color: #7B2CBF99;
+        width: 100%;
+        height: 64px;
+        border-radius: 16px;
+        font-size: 24px;
+        border: none;
+        box-shadow: 4px 4px 4px #FFFFFF1A inset, 2px 2px 2px #FFFFFF1A inset, -2px -2px 0 #0000001A inset, -4px -4px 4px 0 #0000001A inset;
+        font-weight: 400;
+        font-size: 16px;
+        color: #ffffff;
+        z-index: 50;
+        cursor: pointer;
+        &:nth-child(1) {
+            background-color: #5A189A99;
+            &:hover {
+                background-color: #C77DFF99;
+            }
+        }
+        &:nth-child(2) {
+            background-color: #7B2CBF99;
+            &:hover {
+                background-color: #C77DFF99;
+            }
+        }
+    }
+}
+
+.turneraErrorMessage {
+    position: absolute;
+    color: #ffffff;
+    z-index: 100;
+    bottom: 160px;
+}
+
+//STEP 3
+
+.turneraStep3Fecha {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.turneraStep3FechaTurno {
+    display: flex;
+    p {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 400;
+        width: 128px;
+        height: 100%;
+    }
+}
+
+.turneraStep3FechaContainer {
+    height: 48px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+    grid-template-rows: 1fr;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    p {
+        font-size: 16px;
+        color: #B8B7B7;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        span {
+            color: #ffffff;
+        }
+        &:nth-child(1) {
+            padding-left: 24px;
+            gap: 56px;
+        }
+        &:nth-child(2) {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            justify-content: space-evenly;
+        }
+        &:nth-child(3) {
+            justify-content: space-evenly;
+        }
+    }
+}
+
+.turneraStep3UserData {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    p {
+        padding: 0 32px;
+        color: #B8B7B7;
+        width: 100%;
+        font-size: 16px;
+        display: flex;
+        gap: 24px;
+        display: flex;
+        align-items: center;
+        span {
+            color: #ffffff;
+        }
+        &:nth-child(1) {
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+.turneraStep3Total {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 24px;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 125px;
+}
+
+//STEP 4
+.turneraStep4MetodoPago {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 32px;
+    gap: 24px;
+    p {
+        font-size: 20px;
+        color: #ffffff;
+    }
+}
+
+.turneraStep4LogoMp {
+    object-fit: contain;
+}
+
+.turneraStep4SelectContainer  {
+    background-color: rgba(104, 104, 104, 0.1);
+    border-radius: 4px;
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 24px;
+    .turneraStep4SelectFill {
+        width: 100%;
+        height: 100%;
+        background-color: #E0AAFF;
+    }
+}
+
+//STEP 5
+.step5Confirmacion {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.setp5Button {
+    background-color: #7B2CBF99;
+    width: 100%;
+    height: 64px;
+    border-radius: 16px;
+    font-size: 24px;
+    border: none;
+    box-shadow: 4px 4px 4px #FFFFFF1A inset, 2px 2px 2px #FFFFFF1A inset, -2px -2px 0 #0000001A inset, -4px -4px 4px 0 #0000001A inset;
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+    z-index: 50;
+    cursor: pointer;
+    margin-top: 64px;
+    &:hover {
+        background-color: #C77DFF99;
+    }
+}
+
 @media (max-width: 862px) {
     #turneraContainer {
         width: 95vw;
         height: 95vw;
         top: 550;
     }
-    #turneraH2 {
+    .turneraH2 {
         font-size: 22px;
         line-height: 28px;
     }

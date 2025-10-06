@@ -106,7 +106,7 @@ export const FourthSection = () => {
             <div className='animationTextUp'>
                 <p style={{top: animationStep >=4 ? 12 : 52}}>QUE QUIERAS.</p>
             </div>
-            <div style={{display: 'flex', width: '100%', height: '440px', justifyContent: 'flex-start',overflowX: 'scroll', alignItems: 'center', scrollbarWidth: 'none', msOverflowStyle: 'none', gap: '20px', padding: '20px'}}>
+            <div id="cardsContainerMobile">
                 <S4Card1 y={0} x={0} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
                 <S4Card2 y={0} x={animationStep >= 6 ? 0 : -260} opacity={animationStep >= 5 ? 1 : 0} />
                 <S4Card3 y={0} x={animationStep >= 6 ? 0 : -520} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>

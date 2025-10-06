@@ -210,7 +210,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  gap: 32px;
+  gap: 24px;
   padding: 32px;
   box-shadow: 0px 24px 24px -2px rgba(0, 0, 0, 0.4), 0px 4px 8px -2px rgba(0, 0, 0, 0.6);
   z-index: 50;
@@ -219,7 +219,7 @@ nav {
   align-self: center;
 }
 
-#turneraH2 {
+.turneraH2 {
   font-family: "Moderniz";
   font-weight: 900;
   font-size: 72px;
@@ -228,22 +228,22 @@ nav {
   line-height: 84px;
 }
 
-#turneraUtilities {
+.turneraUtilities {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 24px;
 }
 
-#selectersContainer {
+.selectersContainer {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-#fechaContainer {
+.fechaContainer {
   position: relative;
-  background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -254,12 +254,12 @@ nav {
   align-items: center;
   justify-items: center;
 }
-#fechaContainer #fechaContainerLabel {
+.fechaContainer .fechaContainerLabel {
   font-size: 16px;
   color: #ffffff;
   font-weight: 300;
 }
-#fechaContainer #seleccionarFechaContainer {
+.fechaContainer .seleccionarFechaContainer {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -267,12 +267,12 @@ nav {
   align-items: center;
   border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
-#fechaContainer #seleccionarFechaContainer p {
+.fechaContainer .seleccionarFechaContainer p {
   font-size: 16px;
   color: #8C8C8C;
-  font-weight: 300;
+  font-weight: 400;
 }
-#fechaContainer #seleccionarFechaContainer #seleccionarFechaIcon {
+.fechaContainer .seleccionarFechaContainer .seleccionarFechaIcon {
   transition: background-color 0.5s, color 0.5s, rotate 0s;
   rotate: 180deg;
   color: #8C8C8C;
@@ -283,36 +283,36 @@ nav {
   padding: 10px;
   border-radius: 18px;
 }
-#fechaContainer #seleccionarFechaContainer #seleccionarFechaIcon:hover {
+.fechaContainer .seleccionarFechaContainer .seleccionarFechaIcon:hover {
   cursor: pointer;
   background-color: rgba(123, 44, 191, 0.2);
   color: #E0AAFF;
 }
 
-#calendarContainer {
+.calendarContainer {
   position: absolute;
   top: 48px;
   right: 0;
   z-index: 600;
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(12px);
   background-color: rgba(10, 0, 26, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   padding: 16px;
 }
-#calendarContainer .react-calendar {
+.calendarContainer .react-calendar {
   background-color: transparent;
   border: none;
 }
-#calendarContainer .react-calendar__month-view__weekdays__weekday {
+.calendarContainer .react-calendar__month-view__weekdays__weekday {
   color: #ffffff;
   font-weight: 300;
   font-size: 12px;
 }
-#calendarContainer .react-calendar__month-view__weekdays__weekday abbr {
+.calendarContainer .react-calendar__month-view__weekdays__weekday abbr {
   text-decoration: none;
 }
-#calendarContainer .react-calendar__tile {
+.calendarContainer .react-calendar__tile {
   font-size: 16px;
   color: #8C8C8C;
   border-radius: 50%;
@@ -320,11 +320,11 @@ nav {
   height: 50px;
   transition: none;
 }
-#calendarContainer .react-calendar__tile:hover {
+.calendarContainer .react-calendar__tile:hover {
   color: #B8B7B7;
-  background-color: rgba(123, 44, 191, 0.2);
+  background-color: rgba(123, 44, 191, 0.2) !important;
 }
-#calendarContainer .react-calendar__tile--now {
+.calendarContainer .react-calendar__tile--now {
   font-size: 16px;
   color: #8C8C8C;
   border-radius: 50%;
@@ -333,41 +333,106 @@ nav {
   height: 50px;
   transition: none;
 }
-#calendarContainer .react-calendar__tile--active {
-  background: #5A189A !important;
+.calendarContainer .react-calendar__tile--active {
+  background-color: #5A189A !important;
   color: #E0AAFF !important;
   border-radius: 50%;
   font-size: 16px;
-  width: 50px;
-  height: 50px;
 }
-#calendarContainer .react-calendar__month-view__days__day--neighboringMonth {
+.calendarContainer .react-calendar__month-view__days__day--neighboringMonth {
   opacity: 0;
 }
-#calendarContainer #calendarNav {
+.calendarContainer .calendarNav {
   display: flex;
   justify-content: space-between;
   border: none;
   align-items: center;
 }
-#calendarContainer #calendarNav p {
+.calendarContainer .calendarNav p {
   color: #ffffff;
   font-size: 16px;
+  font-weight: 300;
 }
-#calendarContainer .calendarRowsIcon {
-  color: #ffffff;
+.calendarContainer .calendarRowsIcon {
+  color: #B8B7B7;
   transition: 0.5s;
   padding: 10px;
   border-radius: 50%;
   cursor: pointer;
 }
-#calendarContainer .calendarRowsIcon:hover {
+.calendarContainer .calendarRowsIcon:hover {
   background-color: rgba(123, 44, 191, 0.2);
   color: #E0AAFF;
 }
 
-#buttonReservar {
-  background-color: rgba(123, 44, 191, 0.6);
+.selectTipoTurno {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+}
+.selectTipoTurno button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1019607843);
+  backdrop-filter: blur(12px);
+  border: 0.5px solid rgba(255, 255, 255, 0.1843137255);
+}
+.selectTipoTurno button div {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.selectTipoTurno p {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.selectTurno {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.turnosContainer {
+  width: 376px;
+  height: 155px;
+  position: absolute;
+  background-color: rgba(10, 0, 26, 0.6);
+  backdrop-filter: blur(12px);
+  background-color: rgba(10, 0, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 16px;
+  top: 120px;
+  right: 0;
+  z-index: 100;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.turnosContainer p {
+  color: #8c8c8c;
+  font-size: 16px;
+  font-weight: 500;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.turnosContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.buttonReservar {
+  background-color: rgba(90, 24, 154, 0.6);
   width: 100%;
   height: 64px;
   border-radius: 16px;
@@ -379,9 +444,261 @@ nav {
   color: #ffffff;
   z-index: 50;
 }
-#buttonReservar:hover {
+.buttonReservar:hover {
   background-color: rgba(199, 125, 255, 0.6);
   cursor: pointer;
+}
+
+.turneraStep2Title {
+  color: #ffffff;
+  text-align: end;
+  font-family: "Moderniz";
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.turneraStep2Inputs {
+  width: 100%;
+  height: 48px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: 1fr;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  align-items: center;
+  justify-items: center;
+}
+
+.turneraStep2Inputs p {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 400;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.turneraStep2Inputs input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: #8C8C8C;
+  font-weight: 400;
+  text-align: start;
+  padding: 0 20px;
+  outline: none;
+  color: #ffffff;
+}
+.turneraStep2Inputs input:hover {
+  color: #E0AAFF;
+}
+.turneraStep2Inputs input::placeholder {
+  color: #8C8C8C;
+}
+
+.turneraStep2Buttons {
+  margin-top: 72px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  height: 64px;
+  align-items: center;
+}
+.turneraStep2Buttons button {
+  background-color: rgba(123, 44, 191, 0.6);
+  width: 100%;
+  height: 64px;
+  border-radius: 16px;
+  font-size: 24px;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.1019607843) inset, 2px 2px 2px rgba(255, 255, 255, 0.1019607843) inset, -2px -2px 0 rgba(0, 0, 0, 0.1019607843) inset, -4px -4px 4px 0 rgba(0, 0, 0, 0.1019607843) inset;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  z-index: 50;
+  cursor: pointer;
+}
+.turneraStep2Buttons button:nth-child(1) {
+  background-color: rgba(90, 24, 154, 0.6);
+}
+.turneraStep2Buttons button:nth-child(1):hover {
+  background-color: rgba(199, 125, 255, 0.6);
+}
+.turneraStep2Buttons button:nth-child(2) {
+  background-color: rgba(123, 44, 191, 0.6);
+}
+.turneraStep2Buttons button:nth-child(2):hover {
+  background-color: rgba(199, 125, 255, 0.6);
+}
+
+.turneraErrorMessage {
+  position: absolute;
+  color: #ffffff;
+  z-index: 100;
+  bottom: 160px;
+}
+
+.turneraStep3Fecha {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.turneraStep3FechaTurno {
+  display: flex;
+}
+.turneraStep3FechaTurno p {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  width: 128px;
+  height: 100%;
+}
+
+.turneraStep3FechaContainer {
+  height: 48px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  grid-template-rows: 1fr;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.turneraStep3FechaContainer p {
+  font-size: 16px;
+  color: #B8B7B7;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.turneraStep3FechaContainer p span {
+  color: #ffffff;
+}
+.turneraStep3FechaContainer p:nth-child(1) {
+  padding-left: 24px;
+  gap: 56px;
+}
+.turneraStep3FechaContainer p:nth-child(2) {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  justify-content: space-evenly;
+}
+.turneraStep3FechaContainer p:nth-child(3) {
+  justify-content: space-evenly;
+}
+
+.turneraStep3UserData {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.turneraStep3UserData p {
+  padding: 0 32px;
+  color: #B8B7B7;
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  gap: 24px;
+  display: flex;
+  align-items: center;
+}
+.turneraStep3UserData p span {
+  color: #ffffff;
+}
+.turneraStep3UserData p:nth-child(1) {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.turneraStep3Total {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 24px;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 125px;
+}
+
+.turneraStep4MetodoPago {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 32px;
+  gap: 24px;
+}
+.turneraStep4MetodoPago p {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.turneraStep4LogoMp {
+  object-fit: contain;
+}
+
+.turneraStep4SelectContainer {
+  background-color: rgba(104, 104, 104, 0.1);
+  border-radius: 4px;
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 24px;
+}
+.turneraStep4SelectContainer .turneraStep4SelectFill {
+  width: 100%;
+  height: 100%;
+  background-color: #E0AAFF;
+}
+
+.step5Confirmacion {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.setp5Button {
+  background-color: rgba(123, 44, 191, 0.6);
+  width: 100%;
+  height: 64px;
+  border-radius: 16px;
+  font-size: 24px;
+  border: none;
+  box-shadow: 4px 4px 4px rgba(255, 255, 255, 0.1019607843) inset, 2px 2px 2px rgba(255, 255, 255, 0.1019607843) inset, -2px -2px 0 rgba(0, 0, 0, 0.1019607843) inset, -4px -4px 4px 0 rgba(0, 0, 0, 0.1019607843) inset;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  z-index: 50;
+  cursor: pointer;
+  margin-top: 64px;
+}
+.setp5Button:hover {
+  background-color: rgba(199, 125, 255, 0.6);
 }
 
 @media (max-width: 862px) {
@@ -390,7 +707,7 @@ nav {
     height: 95vw;
     top: 550;
   }
-  #turneraH2 {
+  .turneraH2 {
     font-size: 22px;
     line-height: 28px;
   }
@@ -1043,6 +1360,23 @@ nav {
   right: 0;
   left: 0;
   color: #000100;
+}
+
+#cardsContainerMobile {
+  display: flex;
+  width: 100%;
+  height: 440px;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  align-items: center;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 20px;
+  padding: 20px;
+}
+
+#cardsContainerMobile::-webkit-scrollbar {
+  display: none;
 }
 
 @media (max-width: 862px) {
