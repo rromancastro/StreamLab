@@ -359,6 +359,7 @@
     color: #ffffff;
     z-index: 100;
     bottom: 160px;
+    font-size: 16px;
 }
 
 //STEP 3
@@ -404,14 +405,17 @@
         &:nth-child(1) {
             padding-left: 24px;
             gap: 56px;
+            width: 100%;
         }
         &:nth-child(2) {
             border-left: 1px solid rgba(255, 255, 255, 0.2);
             border-right: 1px solid rgba(255, 255, 255, 0.2);
             justify-content: space-evenly;
+            width: 100%;
         }
         &:nth-child(3) {
             justify-content: space-evenly;
+            width: 100%;
         }
     }
 }
@@ -571,9 +575,119 @@
         width: 95vw;
         height: 95vw;
         top: 550;
+        gap: 16px;
+        padding: 16px;
     }
     .turneraH2 {
         font-size: 22px;
         line-height: 28px;
+    }
+    .selectersContainer {
+        gap: 16px;
+    }
+    .fechaContainer {
+        height: 40px;
+        grid-template-columns: 20% 80%;
+        .fechaContainerLabel {
+            font-size: 14px;
+        }
+    }
+    .buttonReservar {
+        height: 40px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+    .selectTipoTurno {
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .turneraStep2Title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .turneraStep2Inputs {
+        grid-template-columns: 20% 80%;
+    }
+    .turneraStep2Inputs p {
+        font-size: 14px;
+    }
+    .turneraStep2Inputs input {
+        font-size: 14px;
+    }
+    .turneraStep2Buttons {
+        margin-top: 26px;
+        height: auto;
+        gap: 8px;
+        button {
+            height: 40px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+    }
+    .turneraErrorMessage {
+        font-size: 14px;
+        bottom: 70px;
+    }
+
+    .turneraStep3FechaTurno {
+        height: 40px;
+        align-items: center;
+        p {
+            font-size: 14px;
+            width: 70px;
+        }
+    }
+    .turneraStep3FechaContainer {
+        height: 40px;
+        border-radius: 8px;
+        grid-template-columns: repeat(3, 1fr);
+        p {
+            font-size: 12px;
+            height: 40px;
+            &:nth-child(1) {
+                padding-left: 14px;
+                gap: 10px;
+            }
+            &:nth-child(2) {
+                border-left: 1px solid rgba(255, 255, 255, 0.2);
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+                justify-content: space-evenly;
+            }
+            &:nth-child(3) {
+                justify-content: space-evenly;
+            }
+        }
+    }
+    .turneraStep3UserData {
+        height: 40px;
+        border-radius: 8px;
+        p {
+            font-size: 12px;
+            padding: 0 16px;
+            gap: 8px;
+        }
+    }
+    .turneraStep3Total {
+        font-size: 16px;
+        bottom: 65px;
+    }
+
+    .turneraStep4MetodoPago {
+        border-radius: 8px;
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .step5Confirmacion {
+        font-size: 14px;
+    }
+
+    .setp5Button {
+        margin-top: 24px;
+        height: 40px;
+        font-size: 14px;
     }
 }
