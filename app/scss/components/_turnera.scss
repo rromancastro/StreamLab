@@ -11,7 +11,7 @@
     gap: 24px;
     padding: 32px;
     box-shadow: 0px 24px 24px -2px rgb(0, 0, 0, 0.4), 0px 4px 8px -2px rgb(0, 0, 0, 0.6);
-    z-index: 50;
+    z-index: 150;
     position: absolute;
     top: 800px;
     align-self: center;
@@ -31,12 +31,15 @@
     flex-direction: column;
     width: 100%;
     gap: 24px;
+    position: relative;
+    overflow: visible
 }
 
 .selectersContainer {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    z-index: 100;
 }
 
 .fechaContainer {
@@ -91,12 +94,13 @@
         position: absolute;
         top: 48px;
         right: 0;
-        z-index: 600;
+        z-index: 9999;
         backdrop-filter: blur(12px);
         background-color: #0A001A99;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 16px;
         padding: 16px;
+        overflow: visible !important;
         .react-calendar {
             background-color: transparent;
             border: none;
@@ -122,6 +126,9 @@
         .react-calendar__tile:hover {
             color: #B8B7B7;
             background-color: #7B2CBF33!important; 
+        }
+        .react-calendar__tile--active {
+            background-color: #5A189A !important;
         }
         // dia actual
         .react-calendar__tile--now {
@@ -510,6 +517,53 @@
     &:hover {
         background-color: #C77DFF99;
     }
+}
+
+//MENSUAL
+
+
+.selectersContainerMensual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    .fechaContainerMensual {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .fechaContainerMensualLabel {
+            font-size: 20px;
+            color: #ffffff;
+        }
+    }
+    .fechaContainer {
+        grid-template-columns: 20% 80%;
+        margin-bottom: 10px;
+    }
+    .calendarContainer {
+        top: 79px;
+    }
+    .turnosContainer {
+        top: 145px;
+    }
+}
+
+.turneraStep3FechaTurnosContainer {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.turneraStep3FechaTurnos {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.turneraStep3FechaTurnoLabel {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 @media (max-width: 862px) {

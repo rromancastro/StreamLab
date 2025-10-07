@@ -92,12 +92,9 @@ export const TurneraSimple = ({setTurnera}) => {
             } else {
                 setHorarioSeleccionado(null);
             }
-
-            console.log("Horarios reservados:", horasOcupadas);
         } else {
             setHorariosReservados([]);
             setHorarioSeleccionado(1);
-            console.log("No reservado");
         }
     }, [fechaSeleccionada, reservas, diasReservados]);
 
