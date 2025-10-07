@@ -64,7 +64,7 @@ export const SecondSection = () => {
     const scaleH2 = useTransform(scrollYProgress, [0.108, 0.124, 0.126], [0, 1.2, 1]);
     const yText2 = useTransform(scrollYProgress, [0.124, 0.140], [95, 12]);
     const yText3 = useTransform(scrollYProgress, [0.140, 0.156], [95, 12]);
-    const opacityFinal = useTransform(scrollYProgress, [0.156, 0.17], [0, 1]);
+    const opacityFinal = useTransform(scrollYProgress, [0.156, 0.16], [0, 1]);
 
 
 
