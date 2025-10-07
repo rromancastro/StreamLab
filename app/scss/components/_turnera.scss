@@ -572,15 +572,21 @@
 
 @media (max-width: 862px) {
     #turneraContainer {
-        width: 95vw;
-        height: 95vw;
+        width: 358px;
+        height: 370px;
         top: 550;
         gap: 16px;
         padding: 16px;
     }
+    .turneraUtilities {
+        gap: 16px;
+    }
     .turneraH2 {
         font-size: 22px;
         line-height: 28px;
+    }
+    .calendarContainer {
+        top: 39px;
     }
     .selectersContainer {
         gap: 16px;
@@ -591,6 +597,10 @@
         .fechaContainerLabel {
             font-size: 14px;
         }
+    }
+    .turnosContainer {
+        top: 95px;
+
     }
     .buttonReservar {
         height: 40px;

@@ -59,12 +59,12 @@ export const SecondSection = () => {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-    const opacityText1 = useTransform(scrollYProgress, [0.09, 0.102], [0, 1]);
-    const yText1 = useTransform(scrollYProgress, [0.102, 0.114], [95, 12]);
-    const scaleH2 = useTransform(scrollYProgress, [0.114, 0.119, 0.126], [0, 1.2, 1]);
-    const yText2 = useTransform(scrollYProgress, [0.126, 0.138], [95, 12]);
-    const yText3 = useTransform(scrollYProgress, [0.138, 0.15], [95, 12]);
-    const opacityFinal = useTransform(scrollYProgress, [0.152, 0.16], [0, 1]);
+    const opacityText1 = useTransform(scrollYProgress, [0.055, 0.076], [0, 1]);
+    const yText1 = useTransform(scrollYProgress, [0.076, 0.108], [95, 12]);
+    const scaleH2 = useTransform(scrollYProgress, [0.108, 0.124, 0.126], [0, 1.2, 1]);
+    const yText2 = useTransform(scrollYProgress, [0.124, 0.140], [95, 12]);
+    const yText3 = useTransform(scrollYProgress, [0.140, 0.156], [95, 12]);
+    const opacityFinal = useTransform(scrollYProgress, [0.156, 0.17], [0, 1]);
 
 
 
