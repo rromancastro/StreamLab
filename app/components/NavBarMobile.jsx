@@ -3,16 +3,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export const NavBarMobile = () => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 863);
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-
     // menu
         const [dropMenu, setDropMenu] = useState(false);
         const closeTimeout = useRef(null);
@@ -32,7 +22,9 @@ export const NavBarMobile = () => {
         };
 
     return (<>
-        <Image src="/logoMobile.png" alt="Logo" width={36} height={40} id="navLogoMobile"/>
+        <a href="#firstSection">
+            <Image src="/logoMobile.png" alt="Logo" width={36} height={40} id="navLogoMobile"/>
+        </a>
         <div id="navMenuMobileContainer">
             <button style={{opacity: dropMenu ? '0' : '1'}} onClick={handleDropMenu} onMouseOut={handleMouseLeave} onMouseOver={handleMouseEnter} id="navMenuMobileButton">MENÚ</button>
             <div style={{right: dropMenu ? -13 : -410}} id="navLinksMobile">

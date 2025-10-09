@@ -27,7 +27,7 @@ export const S4Card1 = ({x, y, opacity, rotate}) => {
                             <br />
                            Lunes a Sábado
                         </p>
-                        <p>Precio: <span>$45.000</span></p>
+                        <p>Precio: <span>$180.000</span></p>
                     </div>
 
                     <a href="#turneraContainer">Reservar</a>

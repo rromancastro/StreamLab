@@ -62,8 +62,6 @@ export const TurneraMensual = ({ setTurnera }) => {
     }, [fechaSeleccionada, reservas, diasReservados]);
 
     //controlar calendario
-    const calendarRef = useRef(null);
-
     const prevMonth = () => {
         setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
     };
@@ -92,13 +90,64 @@ export const TurneraMensual = ({ setTurnera }) => {
     function obtenerSemana(fecha) {
         const f = new Date(fecha);
         const primerDiaDelAño = new Date(f.getFullYear(), 0, 1);
-        const dias = Math.floor((f - primerDiaDelAño) / (24 * 60 * 60 * 1000));
-        return f.getFullYear() + "-" + Math.ceil((dias + primerDiaDelAño.getDay() + 1) / 7);
+        const diasTranscurridos = Math.floor((f - primerDiaDelAño) / (24 * 60 * 60 * 1000));
+
+        const numeroSemana = Math.ceil((diasTranscurridos + (primerDiaDelAño.getDay() + 7) % 7) / 7);
+
+        return `${f.getFullYear()}-${numeroSemana}`;
     }
+
+    //cerrar al hacer click afuera
+    const calendarRef = useRef(null);
+    const horariosRef = useRef(null);
+
+    useEffect(() => {
+    const handleClickOutside = (event) => {
+        if (
+        calendarRef.current &&
+        !calendarRef.current.contains(event.target) &&
+        !event.target.closest(".seleccionarFechaContainer")
+        ) {
+        setShowCalendar([false, false, false, false]);
+        }
+
+        if (
+        horariosRef.current &&
+        !horariosRef.current.contains(event.target) &&
+        !event.target.closest(".seleccionarFechaContainer")
+        ) {
+        setShowHorarios([false, false, false, false]);
+        }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+    };
+    }, []);
+
+
+    //semanas correspondientes
+    useEffect(() => {
+        const fechaActual = fechaSeleccionada[0];
+        let fecha2 = new Date(fechaActual);
+        let fecha3 = new Date(fechaActual);
+        let fecha4 = new Date(fechaActual);
+        fecha2.setDate(fecha2.getDate() + 7);
+        fecha3.setDate(fecha3.getDate() + 14);
+        fecha4.setDate(fecha4.getDate() + 21);
+        setFechaSeleccionada([fechaActual, fecha2, fecha3, fecha4]);
+    }, [fechaSeleccionada[0]])
+
+    const [showErrorToast, setShowErrorToast] = useState(false);
 
     return (
         <div id="turneraContainer">
-
+            {
+                showErrorToast && <div onClick={() => setShowErrorToast(false)} id="errorToastContainer">
+                    <p>Ups, sólo podés reservar 1 turno por semana.</p>
+                </div>
+            }
             {/* STEP 1 */}
             {turneraStep === 1 &&
                 <>
@@ -147,7 +196,7 @@ export const TurneraMensual = ({ setTurnera }) => {
 
                                         {/* Calendario */}
                                         {showCalendar[i] &&
-                                            <div className="calendarContainer">
+                                            <div ref={calendarRef} className="calendarContainer">
                                                 <div className="calendarNav">
                                                     <IoTriangleSharp onClick={prevMonth} className="calendarRowsIcon" style={{ rotate: '-90deg' }} size={35} />
                                                     <p>
@@ -160,17 +209,19 @@ export const TurneraMensual = ({ setTurnera }) => {
                                                 </div>
                                                 <Calendar
                                                 onChange={(date) => {
-                                                    const nuevaSemana = obtenerSemana(date);
+                                                    if (i !== 0) {
+                                                        const nuevaSemana = obtenerSemana(date);
 
-                                                    const hayConflicto = fechaSeleccionada.some((f, idx) => {
-                                                        if (idx === i) return false;
-                                                        return obtenerSemana(f) === nuevaSemana;
-                                                    });
+                                                        const hayConflicto = fechaSeleccionada.some((f, idx) => {
+                                                            if (idx === i) return false;
+                                                            return obtenerSemana(f) === nuevaSemana;
+                                                        });
 
-                                                    if (hayConflicto) {
-                                                        return;
+                                                        if (hayConflicto) {
+                                                            setShowErrorToast(true)
+                                                            return;
+                                                        }
                                                     }
-
                                                     const nuevasFechas = [...fechaSeleccionada];
                                                     nuevasFechas[i] = date;
                                                     setFechaSeleccionada(nuevasFechas);
@@ -191,7 +242,7 @@ export const TurneraMensual = ({ setTurnera }) => {
 
                                         {/* Horarios desplegables */}
                                         {showHorarios[i] &&
-                                            <div className="turnosContainer">
+                                            <div ref={horariosRef} className="turnosContainer">
                                                 {horarios.map((horario, index) => {
                                                     const ocupado = horariosReservados[i].includes(horario.slice(0, 2));
                                                     const seleccionado = horarioSeleccionado[i] === index + 1;
@@ -292,7 +343,7 @@ export const TurneraMensual = ({ setTurnera }) => {
                         <p>Nombre <span>{userName}</span></p>
                     </div>
                 </div>
-                <p className="turneraStep3Total">TOTAL: $57.000</p>
+                <p className="turneraStep3Total">TOTAL: $500.000</p>
                 <div className="turneraStep2Buttons">
                     <button onClick={() => setTurneraStep(2)}>Cancelar</button>
                     <button onClick={() => setTurneraStep(4)}>Continuar</button>

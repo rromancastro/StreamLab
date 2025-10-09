@@ -99,8 +99,6 @@ export const TurneraSimple = ({setTurnera}) => {
     }, [fechaSeleccionada, reservas, diasReservados]);
 
     //controlar calendario
-    const calendarRef = useRef(null);
-
     const prevMonth = () => {
         setCurrentMonth(
         (prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1)
@@ -131,6 +129,36 @@ export const TurneraSimple = ({setTurnera}) => {
         }
     }
 
+    //cerrar al hacer click afuera
+    const calendarRef = useRef(null);
+    const horariosRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+            calendarRef.current &&
+            !calendarRef.current.contains(event.target) &&
+            !event.target.closest(".seleccionarFechaContainer")
+            ) {
+            setShowCalendar(false);
+            }
+
+            if (
+            horariosRef.current &&
+            !horariosRef.current.contains(event.target) &&
+            !event.target.closest(".seleccionarFechaContainer")
+            ) {
+            setShowHorarios(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+
     return (
         <div id="turneraContainer">
             {/* STEP 1 */}
@@ -157,7 +185,7 @@ export const TurneraSimple = ({setTurnera}) => {
                     </div>
                 </div>
 
-                {showCalendar &&<div className="calendarContainer">
+                {showCalendar &&<div ref={calendarRef} className="calendarContainer">
                     <div className="calendarNav">
                         <IoTriangleSharp onClick={prevMonth} className="calendarRowsIcon" style={{rotate: '-90deg'}} size={35}/>
                         <p>
@@ -183,7 +211,7 @@ export const TurneraSimple = ({setTurnera}) => {
                 </div>}
 
                 {
-                    showHorarios && <div className="turnosContainer">
+                    showHorarios && <div ref={horariosRef} className="turnosContainer">
                         {
                             horarios.map((horario, index) => {
                                 return <p key={index} style={{color: horariosReservados.find(horarioReservado => horarioReservado === horario.slice(0, 2)) ? 'rgba(90, 24, 154, 1)' : horarios[horarioSeleccionado - 1] === horario ? '#ffffff' : '#8C8C8C', cursor: !horariosReservados.find(horarioReservado => horarioReservado === horario.slice(0, 2)) ? 'pointer' : 'default'}} onClick={()=> !horariosReservados.find(horarioReservado => horarioReservado === horario.slice(0, 2)) ? setHorarioSeleccionado(index + 1) : null}>{horario}</p>
@@ -258,7 +286,7 @@ export const TurneraSimple = ({setTurnera}) => {
                             <p>Nombre <span>{userName}</span></p>
                         </div>
                     </div>
-                    <p className="turneraStep3Total">TOTAL: $57.000</p>
+                    <p className="turneraStep3Total">TOTAL: $180.000</p>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(2)}>Cancelar</button>
                         <button  onClick={() => setTurneraStep(4)}>Continuar</button>

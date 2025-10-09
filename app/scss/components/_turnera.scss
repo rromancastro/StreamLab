@@ -17,6 +17,28 @@
     align-self: center;
 }
 
+#errorToastContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 10px;
+    width: 848px;
+    height: 848px;
+    z-index: 500;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        padding: 24px;
+        color: #ffffff;
+        background-color: #5A189A99;
+        border: 0.5px solid #C77DFF99;
+        border-radius: 16px;
+        backdrop-filter: blur(8px);
+    }
+}
+
 .turneraH2 {
     font-family: "Moderniz";
     font-weight: 900;

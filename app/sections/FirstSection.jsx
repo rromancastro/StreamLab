@@ -23,7 +23,7 @@ export const FirstSection = () => {
 
     const [turnera, setTurnera] = useState('simple');
 
-    return <section  style={{backgroundColor: progress >= 0.24 && progress <= 0.345 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} id="firstSection">
+    return <section  style={{backgroundColor:  isMobile ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.28 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} id="firstSection">
         <Header />
         {!isMobile ? <div className="sliderContainer">
             <div className="sliderTrack">

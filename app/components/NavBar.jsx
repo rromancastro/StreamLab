@@ -9,7 +9,7 @@ export const NavBar = () => {
     const [isWhite, setIsWhite] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setIsWhite(latest >= 0.922 && latest < 0.974);
+        setIsWhite((latest >= 0.28 && latest < 0.39) || (latest >= 0.56 && latest < 0.64));
     });
 
     // menu
@@ -57,12 +57,12 @@ export const NavBar = () => {
         }, []);
 
     return (<nav>
-        <div id="navLogo" onClick={handClickLogo}>
+        <a href="#firstSection" id="navLogo" onClick={handClickLogo}>
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
                 <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
-            </div>
+            </a>
             <div id="navMenu">
                 <button id={isWhite ? "navMenuButton" : "navMenuButtonWhite"} onClick={handleDropMenu} style={{opacity: dropMenu ? 0 : 1, transition: '.3s', color: isWhite ? '#ffffff' : '#0A001A'}}>
                     MENÚ
