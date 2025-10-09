@@ -1,5 +1,5 @@
 #sixthSection {
-    height: 1100px;
+    height: 1200px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -29,13 +29,13 @@
     align-self: flex-start;
     background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
     mix-blend-mode: darken;
-    top: 730px;
+    top: 780px;
     transition: 1s ease-in-out;
 }
 
 #sixthSectionFinalText {
     position: absolute;
-    top: 960px;
+    top: 990px;
     width: 60vw;
     font-weight: 400;
     font-size: 16px;

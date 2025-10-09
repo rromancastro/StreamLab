@@ -123,7 +123,7 @@ nav {
   border: none;
   font-size: 16px;
   font-weight: 600;
-  color: #252424;
+  color: #0A001A;
   transition: 0.5s ease-in-out;
 }
 
@@ -143,7 +143,8 @@ nav {
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
-  color: #252424;
+  color: #0A001A;
+  transition: 0.5s;
 }
 #navLinksMobile .navLinkMobile:hover {
   color: #7B2CBF;
@@ -1325,11 +1326,14 @@ nav {
     margin-top: 32px;
   }
   #secondSection div {
-    height: 30px;
+    height: 40px;
     gap: 10px;
+    display: flex;
+    align-items: center;
   }
   #secondSection div span {
     font-size: 30px;
+    margin-bottom: 12px;
   }
 }
 #thirdSection {
@@ -1502,7 +1506,6 @@ nav {
   flex-direction: column;
   align-items: center;
   padding-top: 20vh;
-  gap: 10px;
 }
 
 #cardsContainerMobile {
@@ -1584,7 +1587,7 @@ nav {
   }
 }
 #sixthSection {
-  height: 1100px;
+  height: 1200px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1614,13 +1617,13 @@ nav {
   align-self: flex-start;
   background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
   mix-blend-mode: darken;
-  top: 730px;
+  top: 780px;
   transition: 1s ease-in-out;
 }
 
 #sixthSectionFinalText {
   position: absolute;
-  top: 960px;
+  top: 990px;
   width: 60vw;
   font-weight: 400;
   font-size: 16px;
@@ -1929,7 +1932,7 @@ nav {
 }
 @font-face {
   font-family: "Moderniz";
-  src: url("/fonts/Moderniz.otf") format("opentype");
+  src: url("/fonts/Moderniz.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;

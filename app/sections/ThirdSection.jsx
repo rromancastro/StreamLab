@@ -46,7 +46,7 @@ export const ThirdSection = () => {
                     <motion.p style={{right: animationStep >= 6 ? 0 : '-450px'}}>ASISTENCIA</motion.p>
                 </div>
                 <div className="animationTextHorizontal">
-                    <motion.p style={{right: animationStep >= 7 ? 0 : '-450px'}}>TECNICA</motion.p>
+                    <motion.p style={{right: animationStep >= 7 ? 0 : '-450px'}}>TÉCNICA</motion.p>
                 </div>
                 <div className="animationTextHorizontal">
                     <motion.p style={{right: animationStep >= 8 ? 0 : '-450px'}}>INCLUIDA</motion.p>
@@ -71,7 +71,7 @@ export const ThirdSection = () => {
             </div>
             <div id="thirdSectionDiv4">
                 <div className="animationTextHorizontal">
-                    <motion.p style={{right: animationStep >= 15 ? 0 : '-450px'}}>UBICACION</motion.p>
+                    <motion.p style={{right: animationStep >= 15 ? 0 : '-450px'}}>UBICACIÓN</motion.p>
                 </div>
                 <div className="animationTextHorizontal">
                     <motion.p style={{right: animationStep >= 16 ? 0 : '-450px'}}>ACCESIBLE</motion.p>

@@ -37,21 +37,6 @@ export const SixthSection = () => {
                 }
             }
     }, [inView]);
- //textos
-    const opacityText1 = useTransform(scrollYProgress, [0.48, 0.495], [0, 1]);
-    const yText1 = useTransform(scrollYProgress, [0.495, 0.51], [95, 12]);
-    const yText2 = useTransform(scrollYProgress, [0.51, 0.525], [95, 12]);
-    const yText3 = useTransform(scrollYProgress, [0.525, 0.54], [95, 12]);
-    const yText4 = useTransform(scrollYProgress, [0.54, 0.555], [95, 12]);
-    const yText5 = useTransform(scrollYProgress, [0.555, 0.57], [95, 12]);
-    const opacityFinal = useTransform(scrollYProgress, [0.595, 0.6], [0, 1]);
-
-    //imagenes
-    const xImagen1 = useTransform(scrollYProgress, [0.57, 0.585], [0, -125]);
-    const yImagen1 = useTransform(scrollYProgress, [0.57, 0.585], [800, 380]);
-
-    const xImagen2 = useTransform(scrollYProgress, [0.57, 0.585], [0, 175]);
-    const yImagen2 = useTransform(scrollYProgress, [0.57, 0.585], [800, 380]);
     return <section ref={ref} id="sixthSection">
             <p id="sixthSectionTitle" style={{opacity: animationStep >= 1 ? 1 : 0 }}>¿QUIENES SOMOS?</p>
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"CREATIVOS"} />
@@ -60,8 +45,8 @@ export const SixthSection = () => {
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 5} textContent={"STREAMERS"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 6} textContent={"CURIOSOS"} />
 
-            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: isMobile ? animationStep >= 7 ? "0%" : '0' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '280px' : '100vh' : animationStep >= 7 ? '440px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
-            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: isMobile ? animationStep >= 7 ? "5%": '0' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '280px' : '100vh' : animationStep >= 7 ? '440px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
+            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: isMobile ? animationStep >= 7 ? "0%" : '0' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '280px' : '100vh' : animationStep >= 7 ? '490px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
+            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: isMobile ? animationStep >= 7 ? "5%": '0' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '280px' : '100vh' : animationStep >= 7 ? '490px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
         
             <div id="sixthSectionLineaVioleta" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>
 

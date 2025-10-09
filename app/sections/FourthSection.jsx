@@ -41,7 +41,7 @@ export const FourthSection = () => {
     });
 
     return <section ref={ref} id="fourthSection" style={{backgroundColor: isMobile ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.24 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
-            <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 1} textContent={"RESERVA"} />
+            <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 1} textContent={"RESERVÁ"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"TU TURNO"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 3} textContent={"TU COMBO, O"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 4} textContent={"LO QUE QUIERAS."} />

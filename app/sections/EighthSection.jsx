@@ -58,9 +58,9 @@ export const EighthSection = () => {
                 <p id="eigthSectionTitle" style={{opacity: animationStep >= 1 ? 1 : 0}}>
                     ¿DUDAS, CONSULTAS O SUGERENCIAS?
                 </p>
-                <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 2} textContent={"PODES"} />
+                <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 2} textContent={"PODÉS"} />
                 <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 3} textContent={"CONTACTARNOS"} />
-                <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 4} textContent={"A TRAVES DE"} />
+                <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 4} textContent={"A TRAVÉS DE"} />
                 <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 5} textContent={"ESTOS MEDIOS"} />
 
                 <div style={{opacity: animationStep >= 6 ? 1 : 0}} id="eighthSectionRedesContainer">

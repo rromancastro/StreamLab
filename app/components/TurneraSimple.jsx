@@ -162,7 +162,7 @@ export const TurneraSimple = ({setTurnera}) => {
     return (
         <div id="turneraContainer">
             {/* STEP 1 */}
-            {turneraStep === 1 && <><h2 className="turneraH2">RESERVA<br />
+            {turneraStep === 1 && <><h2 className="turneraH2">RESERVÁ<br />
                 TU TURNO,<br />
                 NO DUERMAS.
             </h2>

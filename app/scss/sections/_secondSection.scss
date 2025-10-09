@@ -61,10 +61,13 @@
             }
         }
         div {
-            height: 30px;
+            height: 40px;
             gap: 10px;
+            display: flex;
+            align-items: center;
             span {
                 font-size: 30px;
+                margin-bottom: 12px;
             }
         }
     }

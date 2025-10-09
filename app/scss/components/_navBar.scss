@@ -125,7 +125,7 @@ nav {
     border: none;
     font-size: 16px;
     font-weight: 600;
-    color: #252424;
+    color: #0A001A;
     transition: .5s ease-in-out;
 }
 
@@ -144,7 +144,8 @@ nav {
         text-decoration: none;
         font-size: 16px;
         font-weight: 600;
-        color: #252424;
+        color: #0A001A;
+        transition: .5s;
         &:hover {
             color: #7B2CBF;
         }
