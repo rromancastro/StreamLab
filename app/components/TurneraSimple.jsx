@@ -232,7 +232,7 @@ export const TurneraSimple = ({setTurnera}) => {
                 <p className="turneraErrorMessage">{errorMessage}</p>
                 <div className="turneraStep2Buttons">
                     <button onClick={() => setTurneraStep(1)}>Cancelar</button>
-                    <button  onClick={() => verificarDatos()}>Continuar</button>
+                    <button onClick={() => verificarDatos()}>Continuar</button>
                 </div>
             </>}
 

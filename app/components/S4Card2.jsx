@@ -14,7 +14,7 @@ export const S4Card2 = ({x, y, opacity}) => {
                 <div id="s4Card2Front" key="front">
                     <p>COMBO
                         <br />
-                    MESUAL</p>
+                    MENSUAL</p>
                 </div>
                 <div id="s4Card2Back" key="back">
                     <p id="s4Card2BackTitle">COMBO

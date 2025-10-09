@@ -1,11 +1,5 @@
 #secondSection {
-    width: 100%;
-    height: 350vh;
-}
-
-#secondSectionSticky {
     height: 100vh;
-    position: sticky;
     top: 0;
     width: 100%;
     display: flex;
@@ -15,9 +9,12 @@
     gap: 10px;
     p {
         color: #000100;
+        text-align: center;
+        transition: .5s ease-in-out;
         &:nth-child(1) {
             font-size: 24px;
             font-weight: 700;
+            margin-bottom: 16px;
         }
         &:nth-child(5) {
             font-size: 20px;
@@ -27,47 +24,30 @@
             margin-top: 30px;
         }
     }
-    .animationTextUp {
+    div {
         display: flex;
-        height: 82px;
-        width: 100%;
-        overflow: hidden;
-        p {
-            font-size: 72px;
-            font-weight: 900;
-            font-family: "Moderniz";
-            line-height: 1;
-            text-align: center;
-            position: absolute;
-            right: 0;
-            left: 0;
-        }
+        gap: 30px;
+        height: 80px;
+        justify-content: center;
         span {
             color: #5A189A;
             font-weight: 900;
             font-family: "Moderniz";
             transition: .3s;
-            line-height: 1;
-            top: 12px;
             font-size: 72px;
-            position: absolute;
-            right: 0;
-            left: 620;
             text-align: center;
+            line-height: 1;
+            transform: translateY(5px);
         }
+        
     }
-    
 }
 
 @media (max-width: 862px) {
     #secondSection {
-        height: 100vh;
-    }
-    #secondSectionSticky {
         gap: 0;
         p {
             color: #000100;
-            transition: .5s ease-in-out;
             &:nth-child(1) {
                 font-size: 16px;
                 margin-bottom: 32px;
@@ -79,25 +59,11 @@
                 margin-top: 32px;
             }
         }
-        .animationTextUp {
-            height: 40px;
-            p {
-                font-size: 30px;
-                transition: .5s ease-in-out;
-            }
+        div {
+            height: 30px;
+            gap: 10px;
             span {
-                color: #5A189A;
-                transition: .5s ease-in-out;
-                font-weight: 900;
-                font-family: "Moderniz";
-                transition: .3s;
-                line-height: 1;
-                top: 12px;
                 font-size: 30px;
-                position: absolute;
-                right: 0;
-                left: 260;
-                text-align: center;
             }
         }
     }

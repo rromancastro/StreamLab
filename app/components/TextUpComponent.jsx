@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-export const TextUpComponent = ({top, textContent}) => {
-    return <div className='animationTextUp'>
-                <motion.p style={{top: top}}>{textContent}</motion.p>
+
+export const TextUpComponent = ({fontSize, textContent, active, color = '#000'}) => {
+    return <div className="textUpComponent" style={{height: fontSize}}>
+                <p style={{transform: active ? 'translateY(5px)' : `translateY(${Number(fontSize) + 10}px)`, fontSize: `${fontSize}px`, color: color}}>{textContent}</p>
         </div>
 }

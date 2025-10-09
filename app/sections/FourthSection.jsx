@@ -1,6 +1,6 @@
 "use client";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { S4Card1, S4Card2, S4Card3 } from "../components";
+import { S4Card1, S4Card2, S4Card3, TextUpComponent } from "../components";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
@@ -24,94 +24,34 @@ export const FourthSection = () => {
 
     useEffect(() => {
         if (inView) {
-            setTimeout(() => {
-                setAnimationStep(1);
-            }, 500);
-            setTimeout(() => {
-                setAnimationStep(2);
-            }, 1000);
-            setTimeout(() => {
-                setAnimationStep(3);
-            },  1500);
-            setTimeout(() => {
-                setAnimationStep(4);
-            }, 2000);
-            setTimeout(() => {
-                setAnimationStep(5);
-            }, 2500);
-            setTimeout(() => {
-                setAnimationStep(6);
-            }, 3000);
-        }
+            for (let i = 0; i < 7; i++) {
+                setTimeout(() => {
+                    setAnimationStep(i + 1);
+                }, 500 * i);
+                }
+            }
     }, [inView]);
 
 
     //scroll
-
     const { scrollYProgress } = useScroll();
     const [progress, setProgress] = useState(0);
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
         setProgress(latest);
     });
 
-    const yText1 = useTransform(scrollYProgress, [0.34, 0.355], [95, 12]);
-    const yText2 = useTransform(scrollYProgress, [0.355, 0.37], [95, 12]);
-    const yText3 = useTransform(scrollYProgress, [0.37, 0.3855], [95, 12]);
-    const yText4 = useTransform(scrollYProgress, [0.3855, 0.40], [95, 12]);
-
-    //animaciones cards
-    const xCard1 = useTransform(scrollYProgress, [0.40, 0.41], [0, -230]);
-    const yCard1 = useTransform(scrollYProgress, [0.40, 0.41], [1000, 380]);
-    const rotateCard1 = useTransform(scrollYProgress, [0.40, 0.41], [0, -11]);
-    const opacityCard1 = useTransform(scrollYProgress, [0.40, 0.41], [0, 1]);
-
-    const xCard2 = useTransform(scrollYProgress, [0.40, 0.41], [0, 0]);
-    const yCard2 = useTransform(scrollYProgress, [0.40, 0.41], [1000, 355]);
-    const opacityCard2 = useTransform(scrollYProgress, [0.40, 0.41], [0, 1]);
-
-    const xCard3 = useTransform(scrollYProgress, [0.40, 0.41], [0, 230]);
-    const yCard3 = useTransform(scrollYProgress, [0.40, 0.41], [1000, 380]);
-    const rotateCard3 = useTransform(scrollYProgress, [0.40, 0.41], [0, 11]);
-    const opacityCard3 = useTransform(scrollYProgress, [0.40, 0.41], [0, 1]);
-
-    return <section id="fourthSection">
-        {!isMobile ? <motion.section id="fourthSectionSticky" style={{backgroundColor: progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
-            <div className='animationTextUp'>
-                <motion.p style={{top: yText1}}>RESERVA</motion.p>
-            </div>
-            <div className='animationTextUp'>
-                <motion.p style={{top: yText2}}>TU TURNO</motion.p>
-            </div>
-            <div className='animationTextUp'>
-                <motion.p style={{top: yText3}}>TU COMBO, O</motion.p>
-            </div>
-            <div className='animationTextUp'>
-                <motion.p style={{top: yText4}}>LO QUE QUIERAS.</motion.p>
-            </div>
-            <S4Card3 y={yCard3} x={xCard3} opacity={opacityCard3} rotate={rotateCard3}/>
-            <S4Card2 y={yCard2} x={xCard2} opacity={opacityCard2} />
-            <S4Card1 y={yCard1} x={xCard1} opacity={opacityCard1} rotate={rotateCard1}/>
-        </motion.section>
-        :
-        <section ref={ref} id="fourthSectionSticky" style={{backgroundColor: isMobile ? progress >= 0.21 && progress <= 0.41 ? '#7B2CBF' : '#ffffff' : progress >= 0.188 && progress <= 0.34 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
-            <div className='animationTextUp'>
-                <p style={{top: animationStep >=1 ? 12 : 52}}>RESERVA</p>
-            </div>
-            <div className='animationTextUp'>
-                <p style={{top: animationStep >=2 ? 12 : 52}}>TU TURNO</p>
-            </div>
-            <div className='animationTextUp'>
-                <p style={{top: animationStep >=3 ? 12 : 52}}>TU COMBO, O LO</p>
-            </div>
-            <div className='animationTextUp'>
-                <p style={{top: animationStep >=4 ? 12 : 52}}>QUE QUIERAS.</p>
-            </div>
-            <div id="cardsContainerMobile">
+    return <section ref={ref} id="fourthSection" style={{backgroundColor: progress >= 0.24 && progress <= 0.345 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+            <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 1} textContent={"RESERVA"} />
+            <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"TU TURNO"} />
+            <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 3} textContent={"TU COMBO, O"} />
+            <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 4} textContent={"LO QUE QUIERAS."} />
+            {isMobile ? <div id="cardsContainerMobile">
                 <S4Card1 y={0} x={0} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
                 <S4Card2 y={0} x={animationStep >= 6 ? 0 : -260} opacity={animationStep >= 5 ? 1 : 0} />
                 <S4Card3 y={0} x={animationStep >= 6 ? 0 : -520} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
-            </div>
+            </div> : <>
+            <S4Card3 y={animationStep >= 5 ? 380 : 1000} x={animationStep >= 5 ? 230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? 11 : 0}/>
+            <S4Card2 y={animationStep >= 5 ? 355 : 1000} x={animationStep >= 5 ? 0 : 0} opacity={animationStep >= 5 ? 1 : 0} />
+            <S4Card1 y={animationStep >= 5 ? 380 : 1000} x={animationStep >= 5 ? -230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? -11 : 0}/></>}
         </section>
-    }
-    </section>
 }

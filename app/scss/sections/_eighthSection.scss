@@ -1,45 +1,24 @@
-#eighthSection {
-    height: 750vh;
-    width: 100%;
-}
 
-#eighthSectionSticky {
+#eighthSection {
     height: 110vh;
-    position: sticky;
-    top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 13vh;
-    .animationTextUp {
-        display: flex;
-        height: 54px;
-        width: 100%;
-        overflow: hidden;
-        p {
-            font-size: 50px;
-            font-weight: 900;
-            font-family: "Moderniz";
-            line-height: 1;
-            text-align: center;
-            position: absolute;
-            right: 0;
-            left: 0;
-            color: #000100;
-        }
-    }
 }
 
 #eigthSectionTitle {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 10px;
+    transition: .5s;
 }
 
 #eighthSectionRedesContainer {
     display: flex;
     gap: 30px;
+    transition: .5s;
     margin: 3vh 0;
 }
 
@@ -93,23 +72,14 @@
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
+    transition: .5s;
 }
 
 @media (max-width: 862px) {
     #eighthSection {
-        height: 100vh;
-    }
-    #eighthSectionSticky {
         justify-content: center;
         height: 100vh;
         padding-top: 0;
-        .animationTextUp {
-            height: 40px;
-            p {
-                font-size: 30px;
-                transition: .5s ease-in-out;
-            }
-        }
     }
     #eigthSectionTitle {
         font-size: 16px;

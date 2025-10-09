@@ -318,6 +318,12 @@
     }
 }
 
+.turneraStep2Inputs input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-text-fill-color: #8C8C8C !important;
+    box-shadow: 0 0 0px 1000px #1F1A29 inset !important;
+}
+
 .turneraStep2Buttons {
     margin-top: 72px;
     display: flex;

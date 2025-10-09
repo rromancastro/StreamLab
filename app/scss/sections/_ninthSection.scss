@@ -1,35 +1,13 @@
 #ninthSection {
-    height: 350vh;
-    width: 100%;
-}
-
-#ninthSectionSticky {
     height: 100vh;
-    position: sticky;
     top: 0;
     width: 100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 15vh;
     gap: 10px;
-    .animationTextUp {
-        display: flex;
-        height: 82px;
-        width: 100%;
-        overflow: hidden;
-        p {
-            font-size: 72px;
-            font-weight: 900;
-            font-family: "Moderniz";
-            line-height: 1;
-            text-align: center;
-            position: absolute;
-            right: 0;
-            left: 0;
-            color: #ffffff;
-        }
-    }
 }
 
 #ninthSectionBanner {
@@ -38,13 +16,18 @@
     right: auto;
     object-fit: cover;
     z-index: -1;
+    transition: .5s;
 }
 
 #ninthSectionTextContainer {
     position: absolute;
-    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 65vh;
     width: 100%;
-    top: 25vh;
+    top: 11vh;
 }
 
 #ninthSectionRedesContainer {
@@ -52,6 +35,7 @@
     bottom: 13vh;
     display: flex;
     gap: 50px;
+    transition: .5s;
     a {
         font-size: 20px;
         font-weight: 600;
@@ -68,6 +52,7 @@
 }
 
 #ninthSectionCopyright {
+    transition: .5s;
     position: absolute;
     bottom: 2vh;
     text-align: center;
@@ -82,18 +67,7 @@
 @media (max-width: 862px) {
     #ninthSection {
         height: 900px;
-        width: 100%;
         overflow: hidden;
-    }
-    #ninthSectionSticky {
-        height: 900px;
-        .animationTextUp {
-            height: 40px;
-            p {
-                font-size: 30px;
-                transition: .5s ease-in-out;
-            }
-        }
     }
     #ninthSectionTextContainer {
         top: 350px;

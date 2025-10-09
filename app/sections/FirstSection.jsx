@@ -1,8 +1,15 @@
 "use client";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import { Header, TurneraMensual, TurneraSimple } from "../components"
 import { useEffect, useState } from "react";
 
 export const FirstSection = () => {
+
+    const {scrollYProgress} = useScroll();
+    const [progress, setProgress] = useState(0);
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        setProgress(latest);
+    });
 
     //responsive
     const [isMobile, setIsMobile] = useState(false);
@@ -16,7 +23,7 @@ export const FirstSection = () => {
 
     const [turnera, setTurnera] = useState('simple');
 
-    return <section id="firstSection">
+    return <section  style={{backgroundColor: progress >= 0.24 && progress <= 0.345 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} id="firstSection">
         <Header />
         {!isMobile ? <div className="sliderContainer">
             <div className="sliderTrack">

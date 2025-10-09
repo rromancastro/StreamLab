@@ -1,34 +1,11 @@
 #fourthSection {
-    height: 350vh;
-}
-
-#fourthSectionSticky {
     height: 150vh;
-    position: sticky;
-    top: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20vh;
     gap: 10px;
-    .animationTextUp {
-        display: flex;
-        height: 82px;
-        width: 100%;
-        overflow: hidden;
-        p {
-            font-size: 72px;
-            font-weight: 900;
-            font-family: "Moderniz";
-            line-height: 1;
-            text-align: center;
-            position: absolute;
-            right: 0;
-            left: 0;
-            color: #000100;
-        }
-    }
 }
 
 #cardsContainerMobile {
@@ -51,19 +28,9 @@
 @media (max-width: 862px) {
     #fourthSection {
         height: 100vh;
-    }
-    #fourthSectionSticky {
-        height: 100vh;
         padding-bottom: 0px;
         justify-content: center;
         padding-top: 0;
         gap: 0px;
-        .animationTextUp {
-            height: 42px;
-            p {
-                font-size: 32px;
-                transition: .5s ease-in-out;
-            }
-        }
     }
 }
