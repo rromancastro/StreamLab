@@ -7,7 +7,7 @@ import { IoTriangleSharp } from "react-icons/io5";
 import { getAllReservas } from "../helpers/apiCall";
 import Image from "next/image";
 
-export const TurneraMensual = ({ setTurnera }) => {
+export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
     //fechas ocupadas
     const [reservas, setReservas] = useState([]);
@@ -141,8 +141,9 @@ export const TurneraMensual = ({ setTurnera }) => {
 
     const [showErrorToast, setShowErrorToast] = useState(false);
 
+
     return (
-        <div id="turneraContainer">
+        <div style={{height: isMobile ? '735px' : null}} id="turneraContainer">
             {
                 showErrorToast && <div onClick={() => setShowErrorToast(false)} id="errorToastContainer">
                     <p>Ups, sólo podés reservar 1 turno por semana.</p>

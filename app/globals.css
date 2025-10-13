@@ -815,6 +815,9 @@ nav {
   .fechaContainer .fechaContainerLabel {
     font-size: 14px;
   }
+  .fechaContainer .seleccionarFechaContainer p {
+    font-size: 14px;
+  }
   .turnosContainer {
     top: 95px;
   }
@@ -908,6 +911,31 @@ nav {
     margin-top: 24px;
     height: 40px;
     font-size: 14px;
+  }
+  .fechaContainerMensualLabel {
+    font-size: 16px;
+  }
+  .selectersContainerMensual {
+    display: flex;
+    gap: 0;
+  }
+  .selectersContainerMensual .fechaContainerMensual {
+    gap: 5px;
+  }
+  .selectersContainerMensual .fechaContainerMensual .fechaContainerMensualLabel {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  .selectersContainerMensual .fechaContainer {
+    margin-bottom: 0px;
+  }
+  .turneraStep3FechaTurnosContainer {
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+  }
+  .turneraStep3FechaTurnos {
+    gap: 8px;
   }
 }
 .s4Card {
@@ -1483,15 +1511,18 @@ nav {
   font-size: 14px;
   color: #ffffff;
   font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.thirdSectionMobileP span {
+  font-weight: 500;
 }
 
 .thirdSectionMobileUbi {
   font-size: 16px;
   color: #ffffff;
   font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 16px;
 }
 
@@ -1588,7 +1619,7 @@ nav {
   }
 }
 #sixthSection {
-  height: 1200px;
+  height: 1250px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1630,6 +1661,17 @@ nav {
   font-size: 16px;
   color: #000100;
   transition: 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#sixthSectionFinalText a {
+  color: #000100;
+  font-weight: 800;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 @media (max-width: 862px) {

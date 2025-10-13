@@ -625,6 +625,11 @@
         .fechaContainerLabel {
             font-size: 14px;
         }
+        .seleccionarFechaContainer {
+            p {
+                font-size: 14px;
+            }
+        }
     }
     .turnosContainer {
         top: 95px;
@@ -727,5 +732,33 @@
         margin-top: 24px;
         height: 40px;
         font-size: 14px;
+    }
+
+    //MENSUAL
+    .fechaContainerMensualLabel {
+        font-size: 16px;
+    }
+    .selectersContainerMensual {
+        display: flex;
+        gap: 0;
+        .fechaContainerMensual {
+            gap: 5px;
+            .fechaContainerMensualLabel {
+                font-size: 16px;
+                margin-top: 5px;
+            }
+        }
+        .fechaContainer {
+            margin-bottom: 0px;
+        }
+    }
+    .turneraStep3FechaTurnosContainer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: start;
+    }
+
+    .turneraStep3FechaTurnos {
+        gap: 8px;
     }
 }
