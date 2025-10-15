@@ -9,7 +9,7 @@ export const NavBar = () => {
     const [isWhite, setIsWhite] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setIsWhite((latest >= 0.28 && latest < 0.39) || (latest >= 0.56 && latest < 0.64));
+        setIsWhite((latest >= 0.265 && latest < 0.375) || (latest >= 0.54 && latest < 0.63));
     });
 
     // menu

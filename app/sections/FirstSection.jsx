@@ -2,8 +2,11 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { Header, TurneraMensual, TurneraSimple } from "../components"
 import { useEffect, useState } from "react";
+import { useAppContext } from "../context/AppContext";
 
 export const FirstSection = () => {
+
+    const {turneraSeleccionada} = useAppContext();
 
     const {scrollYProgress} = useScroll();
     const [progress, setProgress] = useState(0);
@@ -23,7 +26,7 @@ export const FirstSection = () => {
 
     const [turnera, setTurnera] = useState('simple');
 
-    return <section style={{backgroundColor:  isMobile ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.28 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s', height: isMobile ? turnera === 'mensual' ? '1300px' : null : null}} id="firstSection">
+    return <section style={{backgroundColor:  isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.16 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.28 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s', height: isMobile ? turnera === 'mensual' ? '1300px' : null : null}} id="firstSection">
         <Header />
         {!isMobile ? <div className="sliderContainer">
             <div className="sliderTrack">

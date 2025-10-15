@@ -3,8 +3,11 @@ import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-mot
 import { S4Card1, S4Card2, S4Card3, TextUpComponent } from "../components";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useAppContext } from "../context/AppContext";
 
 export const FourthSection = () => {
+
+    const {turneraSeleccionada} = useAppContext();
 
      //responsive
     const [isMobile, setIsMobile] = useState(false);
@@ -40,7 +43,7 @@ export const FourthSection = () => {
         setProgress(latest);
     });
 
-    return <section ref={ref} id="fourthSection" style={{backgroundColor: isMobile ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.24 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+    return <section ref={ref} id="fourthSection" style={{backgroundColor: isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.15 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 1} textContent={"RESERVÁ"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"TU TURNO"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 3} textContent={"TU COMBO, O"} />
@@ -50,8 +53,8 @@ export const FourthSection = () => {
                 <S4Card2 y={0} x={animationStep >= 6 ? 0 : -260} opacity={animationStep >= 5 ? 1 : 0} />
                 <S4Card3 y={0} x={animationStep >= 6 ? 0 : -520} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
             </div> : <>
-            <S4Card3 y={animationStep >= 5 ? 380 : 1000} x={animationStep >= 5 ? 230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? 11 : 0}/>
-            <S4Card2 y={animationStep >= 5 ? 355 : 1000} x={animationStep >= 5 ? 0 : 0} opacity={animationStep >= 5 ? 1 : 0} />
-            <S4Card1 y={animationStep >= 5 ? 380 : 1000} x={animationStep >= 5 ? -230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? -11 : 0}/></>}
+            <S4Card3 y={animationStep >= 5 ? 350 : 1000} x={animationStep >= 5 ? 230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? 11 : 0}/>
+            <S4Card2 y={animationStep >= 5 ? 325 : 1000} x={animationStep >= 5 ? 0 : 0} opacity={animationStep >= 5 ? 1 : 0} />
+            <S4Card1 y={animationStep >= 5 ? 350 : 1000} x={animationStep >= 5 ? -230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? -11 : 0}/></>}
         </section>
 }
