@@ -18,7 +18,7 @@
 }
 
 #firstSectionArticle1 {
-    background-image: url('/fifthSection/banner.png');
+    background-image: url('/fifthSection/article1.webp');
     display: flex;
     align-items: end;
     justify-content: center;
@@ -150,5 +150,12 @@
     }
     #fifthSectionCards {
         display: none;
+    }
+    #fifthSectionButtonPrev {
+        left: 5vw;
+    }
+
+    #fifthSectionButtonNext {
+        right: 5vw;
     }
 }

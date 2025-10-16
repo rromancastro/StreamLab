@@ -2,8 +2,11 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image";
 import {useRef, useState } from "react";
+import { useAppContext } from "../context/AppContext";
 
 export const NavBarMobile = () => {
+
+    const {turneraSeleccionada} = useAppContext();
     // menu
         const [dropMenu, setDropMenu] = useState(false);
         const closeTimeout = useRef(null);
@@ -26,7 +29,7 @@ export const NavBarMobile = () => {
     const [isWhite, setIsWhite] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setIsWhite((latest >= 0.15 && latest < 0.33) || (latest >= 0.54 && latest < 0.675) || (latest >= 0.455 && latest < 0.505));
+        setIsWhite(turneraSeleccionada === 'simple'  ? (latest >= 0.15 && latest < 0.33) || (latest >= 0.54 && latest < 0.675) || (latest >= 0.455 && latest < 0.505) : (latest >= 0.16 && latest < 0.38) || (latest >= 0.555 && latest < 0.675) || (latest >= 0.455 && latest < 0.505));
     });
 
     return (<>
