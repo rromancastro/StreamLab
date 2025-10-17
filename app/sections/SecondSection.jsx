@@ -3,8 +3,11 @@ import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-mot
 import { useEffect, useState } from "react";
 import { TextUpComponent } from "../components";
 import { useInView } from "react-intersection-observer";
+import { useAppContext } from "../context/AppContext";
 
 export const SecondSection = () => {
+
+    const {turneraSeleccionada} = useAppContext();
 
     //responsive
     const [isMobile, setIsMobile] = useState(false);
@@ -47,7 +50,7 @@ export const SecondSection = () => {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-    return <section style={{backgroundColor:  isMobile ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.28 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} ref={ref} id="secondSection">
+    return <section style={{backgroundColor:  isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.16 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} ref={ref} id="secondSection">
                 <p style={{ opacity: animationStep >=1 ? 1 : 0 }}>¿CÓMO FUNCIONA?</p>
                 <div>
                     <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"TURNOS DE"} />

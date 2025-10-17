@@ -4,10 +4,13 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
-import { getAllReservas } from "../helpers/apiCall";
+import { getAllReservas, subirReserva } from "../helpers/apiCall";
 import Image from "next/image";
+import { useAppContext } from "../context/AppContext";
 
 export const TurneraMensual = ({ setTurnera, isMobile}) => {
+
+    const {setTurneraSeleccionada} = useAppContext();
 
     //fechas ocupadas
     const [reservas, setReservas] = useState([]);
@@ -141,6 +144,61 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
     const [showErrorToast, setShowErrorToast] = useState(false);
 
+    //subir reservas
+    const handleSubmitReservas = async () => {
+            const reserva1 = await subirReserva('/reservas', 'POST', {
+                action: 'crear_reserva',
+                sala_id: 1,
+                cliente_id: 1,
+                titulo: 'Sesión de Gaming',
+                descripcion: 'Stream de videojuegos',
+                fecha_inicio: `${fechaSeleccionada[0].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[0] - 1].slice(0, 2)}:00:00`,
+                fecha_fin: `${fechaSeleccionada[0].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[0] - 1].slice(3, 5)}:00:00`,
+                tipo_stream: 'gaming',
+                observaciones: 'ninguna',
+                estado: 'pendiente'
+            });
+            console.log(reserva1);
+            const reserva2 = await subirReserva('/reservas', 'POST', {
+                action: 'crear_reserva',
+                sala_id: 1,
+                cliente_id: 1,
+                titulo: 'Sesión de Gaming',
+                descripcion: 'Stream de videojuegos',
+                fecha_inicio: `${fechaSeleccionada[1].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[1] - 1].slice(0, 2)}:00:00`,
+                fecha_fin: `${fechaSeleccionada[1].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[1] - 1].slice(3, 5)}:00:00`,
+                tipo_stream: 'gaming',
+                observaciones: 'ninguna',
+                estado: 'pendiente'
+            });
+            console.log(reserva2);
+            const reserva3 = await subirReserva('/reservas', 'POST', {
+                action: 'crear_reserva',
+                sala_id: 1,
+                cliente_id: 1,
+                titulo: 'Sesión de Gaming',
+                descripcion: 'Stream de videojuegos',
+                fecha_inicio: `${fechaSeleccionada[2].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[2] - 1].slice(0, 2)}:00:00`,
+                fecha_fin: `${fechaSeleccionada[2].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[2] - 1].slice(3, 5)}:00:00`,
+                tipo_stream: 'gaming',
+                observaciones: 'ninguna',
+                estado: 'pendiente'
+            });
+            console.log(reserva3);
+            const reserva4 = await subirReserva('/reservas', 'POST', {
+                action: 'crear_reserva',
+                sala_id: 1,
+                cliente_id: 1,
+                titulo: 'Sesión de Gaming',
+                descripcion: 'Stream de videojuegos',
+                fecha_inicio: `${fechaSeleccionada[3].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[3] - 1].slice(0, 2)}:00:00`,
+                fecha_fin: `${fechaSeleccionada[3].toISOString().slice(0, 10)} ${horarios[horarioSeleccionado[3] - 1].slice(3, 5)}:00:00`,
+                tipo_stream: 'gaming',
+                observaciones: 'ninguna',
+                estado: 'pendiente'
+            });
+            console.log(reserva4);
+        }
 
     return (
         <div style={{height: isMobile ? '735px' : null}} id="turneraContainer">
@@ -274,7 +332,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
                         <div className="selectTipoTurno">
                             <div className="selectTurno">
-                                <button><div onClick={() => setTurnera('simple')} style={{ backgroundColor: '#8c8c8cff' }}></div></button>
+                                <button><div onClick={() => {setTurnera('simple'); setTurneraSeleccionada('simple')}} style={{ backgroundColor: '#8c8c8cff' }}></div></button>
                                 <p>
                                     TURNO
                                     <br />
@@ -347,7 +405,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 <p className="turneraStep3Total">TOTAL: $500.000</p>
                 <div className="turneraStep2Buttons">
                     <button onClick={() => setTurneraStep(2)}>Cancelar</button>
-                    <button onClick={() => setTurneraStep(4)}>Continuar</button>
+                    <button onClick={() => {setTurneraStep(4); handleSubmitReservas()}}>Continuar</button>
                 </div>
             </>}
 

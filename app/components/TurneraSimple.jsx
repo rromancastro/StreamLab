@@ -4,10 +4,13 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
-import { getAllReservas } from "../helpers/apiCall";
+import { getAllReservas, subirReserva } from "../helpers/apiCall";
 import Image from "next/image";
+import { useAppContext } from "../context/AppContext";
 
 export const TurneraSimple = ({setTurnera}) => {
+
+    const {setTurneraSeleccionada} = useAppContext();
 
     //fechas ocupadas
     const [reservas, setReservas] = useState([]);
@@ -298,6 +301,23 @@ export const TurneraSimple = ({setTurnera}) => {
         };
     }, []);
 
+    //SUBIR RESERVA
+    const handleSubmitReserva = async () => {
+        const reserva = await subirReserva('/reservas', 'POST', {
+            action: 'crear_reserva',
+            sala_id: 1,
+            cliente_id: 1,
+            titulo: 'Sesión de Gaming',
+            descripcion: 'Stream de videojuegos',
+            fecha_inicio: `${fechaSeleccionada.toISOString().slice(0, 10)} ${horarios[horarioSeleccionado - 1].slice(0, 2)}:00:00`,
+            fecha_fin: `${fechaSeleccionada.toISOString().slice(0, 10)} ${horarios[horarioSeleccionado - 1].slice(3, 5)}:00:00`,
+            tipo_stream: 'gaming',
+            observaciones: 'ninguna',
+            estado: 'pendiente'
+        });
+        console.log(reserva);
+    }
+
     return (
         <div id="turneraContainer">
             {/* STEP 1 */}
@@ -369,7 +389,7 @@ export const TurneraSimple = ({setTurnera}) => {
                         </p>
                     </div>
                     <div className="selectTurno">
-                        <button><div onClick={()=>setTurnera('mensual')} style={{backgroundColor: '#8c8c8cff'}}></div></button>
+                        <button><div onClick={()=>{setTurnera('mensual'); setTurneraSeleccionada('mensual')}} style={{backgroundColor: '#8c8c8cff'}}></div></button>
                         <p>
                             COMBO
                             <br />
@@ -428,7 +448,7 @@ export const TurneraSimple = ({setTurnera}) => {
                     <p className="turneraStep3Total">TOTAL: $180.000</p>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(2)}>Cancelar</button>
-                        <button  onClick={() => setTurneraStep(4)}>Continuar</button>
+                        <button  onClick={() => {setTurneraStep(4); handleSubmitReserva()}}>Continuar</button>
                     </div>
                 </>
             }

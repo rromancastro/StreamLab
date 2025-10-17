@@ -1389,7 +1389,7 @@ nav {
 #thirdSectionDiv1 {
   width: 450px;
   position: absolute;
-  top: 14vh;
+  top: 30px;
   overflow: hidden;
   left: 9vw;
   display: flex;
@@ -1397,10 +1397,35 @@ nav {
   align-items: flex-start;
 }
 
+#thirdSectionDiv1Content {
+  transition: 0.5s;
+  margin-top: 16px;
+  overflow: hidden;
+  width: 100%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#thirdSectionDiv1Content p {
+  font-size: 16px;
+  font-weight: 300;
+}
+#thirdSectionDiv1Content ul {
+  list-style-type: none;
+}
+#thirdSectionDiv1Content ul li span {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  gap: 8px;
+  padding-left: 8px;
+}
+
 #thirdSectionDiv2 {
   width: 450px;
   position: absolute;
-  top: 14vh;
+  top: 30px;
   overflow: hidden;
   right: 9vw;
   display: flex;
@@ -1411,7 +1436,7 @@ nav {
 #thirdSectionDiv3 {
   width: 450px;
   position: absolute;
-  bottom: 14vh;
+  bottom: 30px;
   overflow: hidden;
   left: 9vw;
   display: flex;
@@ -1422,7 +1447,7 @@ nav {
 #thirdSectionDiv4 {
   width: 450px;
   position: absolute;
-  bottom: 14vh;
+  bottom: 30px;
   overflow: hidden;
   right: 9vw;
   display: flex;
@@ -1430,13 +1455,8 @@ nav {
   align-items: flex-end;
 }
 
-.thirdSectionP {
-  font-size: 16px;
-  font-weight: 300;
-  transition: 0.7s ease-in-out;
-}
-
 .animationTextHorizontal {
+  transition: 0.5s;
   height: 50px;
   display: flex;
   align-items: center;
@@ -1451,16 +1471,34 @@ nav {
   transition: 0.5s ease-in-out;
 }
 
-.animationLineaHorizontal {
-  height: 40px;
+.dropButton {
+  font-size: 16px;
+  font-weight: 300;
   display: flex;
   align-items: center;
+  gap: 8px;
+  transition: 0.5s;
 }
 
-.animationTextHorizontalLinea {
-  height: 2px;
-  background-color: #E0AAFF;
-  transition: 0.7s ease-in-out;
+.dropButtonIcon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.5s, color 0.5s;
+}
+.dropButtonIcon:hover {
+  background-color: rgba(199, 125, 255, 0.6);
+  color: #E0AAFF;
+}
+
+#linkUbi {
+  color: #ffffff;
+}
+#linkUbi:hover {
+  color: #EEA8FF;
 }
 
 @media (max-width: 862px) {
@@ -1569,18 +1607,79 @@ nav {
 #fifthSection {
   height: 100vh;
   width: 100%;
-  background-image: url("/fifthSection/banner.png");
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
-#fifthSection h2 {
+
+.firstSectionArticle {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+#firstSectionArticle1 {
+  background-image: url("/fifthSection/article1.webp");
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 5svw;
+}
+#firstSectionArticle1 h2 {
   font-family: "Moderniz";
   font-weight: 900;
   font-size: 64px;
   color: #ffffff;
-  position: absolute;
-  bottom: 3vw;
-  left: 3vw;
+  text-align: center;
+}
+
+#firstSectionArticle2 {
+  background-image: url("/fifthSection/article2.webp");
+}
+
+#firstSectionArticle3 {
+  background-image: url("/fifthSection/article3.webp");
+}
+
+#firstSectionArticle4 {
+  background-image: url("/fifthSection/article4.webp");
+}
+
+#firstSectionArticle5 {
+  background-image: url("/fifthSection/article5.webp");
+}
+
+#firstSectionArticle6 {
+  background-image: url("/fifthSection/article6.webp");
+}
+
+#firstSectionArticle7 {
+  background-image: url("/fifthSection/article7.webp");
+}
+
+#firstSectionArticle8 {
+  background-image: url("/fifthSection/article8.webp");
+}
+
+#firstSectionArticle9 {
+  background-image: url("/fifthSection/article9.webp");
+}
+
+#firstSectionArticle10 {
+  background-image: url("/fifthSection/article10.webp");
+}
+
+#firstSectionArticle11 {
+  background-image: url("/fifthSection/article11.webp");
+}
+
+#firstSectionArticle12 {
+  background-image: url("/fifthSection/article12.webp");
 }
 
 #fifthSectionCards {
@@ -1594,8 +1693,11 @@ nav {
 }
 
 .fifthSectionCard {
-  width: 350px;
-  height: 80px;
+  width: 35vw;
+  height: 88px;
+  position: absolute;
+  right: -20px;
+  bottom: 8svw;
   padding: 0px 32px;
   display: flex;
   align-items: center;
@@ -1610,12 +1712,54 @@ nav {
   font-weight: 600;
 }
 
+.fifthSectionButton {
+  position: absolute;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  border: none;
+  justify-content: center;
+  height: 38px;
+  border-radius: 50%;
+  z-index: 100;
+  background-color: rgba(199, 125, 255, 0.6);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.fifthSectionButton .fifthSectionButtonIcon {
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  transition: 0.5s;
+}
+.fifthSectionButton:hover {
+  background-color: rgba(123, 44, 191, 0.2);
+}
+.fifthSectionButton:hover .fifthSectionButtonIcon {
+  color: #E0AAFF;
+}
+
+#fifthSectionButtonPrev {
+  left: 64px;
+  rotate: 180deg;
+}
+
+#fifthSectionButtonNext {
+  right: 64px;
+}
+
 @media (max-width: 862px) {
   #fifthSection h2 {
     font-size: 32px;
   }
   #fifthSectionCards {
     display: none;
+  }
+  #fifthSectionButtonPrev {
+    left: 5vw;
+  }
+  #fifthSectionButtonNext {
+    right: 5vw;
   }
 }
 #sixthSection {
@@ -1677,7 +1821,7 @@ nav {
 @media (max-width: 862px) {
   #sixthSection {
     padding-top: 65px;
-    height: 900px;
+    height: 1100px;
   }
   #sixthSectionTitle {
     font-size: 16px;
