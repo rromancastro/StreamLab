@@ -46,8 +46,6 @@ export const TurneraSimple = ({setTurnera}) => {
         "Diciembre"
     ]
 
-    //horarios
-
     useEffect(() => {
         if(diasReservados.includes(fechaSeleccionada.toISOString().slice(0, 10))) {
             const diaSeleccionado = reservas.filter(reserva => reserva.fecha_inicio.slice(0, 10) === fechaSeleccionada.toISOString().slice(0, 10));
@@ -118,16 +116,164 @@ export const TurneraSimple = ({setTurnera}) => {
     const [userName, setUserName] = useState('');
 
     const [errorMessage, setErrorMessage] = useState('');
+    const paymentBrickController = useRef(null);
+    const [isPaymentReady, setIsPaymentReady] = useState(false);
+    const [paymentError, setPaymentError] = useState('');
+    const [preferenceId, setPreferenceId] = useState(null);
+    const MP_PUBLIC_KEY = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY ?? "TEST-73f12ddd-3882-4d6a-a34a-887fb09119f1";
+    const MP_SITE_ID = process.env.NEXT_PUBLIC_MP_SITE_ID ?? "MLA";
+    const PAYMENT_BRICK_CONTAINER_ID = "paymentBrick_container";
+    const HARDCODED_PREFERENCE_ID = "1111";
+    const PREFERENCE_ENDPOINT = process.env.NEXT_PUBLIC_MP_PREFERENCES_URL;
+
+    useEffect(() => {
+        if (turneraStep !== 5) {
+            if (paymentBrickController.current) {
+                paymentBrickController.current.unmount();
+                paymentBrickController.current = null;
+                window.paymentBrickController = null;
+            }
+            setIsPaymentReady(false);
+            return;
+        }
+
+        if (typeof window === "undefined") {
+            return;
+        }
+
+        if (!window.MercadoPago) {
+            setPaymentError("No pudimos cargar Mercado Pago. Refresca la pagina e intenta nuevamente.");
+            return;
+        }
+
+        if (!MP_PUBLIC_KEY || MP_PUBLIC_KEY === "YOUR_PUBLIC_KEY") {
+            setPaymentError("Configura la clave publica de Mercado Pago antes de continuar.");
+            return;
+        }
+
+        const preferenceLooksPlaceholder = HARDCODED_PREFERENCE_ID === "1111" && preferenceId === HARDCODED_PREFERENCE_ID;
+
+        if (!preferenceId) {
+            setPaymentError("Configura un preferenceId valido antes de continuar.");
+            return;
+        }
+
+        if (preferenceLooksPlaceholder) {
+            console.warn("HARDCODED_PREFERENCE_ID usa un valor de prueba. Reemplazalo por un preferenceId real antes de salir a produccion.");
+        }
+
+        setPaymentError('');
+        setIsPaymentReady(false);
+
+        const mp = new window.MercadoPago(MP_PUBLIC_KEY, { locale: "es-AR", siteId: MP_SITE_ID });
+        const bricksBuilder = mp.bricks();
+
+        const renderBrick = async () => {
+            try {
+                const controller = await bricksBuilder.create("payment", PAYMENT_BRICK_CONTAINER_ID, {
+                    initialization: {
+                        amount: 180000,
+                        preferenceId: '11111',
+                    },
+                    customization: {
+                        visual: {
+                            style: {
+                                theme: "dark",
+                            },
+                        },
+                        paymentMethods: {
+                            bankTransfer: "all",
+                            mercadoPago: "all",
+                            wallet_purchase: "all",
+                            creditCard: "all",
+                            debitCard: "all",
+                            maxInstallments: 1  
+                        },
+                    },
+                    callbacks: {
+                        onSubmit: ({ selectedPaymentMethod, formData }) => {
+                            console.log("Datos listos para enviar al backend", selectedPaymentMethod, formData);
+                            return new Promise((resolve) => {
+                                // Reemplazar con la llamada real al backend y resolver segun la respuesta
+                                setTurneraStep(6);
+                                resolve();
+                            });
+                        },
+                        onError: (error) => {
+                            console.error("Payment Brick error:", error);
+                            setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
+                        },
+                        onReady: () => {
+                            setIsPaymentReady(true);
+                        },
+                    },
+                });
+
+                paymentBrickController.current = controller;
+                window.paymentBrickController = controller;
+            } catch (error) {
+                console.error("Error creando el Payment Brick:", error);
+                setPaymentError("No pudimos cargar el formulario de pago. Actualiza la pagina e intenta nuevamente.");
+            }
+        };
+
+        renderBrick();
+
+        return () => {
+            if (paymentBrickController.current) {
+                paymentBrickController.current.unmount();
+                paymentBrickController.current = null;
+                window.paymentBrickController = null;
+            }
+        };
+    }, [turneraStep, preferenceId, MP_PUBLIC_KEY]);
 
     const verificarDatos = () => {
         if(userEmail === '' || userEmail.includes('@') === false || userEmail.includes('.') === false) {
-            setErrorMessage('El eMail ingresado no es válido');
+            setErrorMessage('El eMail ingresado no es valido');
         } else if(userName.length < 3) {
-            setErrorMessage('El nombre ingresado no es válido');
+            setErrorMessage('El nombre ingresado no es valido');
         } else {
             setTurneraStep(3);
         }
-    }
+    };
+
+    const handleGoToPayment = async () => {
+        setPaymentError('');
+        setIsPaymentReady(false);
+
+        const turnoSeleccionado = horarioSeleccionado ? horarios[horarioSeleccionado - 1] : null;
+        let fetchedPreferenceId = HARDCODED_PREFERENCE_ID;
+
+        if (PREFERENCE_ENDPOINT) {
+            try {
+                const response = await fetch(PREFERENCE_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: userEmail,
+                        name: userName,
+                        schedule: turnoSeleccionado,
+                        date: fechaSeleccionada.toISOString(),
+                    }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    fetchedPreferenceId = data.preferenceId || data.id || fetchedPreferenceId;
+                } else {
+                    console.warn("No se pudo obtener la preferencia de pago:", response.status);
+                }
+            } catch (error) {
+                console.warn("Error solicitando la preferencia de pago:", error);
+            }
+        }
+
+        setPreferenceId(fetchedPreferenceId);
+        setTurneraStep(5);
+    };
 
     //cerrar al hacer click afuera
     const calendarRef = useRef(null);
@@ -138,16 +284,10 @@ export const TurneraSimple = ({setTurnera}) => {
             if (
             calendarRef.current &&
             !calendarRef.current.contains(event.target) &&
-            !event.target.closest(".seleccionarFechaContainer")
+            horariosRef.current &&
+            !horariosRef.current.contains(event.target)
             ) {
             setShowCalendar(false);
-            }
-
-            if (
-            horariosRef.current &&
-            !horariosRef.current.contains(event.target) &&
-            !event.target.closest(".seleccionarFechaContainer")
-            ) {
             setShowHorarios(false);
             }
         };
@@ -157,7 +297,6 @@ export const TurneraSimple = ({setTurnera}) => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
-
 
     return (
         <div id="turneraContainer">
@@ -310,13 +449,48 @@ export const TurneraSimple = ({setTurnera}) => {
                     </div>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(3)}>Cancelar</button>
-                        <button  onClick={() => setTurneraStep(5)}>Pagar</button>
+                        <button onClick={handleGoToPayment}>Pagar</button>
                     </div>
                 </>
             }
 
             {/* STEP 5 */}
-            { turneraStep === 5 && <>
+            {
+                turneraStep === 5 && <>
+                    <h2 className="turneraStep2Title">
+                        PAGAR<br />
+                        RESERVA
+                    </h2>
+                    <div className="turneraStep3FechaTurno">
+                        <p>TURNO<br />SIMPLE</p>
+                        <div className="turneraStep3FechaContainer">
+                            <p>Mes <span>{meses[mesSeleccionado]}</span></p>
+                            <p>Fecha <span>{diaSeleccionado}</span></p>
+                            <p>Turno <span>{horarios[horarioSeleccionado - 1]}</span></p>
+                        </div>
+                    </div>
+                    <div className="turneraStep3UserData">
+                        <p>eMail <span>{userEmail}</span></p>
+                        <p>Nombre <span>{userName}</span></p>
+                    </div>
+                    <p className="turneraStep3Total">TOTAL: $180.000</p>
+                    <div style={{ width: '100%', marginTop: '24px' }}>
+                        {!isPaymentReady && !paymentError && (
+                            <p style={{ textAlign: 'center', color: '#8C8C8C', marginBottom: '16px' }}>Estamos cargando Mercado Pago...</p>
+                        )}
+                        {paymentError && (
+                            <p className="turneraErrorMessage" style={{ marginBottom: '16px' }}>{paymentError}</p>
+                        )}
+                        <div id={PAYMENT_BRICK_CONTAINER_ID} style={{ width: '100%', minHeight: '320px' }}></div>
+                    </div>
+                    <div className="turneraStep2Buttons">
+                        <button onClick={() => setTurneraStep(4)}>Volver</button>
+                    </div>
+                </>
+            }
+
+            {/* STEP 6 */}
+            { turneraStep === 6 && <>
                 <h2 className="turneraStep2Title">
                     TURNO<br />
                     RESERVADO
@@ -333,8 +507,8 @@ export const TurneraSimple = ({setTurnera}) => {
                     <p>eMail <span>{userEmail}</span></p>
                     <p>Nombre <span>{userName}</span></p>
                 </div>
-                <p className="step5Confirmacion">Tu turno fue reservado exitosamente, te enviamos un correo con los datos de la reserva.</p>
-                <button className="setp5Button" onClick={() => setTurneraStep(1)}>Cerrar</button>
+                <p className="step6Confirmacion">Tu turno fue reservado exitosamente, te enviamos un correo con los datos de la reserva.</p>
+                <button className="step6Button" onClick={() => setTurneraStep(1)}>Cerrar</button>
             </>}
         </div>
     )
