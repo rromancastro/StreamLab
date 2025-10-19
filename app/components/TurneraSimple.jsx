@@ -4,9 +4,10 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
-import { getAllReservas, subirReserva } from "../helpers/apiCall";
+import { crearPago, getAllReservas, subirReserva, verSalas } from "../helpers/apiCall";
 import Image from "next/image";
 import { useAppContext } from "../context/AppContext";
+import { set } from "date-fns";
 
 export const TurneraSimple = ({setTurnera}) => {
 
@@ -16,6 +17,21 @@ export const TurneraSimple = ({setTurnera}) => {
     const [reservas, setReservas] = useState([]);
     const [diasReservados, setDiasReservados] = useState([]);
     const [horariosReservados, setHorariosReservados] = useState([]);
+
+    // valor de la sala
+    const [valorSala, setValorSala] = useState(0);
+    const [external_reference, setExternal_reference] = useState('');
+
+ 
+    useEffect(() => {
+        verSalas()
+            .then(data => {
+            console.log("Datos recibidos:", data.data[0]);
+            setValorSala(Number(data.data[0].precio_por_hora));
+            })
+            .catch(err => console.error("Error al obtener salas:", err));
+    }, []);
+
 
     useEffect(() => {
         getAllReservas().then(data => setReservas(data.data));
@@ -127,7 +143,7 @@ export const TurneraSimple = ({setTurnera}) => {
     const MP_SITE_ID = process.env.NEXT_PUBLIC_MP_SITE_ID ?? "MLA";
     const PAYMENT_BRICK_CONTAINER_ID = "paymentBrick_container";
     const HARDCODED_PREFERENCE_ID = "1111";
-    const PREFERENCE_ENDPOINT = process.env.NEXT_PUBLIC_MP_PREFERENCES_URL;
+    
 
     useEffect(() => {
         if (turneraStep !== 5) {
@@ -157,7 +173,7 @@ export const TurneraSimple = ({setTurnera}) => {
         const preferenceLooksPlaceholder = HARDCODED_PREFERENCE_ID === "1111" && preferenceId === HARDCODED_PREFERENCE_ID;
 
         if (!preferenceId) {
-            setPaymentError("Configura un preferenceId valido antes de continuar.");
+            //setPaymentError("Configura un preferenceId valido antes de continuar.");
             return;
         }
 
@@ -175,8 +191,8 @@ export const TurneraSimple = ({setTurnera}) => {
             try {
                 const controller = await bricksBuilder.create("payment", PAYMENT_BRICK_CONTAINER_ID, {
                     initialization: {
-                        amount: 180000,
-                        preferenceId: '11111',
+                        amount: valorSala,
+                        preferenceId: preferenceId,
                     },
                     customization: {
                         visual: {
@@ -185,21 +201,39 @@ export const TurneraSimple = ({setTurnera}) => {
                             },
                         },
                         paymentMethods: {
-                            bankTransfer: "all",
                             mercadoPago: "all",
-                            wallet_purchase: "all",
                             creditCard: "all",
                             debitCard: "all",
-                            maxInstallments: 1  
                         },
                     },
                     callbacks: {
                         onSubmit: ({ selectedPaymentMethod, formData }) => {
-                            console.log("Datos listos para enviar al backend", selectedPaymentMethod, formData);
-                            return new Promise((resolve) => {
-                                // Reemplazar con la llamada real al backend y resolver segun la respuesta
-                                setTurneraStep(6);
-                                resolve();
+                            console.log("Submitting payment:", { selectedPaymentMethod, formData });
+                            return new Promise((resolve, reject) => {
+                                const payload = {
+                                    ...formData,
+                                    selectedPaymentMethod: selectedPaymentMethod ?? 'mercadopago',
+                                    transactionAmount: formData?.transactionAmount ?? valorSala,
+                                    titulo: 'Reserva Turno Simple',
+                                    email: formData?.email ?? formData?.payer?.email ?? userEmail,
+                                    reserva_id: external_reference, // 💥 clave para linkear el pago con la reserva
+                                };
+
+                                crearPago('', 'POST', payload)
+                                    .then((response) => {
+                                        if (!response?.success) {
+                                            setPaymentError(response?.message ?? "Ocurrio un error al procesar el pago. Intentalo nuevamente.");
+                                            reject(new Error(response?.message ?? 'Pago rechazado'));
+                                            return;
+                                        }
+                                        setTurneraStep(6);
+                                        resolve();
+                                    })
+                                    .catch((error) => {
+                                        console.error("Error enviando pago:", error);
+                                        setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
+                                        reject(error);
+                                    });
                             });
                         },
                         onError: (error) => {
@@ -241,42 +275,7 @@ export const TurneraSimple = ({setTurnera}) => {
         }
     };
 
-    const handleGoToPayment = async () => {
-        setPaymentError('');
-        setIsPaymentReady(false);
 
-        const turnoSeleccionado = horarioSeleccionado ? horarios[horarioSeleccionado - 1] : null;
-        let fetchedPreferenceId = HARDCODED_PREFERENCE_ID;
-
-        if (PREFERENCE_ENDPOINT) {
-            try {
-                const response = await fetch(PREFERENCE_ENDPOINT, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        email: userEmail,
-                        name: userName,
-                        schedule: turnoSeleccionado,
-                        date: fechaSeleccionada.toISOString(),
-                    }),
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    fetchedPreferenceId = data.preferenceId || data.id || fetchedPreferenceId;
-                } else {
-                    console.warn("No se pudo obtener la preferencia de pago:", response.status);
-                }
-            } catch (error) {
-                console.warn("Error solicitando la preferencia de pago:", error);
-            }
-        }
-
-        setPreferenceId(fetchedPreferenceId);
-        setTurneraStep(5);
-    };
 
     //cerrar al hacer click afuera
     const calendarRef = useRef(null);
@@ -313,9 +312,15 @@ export const TurneraSimple = ({setTurnera}) => {
             fecha_fin: `${fechaSeleccionada.toISOString().slice(0, 10)} ${horarios[horarioSeleccionado - 1].slice(3, 5)}:00:00`,
             tipo_stream: 'gaming',
             observaciones: 'ninguna',
-            estado: 'pendiente'
+            estado: 'pendiente',
+            email: userEmail,
         });
-        console.log(reserva);
+        //console.log(reserva);
+        //console.log('reserva id', reserva.data.reserva_id);
+        if (reserva && reserva.success && reserva.data && reserva.data.reserva_id) {
+            setPreferenceId(reserva.data.preference_id);
+            setExternal_reference(reserva.data.reserva_id);
+        }
     }
 
     return (
@@ -445,10 +450,10 @@ export const TurneraSimple = ({setTurnera}) => {
                             <p>Nombre <span>{userName}</span></p>
                         </div>
                     </div>
-                    <p className="turneraStep3Total">TOTAL: $180.000</p>
+                    <p className="turneraStep3Total">TOTAL: ${valorSala}</p>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(2)}>Cancelar</button>
-                        <button  onClick={() => {setTurneraStep(4); handleSubmitReserva()}}>Continuar</button>
+                        <button  onClick={() => setTurneraStep(4)}>Continuar</button>
                     </div>
                 </>
             }
@@ -469,7 +474,7 @@ export const TurneraSimple = ({setTurnera}) => {
                     </div>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(3)}>Cancelar</button>
-                        <button onClick={handleGoToPayment}>Pagar</button>
+                        <button onClick={() => {setTurneraStep(5);handleSubmitReserva()}}>Pagar</button>
                     </div>
                 </>
             }
@@ -493,7 +498,7 @@ export const TurneraSimple = ({setTurnera}) => {
                         <p>eMail <span>{userEmail}</span></p>
                         <p>Nombre <span>{userName}</span></p>
                     </div>
-                    <p className="turneraStep3Total">TOTAL: $180.000</p>
+                    <p className="turneraStep3Total">TOTAL: ${valorSala}</p>
                     <div style={{ width: '100%', marginTop: '24px' }}>
                         {!isPaymentReady && !paymentError && (
                             <p style={{ textAlign: 'center', color: '#8C8C8C', marginBottom: '16px' }}>Estamos cargando Mercado Pago...</p>
