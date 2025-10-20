@@ -204,47 +204,61 @@ export const TurneraSimple = ({setTurnera}) => {
                             mercadoPago: "all",
                             creditCard: "all",
                             debitCard: "all",
+                            wallet_purchase: "all",
+                            bankTransfer: "all",
                         },
                     },
                     callbacks: {
-                        onSubmit: ({ selectedPaymentMethod, formData }) => {
-                            console.log("Submitting payment:", { selectedPaymentMethod, formData });
-                            return new Promise((resolve, reject) => {
-                                const payload = {
-                                    ...formData,
-                                    selectedPaymentMethod: selectedPaymentMethod ?? 'mercadopago',
-                                    transactionAmount: formData?.transactionAmount ?? valorSala,
-                                    titulo: 'Reserva Turno Simple',
-                                    email: formData?.email ?? formData?.payer?.email ?? userEmail,
-                                    reserva_id: external_reference, // 💥 clave para linkear el pago con la reserva
-                                };
+                    onSubmit: ({ selectedPaymentMethod, formData }) => {
+                    console.log("Submitting payment:", { selectedPaymentMethod, formData });
 
-                                crearPago('', 'POST', payload)
-                                    .then((response) => {
-                                        if (!response?.success) {
-                                            setPaymentError(response?.message ?? "Ocurrio un error al procesar el pago. Intentalo nuevamente.");
-                                            reject(new Error(response?.message ?? 'Pago rechazado'));
-                                            return;
-                                        }
-                                        setTurneraStep(6);
-                                        resolve();
-                                    })
-                                    .catch((error) => {
-                                        console.error("Error enviando pago:", error);
-                                        setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
-                                        reject(error);
-                                    });
-                            });
-                        },
-                        onError: (error) => {
-                            console.error("Payment Brick error:", error);
-                            setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
-                        },
-                        onReady: () => {
-                            setIsPaymentReady(true);
-                        },
-                    },
-                });
+                    return new Promise((resolve, reject) => {
+                        // Si ya había un brick montado, lo desmontamos para evitar errores de duplicado
+                        if (window.paymentBrickController) {
+                        window.paymentBrickController.unmount();
+                        window.paymentBrickController = null;
+                        }
+
+                        const payload = {
+                        ...formData,
+                        selectedPaymentMethod: selectedPaymentMethod ?? 'mercadopago',
+                        transactionAmount: valorSala,      // 💥 fijo
+                        transaction_amount: valorSala,     // 💥 compatibilidad backend
+                        titulo: 'Reserva Turno Simple',
+                        email: formData?.email ?? formData?.payer?.email ?? userEmail,
+                        reserva_id: external_reference,    // 💥 clave para vincular con la reserva
+                        };
+
+                        console.log("Payload final que se envía al backend:", payload);
+
+                        crearPago('', 'POST', payload)
+                        .then((response) => {
+                            if (!response?.success) {
+                            setPaymentError(response?.message ?? "Ocurrió un error al procesar el pago. Intentalo nuevamente.");
+                            reject(new Error(response?.message ?? 'Pago rechazado'));
+                            return;
+                            }
+                            console.log("✅ Pago procesado correctamente:", response);
+                            setTurneraStep(6);
+                            resolve();
+                        })
+                        .catch((error) => {
+                            console.error("Error enviando pago:", error);
+                            setPaymentError("Ocurrió un error al procesar el pago. Intentalo nuevamente.");
+                            reject(error);
+                        });
+                    });
+                },
+
+                onError: (error) => {
+                    console.error("Payment Brick error:", error);
+                    setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
+                },
+                onReady: () => {
+                    setIsPaymentReady(true);
+                },
+                },
+            });
 
                 paymentBrickController.current = controller;
                 window.paymentBrickController = controller;
@@ -302,7 +316,8 @@ export const TurneraSimple = ({setTurnera}) => {
 
     //SUBIR RESERVA
     const handleSubmitReserva = async () => {
-        const reserva = await subirReserva('/reservas', 'POST', {
+        try {
+            const reserva = await subirReserva('/reservas', 'POST', {
             action: 'crear_reserva',
             sala_id: 1,
             cliente_id: 1,
@@ -314,14 +329,21 @@ export const TurneraSimple = ({setTurnera}) => {
             observaciones: 'ninguna',
             estado: 'pendiente',
             email: userEmail,
-        });
-        //console.log(reserva);
-        //console.log('reserva id', reserva.data.reserva_id);
-        if (reserva && reserva.success && reserva.data && reserva.data.reserva_id) {
+            precio_total: valorSala,
+            });
+
+            if (reserva?.success && reserva.data?.reserva_id) {
             setPreferenceId(reserva.data.preference_id);
             setExternal_reference(reserva.data.reserva_id);
+            setTurneraStep(5); // 👈 ahora sólo se avanza cuando la preferencia está lista
+            } else {
+            setPaymentError("No se pudo generar la reserva. Intentalo nuevamente.");
+            }
+        } catch (error) {
+            console.error("Error creando la reserva:", error);
+            setPaymentError("Hubo un error al crear la reserva. Intentalo nuevamente.");
         }
-    }
+    };
 
     return (
         <div id="turneraContainer">
@@ -474,7 +496,7 @@ export const TurneraSimple = ({setTurnera}) => {
                     </div>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(3)}>Cancelar</button>
-                        <button onClick={() => {setTurneraStep(5);handleSubmitReserva()}}>Pagar</button>
+                        <button onClick={() => handleSubmitReserva()}>Pagar</button>
                     </div>
                 </>
             }
