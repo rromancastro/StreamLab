@@ -204,8 +204,7 @@ export const TurneraSimple = ({setTurnera}) => {
                             mercadoPago: "all",
                             creditCard: "all",
                             debitCard: "all",
-                            wallet_purchase: "all",
-                            bankTransfer: "all",
+                            maxInstallments: 1
                         },
                     },
                     callbacks: {
