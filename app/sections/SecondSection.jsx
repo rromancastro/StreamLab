@@ -45,7 +45,7 @@ export const SecondSection = () => {
 
     useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      console.log("Progreso global:", latest.toFixed(2));
+      //console.log("Progreso global:", latest.toFixed(2));
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
