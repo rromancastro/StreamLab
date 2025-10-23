@@ -1,5 +1,4 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { LuMapPin } from "react-icons/lu";
 import { RxCopy } from "react-icons/rx";
@@ -66,18 +65,18 @@ export const EighthSection = () => {
                 <div style={{opacity: animationStep >= 6 ? 1 : 0}} id="eighthSectionRedesContainer">
                     <div className="eighthSectionRed" onMouseEnter={() => handleEnter(whatsappTimeout)} onMouseLeave={() => handleLeave(whatsappTimeout, setUseWhatsapp)}>
                         <p style={{top: useWhatsapp ? '-24px' : 4}} onClick={() => setUseWhatsapp(true)}>WHATSAPP</p>
-                        <p style={{top: useWhatsapp ? 0 : '33px'}}>11 6544879 <RxCopy onClick={() => navigator.clipboard.writeText("11 6544879")} width={24} height={24} className="copyIcon"/></p>
+                        <p style={{top: useWhatsapp ? 0 : '33px'}}>+541134988192 <RxCopy onClick={() => navigator.clipboard.writeText("+541134988192")} width={24} height={24} className="copyIcon"/></p>
                     </div>
                     <div className="eighthSectionRed" onMouseEnter={() => handleEnter(mailTimeout)} onMouseLeave={() => handleLeave(mailTimeout, setUseMail)}>
                         <p style={{top: useMail ? '-24px' : 4}} onClick={() => setUseMail(true)}>MAIL</p>
-                        <p style={{top: useMail ? 0 : '33px'}}>info@streamlab.com<RxCopy onClick={() => navigator.clipboard.writeText("info@streamlab.com")} width={24} height={24} className="copyIcon"/></p>
+                        <p style={{top: useMail ? 0 : '33px'}}>contacto.streamlab@gmail.com<RxCopy onClick={() => navigator.clipboard.writeText("contacto.streamlab@gmail.com")} width={24} height={24} className="copyIcon"/></p>
                     </div>
                     <div className="eighthSectionRed" onMouseEnter={() => handleEnter(redesTimeout)} onMouseLeave={() => handleLeave(redesTimeout, setUseRedes)}>
                         <p style={{top: useRedes ? '-24px' : 4}} onClick={() => setUseRedes(true)}>REDES</p>
-                        <p style={{top: useRedes ? 6 : '33px', flexDirection: 'row'}}>
-                            <a href="#">X</a>
-                            <a href="#">IG</a>
-                            <a href="#">LI</a>
+                        <p style={{top: useRedes ? 0 : '33px', flexDirection: 'row'}}>
+                            <a target="_blank" href="https://x.com/StreamLabArg">X</a>
+                            <a target="_blank" href="https://www.instagram.com/stream__lab?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">IG</a>
+                            <a target="_blank" href="https://www.linkedin.com/company/streamlabarg/">LI</a>
                         </p>
                     </div>
                 </div>

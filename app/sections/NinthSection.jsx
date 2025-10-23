@@ -1,5 +1,4 @@
 "use client";
-import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { TextUpComponent } from "../components";
@@ -40,10 +39,10 @@ export const NinthSection = () => {
                 <TextUpComponent color="#fff" fontSize={isMobile ? 30 : 72} active={animationStep >= 5} textContent={"JUNTOS"} />
             </div>
             <div style={{opacity: animationStep >= 6 ? 1 : 0}} id="ninthSectionRedesContainer">
-                <a href="#">X.COM</a>
-                <a href="#">INSTAGRAM</a>
-                <a href="#">LINKEDIN</a>
-                <a href="#">YOUTUBE</a>
+                <a target="_blank" href="https://x.com/StreamLabArg">X.COM</a>
+                <a target="_blank" href="https://www.instagram.com/stream__lab?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">INSTAGRAM</a>
+                <a target="_blank" href="https://www.linkedin.com/company/streamlabarg/">LINKEDIN</a>
+                <a target="_blank" href="#">YOUTUBE</a>
             </div>
             <p style={{opacity: animationStep >= 7 ? 1 : 0}} id="ninthSectionCopyright">
                 Stream Lab © Término Y Condiciones / Políticas De Reserva<br />

@@ -1941,11 +1941,20 @@ nav {
 
 .eighthSectionRed {
   height: 24px;
-  width: 230px;
+  width: 330px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+.eighthSectionRed:nth-child(1) {
+  width: 180px;
+}
+.eighthSectionRed:nth-child(2) {
+  width: 330px;
+}
+.eighthSectionRed:nth-child(3) {
+  width: 180px;
 }
 .eighthSectionRed p {
   font-weight: 600;
