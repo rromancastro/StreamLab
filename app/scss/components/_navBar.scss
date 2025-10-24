@@ -6,7 +6,7 @@ nav {
     padding: 0px 40px;
     width: 100%;
     height: 17vh;
-    z-index: 200;
+    z-index: 1000;
 }
 
 #navLogo {
@@ -107,17 +107,17 @@ nav {
     position: fixed;
     top: 16px;
     left: 16px;
-    z-index: 200;
+    z-index: 1000;
 }
 
 #navMenuMobileContainer {
     display: none;
     position: fixed;
-    z-index: 200;
     top: 16px;
     rotate: -90deg;
     right: -15px;
     padding: 16px;
+    z-index: 1000;
 }
 
 #navMenuMobileButton {

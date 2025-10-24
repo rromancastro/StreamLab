@@ -38,7 +38,7 @@ export const NavBarMobile = () => {
         </a>
         <div id="navMenuMobileContainer">
             <button style={{opacity: dropMenu ? '0' : '1', color: isWhite ? '#ffffff' : '#0A001A'}} onClick={handleDropMenu} onMouseOut={handleMouseLeave} onMouseOver={handleMouseEnter} id="navMenuMobileButton">MENÚ</button>
-            <div style={{right: dropMenu ? -13 : -410}} id="navLinksMobile">
+            <div style={{right: dropMenu ? -13 : -450}} id="navLinksMobile">
                 <a href="#turneraContainer" style={{color: isWhite ? '#ffffff' : '#0A001A'}} className="navLinkMobile">RESERVAS</a>
                 <a href="#thirdSectionMobile" style={{color: isWhite ? '#ffffff' : '#0A001A'}} className="navLinkMobile">ESTUDIO</a>
                 <a href="#sixthSection" style={{color: isWhite ? '#ffffff' : '#0A001A'}} className="navLinkMobile">NOSOTROS</a>
