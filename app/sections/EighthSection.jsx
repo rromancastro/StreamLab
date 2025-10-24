@@ -65,7 +65,7 @@ export const EighthSection = () => {
                 <div style={{opacity: animationStep >= 6 ? 1 : 0}} id="eighthSectionRedesContainer">
                     <div className="eighthSectionRed" onMouseEnter={() => handleEnter(whatsappTimeout)} onMouseLeave={() => handleLeave(whatsappTimeout, setUseWhatsapp)}>
                         <p style={{top: useWhatsapp ? '-24px' : 4}} onClick={() => setUseWhatsapp(true)}>WHATSAPP</p>
-                        <p style={{top: useWhatsapp ? 0 : '33px'}}>+541134988192 <RxCopy onClick={() => navigator.clipboard.writeText("+541134988192")} width={24} height={24} className="copyIcon"/></p>
+                        <p style={{top: useWhatsapp ? 0 : '33px'}}>+5491173586119 <RxCopy onClick={() => navigator.clipboard.writeText("+5491173586119")} width={24} height={24} className="copyIcon"/></p>
                     </div>
                     <div className="eighthSectionRed" onMouseEnter={() => handleEnter(mailTimeout)} onMouseLeave={() => handleLeave(mailTimeout, setUseMail)}>
                         <p style={{top: useMail ? '-24px' : 4}} onClick={() => setUseMail(true)}>MAIL</p>

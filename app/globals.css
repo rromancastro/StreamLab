@@ -175,7 +175,7 @@ nav {
 #headerImage {
   position: absolute;
   object-fit: contain;
-  top: 70px;
+  top: 80px;
   height: 820px;
   width: 780px;
   mix-blend-mode: darken;
@@ -185,7 +185,7 @@ nav {
 #headerImage2 {
   position: absolute;
   object-fit: contain;
-  top: 70px;
+  top: 80px;
   height: 820px;
   width: 780px;
   z-index: 50;
@@ -1263,6 +1263,7 @@ nav {
   display: flex;
   width: max-content;
   animation: scroll 15s linear infinite;
+  margin-top: 10px;
 }
 
 .sliderText {

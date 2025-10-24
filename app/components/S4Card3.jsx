@@ -21,9 +21,10 @@ export const S4Card3 = ({x, y, opacity, rotate}) => {
                         Edición<br />
                         Hosting en spotify
                     </p>
-                    <a target="_blank" href="https://wa.me/541134988192?text=Tu%20mensaje%20aquí">Consultar</a>
+                    <a target="_blank" href="https://wa.me/5491173586119?text=¡Hola!%20👋%20Quería%20consultarles%20sobre%20los%20servicios%20extra%20que%20ofrecen.%20¿Me%20podrían%20contar%20un%20poco%20más?">Consultar</a>
                 </div>
             </ReactCardFlip>
         </motion.article>
     )
 }
+

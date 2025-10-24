@@ -29,7 +29,7 @@ export const NavBarMobile = () => {
     const [isWhite, setIsWhite] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setIsWhite(turneraSeleccionada === 'simple'  ? (latest >= 0.15 && latest < 0.33) || (latest >= 0.60 && latest < 0.64) || (latest >= 0.49 && latest < 0.54) : (latest >= 0.16 && latest < 0.38) || (latest >= 0.555 && latest < 0.675) || (latest >= 0.455 && latest < 0.505));
+        setIsWhite(turneraSeleccionada === 'simple'  ? (latest >= 0.15 && latest < 0.40) || (latest >= 0.60 && latest < 0.64) || (latest >= 0.49 && latest < 0.54) : (latest >= 0.16 && latest < 0.42) || (latest >= 0.62 && latest < 0.66) || (latest >= 0.51 && latest < 0.56));
     });
 
     return (<>

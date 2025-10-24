@@ -43,11 +43,11 @@ export const NinthSection = () => {
                 <a target="_blank" href="https://x.com/StreamLabArg">X.COM</a>
                 <a target="_blank" href="https://www.instagram.com/stream__lab?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">INSTAGRAM</a>
                 <a target="_blank" href="https://www.linkedin.com/company/streamlabarg/">LINKEDIN</a>
-                <a target="_blank" href="#">YOUTUBE</a>
+                <a target="_blank" href="https://www.youtube.com/@streamlabarg">YOUTUBE</a>
             </div>
             <p style={{opacity: animationStep >= 7 ? 1 : 0}} id="ninthSectionCopyright">
                 Stream Lab © <Link href={"/PrivacyPolicy"}>Política de Privacidad</Link><br />
-                Diseño: <span>Francisco Castgnola</span><br />
+                Diseño: <span>Francisco Castagnola</span><br />
                 Devs: <span>Roman Castro y Rafael Defelice</span>
             </p>
         </section>

@@ -39,8 +39,8 @@ export const SixthSection = () => {
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 5} textContent={"STREAMERS"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 6} textContent={"CURIOSOS"} />
 
-            <img className="sixtSectionImg2" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: isMobile ? animationStep >= 7 ? "5%" : '0%' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '330px' : '100vh' : animationStep >= 7 ? '518px' : '100vh', opacity: animationStep >= 7 ? 1 : 0, zIndex: '2'}} />
-            <img className="sixtSectionImg2" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: isMobile ? animationStep >= 7 ? "5%": '0%' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '330px' : '100vh' : animationStep >= 7 ? '510px' : '100vh', opacity: animationStep >= 7 ? 1 : 0, zIndex: '1'}} />
+            <img className="sixtSectionImg2" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{transform: isMobile ? animationStep >= 7 ? 'translateX(50px)' : 'translateX(0px)' : animationStep >= 7 ? 'translateX(140px)' : 'translateX(0px)', top: isMobile ? animationStep >= 7 ? '330px' : '100vh' : animationStep >= 7 ? '518px' : '100vh', opacity: animationStep >= 7 ? 1 : 0, zIndex: '2'}} />
+            <img className="sixtSectionImg2" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{transform: isMobile ? animationStep >= 7 ? 'translateX(-50px)' : 'translateX(0px)' : animationStep >= 7 ? 'translateX(-140px)' : 'translateX(0px)',top: isMobile ? animationStep >= 7 ? '330px' : '100vh' : animationStep >= 7 ? '510px' : '100vh', opacity: animationStep >= 7 ? 1 : 0, zIndex: '1'}} />
  
             <div id="sixthSectionLineaVioleta" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>
             <div id="sixthSectionLineaVioleta2" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>

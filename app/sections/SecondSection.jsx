@@ -50,7 +50,7 @@ export const SecondSection = () => {
     return () => unsubscribe();
   }, [scrollYProgress]);
 
-    return <section style={{backgroundColor:  isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.16 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} ref={ref} id="secondSection">
+    return <section style={{backgroundColor:  isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.40 ? '#7B2CBF' : '#ffffff' : progress >= 0.18 && progress <= 0.42 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} ref={ref} id="secondSection">
                 <p style={{ opacity: animationStep >=1 ? 1 : 0 }}>¿CÓMO FUNCIONA?</p>
                 <div>
                     <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"TURNOS DE"} />

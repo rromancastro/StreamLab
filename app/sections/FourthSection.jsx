@@ -43,7 +43,7 @@ export const FourthSection = () => {
         setProgress(latest);
     });
 
-    return <section ref={ref} id="fourthSection" style={{backgroundColor: isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.15 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
+    return <section ref={ref} id="fourthSection" style={{backgroundColor: isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.40 ? '#7B2CBF' : '#ffffff' : progress >= 0.15 && progress <= 0.42 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}}>
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 1} textContent={"RESERVÁ"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 2} textContent={"TU TURNO"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 3} textContent={"TU COMBO, O"} />
