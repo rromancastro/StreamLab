@@ -1,5 +1,5 @@
 #sixthSection {
-    height: 1250px;
+    height: 1450px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -14,28 +14,42 @@
     transition: .5s ease-in-out;
 }
 
-.sixtSectionImg {
-    width: 365px;
-    height: 464px;
-    object-fit: cover;
+.sixtSectionImg2 {
+    width: 400px;
+    height: 600px;
+    object-fit: contain;
     position: absolute;
     transition: .5s ease-in-out;
 }
 
+
 #sixthSectionLineaVioleta {
+    position: absolute;
+    height: 127px;
+    mix-blend-mode: color;
+    width: 93vw;
+    z-index: 50;
+    align-self: flex-start;
+    background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
+    top: 875px;
+    transition: 1s ease-in-out;
+}
+
+#sixthSectionLineaVioleta2 {
     position: absolute;
     height: 101px;
     width: 93vw;
     align-self: flex-start;
     background: linear-gradient(-90deg, #E0AAFF 0%, #9D4EDD 100%);
-    mix-blend-mode: darken;
-    top: 780px;
+    top: 875px;
     transition: 1s ease-in-out;
 }
 
 #sixthSectionFinalText {
     position: absolute;
-    top: 990px;
+    top: 1080px;
+    width: 100%;
+    padding-top: 40px;
     width: 60vw;
     font-weight: 400;
     font-size: 16px;
@@ -43,7 +57,18 @@
     transition: .5s ease-in-out;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 40px;
+    background-color: #FFFFFF;
+    z-index: 200;
+    text-align: center;
+    span {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
     a {
         color: #000100;
         font-weight: 800;
@@ -51,13 +76,15 @@
         display: flex;
         align-items: center;
         gap: 8px;
+        font-size: 20px;
+        text-transform: uppercase;
     }
 }
 
 @media (max-width: 862px) {
     #sixthSection {
         padding-top: 65px;
-        height: 1100px;
+        height: 1250px;
     }
     #sixthSectionTitle {
         font-size: 16px;
@@ -69,11 +96,17 @@
         width: 90vw;
     }
     #sixthSectionLineaVioleta {
-        top: 520px;
+        top: 540px;
         width: 100%;
+        height: 80px;
     }
-    .sixtSectionImg {
-        width: 265px;
+    #sixthSectionLineaVioleta2 {
+        top: 540px;
+        width: 100%;
+        height: 80px;
+    }
+    .sixtSectionImg2 {
+        width: 245px;
         height: 364px;
     }
 }

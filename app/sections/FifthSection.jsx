@@ -17,57 +17,67 @@ export const FifthSection = () => {
     }
 
     return <section id="fifthSection">
-        {
-            article === 1 ? <article className="firstSectionArticle" id="firstSectionArticle1">
+            <h1>EL LABORATORIO<br />DE STREAMING</h1>
+            {article >= 1 && <article className="firstSectionArticle" id="firstSectionArticle1">
                 <h2>EL LABORATORIO<br />
                     DE STREAMING
                 </h2>
-            </article> : article === 2 ? <article className="firstSectionArticle" id="firstSectionArticle2">
+            </article>}
+            {article >= 2 && <article className="firstSectionArticle" id="firstSectionArticle2">
                 <div className="fifthSectionCard">
                     <p>MICRÓFONOS<br />PROFESIONALES</p>
                 </div>
-            </article> : article === 3 ? <article className="firstSectionArticle" id="firstSectionArticle3">
+            </article>}
+            {article >= 3 && <article className="firstSectionArticle" id="firstSectionArticle3">
                 <div className="fifthSectionCard">
                     <p>MICRÓFONOS<br />PROFESIONALES</p>
                 </div>
-            </article> : article === 4 ? <article className="firstSectionArticle" id="firstSectionArticle4">
+            </article>}
+            {article >= 4 && <article className="firstSectionArticle" id="firstSectionArticle4">
                 <div className="fifthSectionCard">
                     <p>CÁMARAS HD</p>
                 </div>
-            </article> : article === 5 ? <article className="firstSectionArticle" id="firstSectionArticle5">
+            </article>}
+            {article >= 5 && <article className="firstSectionArticle" id="firstSectionArticle5">
                 <div className="fifthSectionCard">
                     <p>CÁMARAS HD</p>
                 </div>
-            </article> : article === 6 ? <article className="firstSectionArticle" id="firstSectionArticle6">
+            </article>}
+            {article >= 6 && <article className="firstSectionArticle" id="firstSectionArticle6">
                 <div className="fifthSectionCard">
                     <p>ILUMINACIÓN</p>
                 </div>
-            </article> : article === 7 ? <article className="firstSectionArticle" id="firstSectionArticle7">
+            </article>}
+            {article >= 7 && <article className="firstSectionArticle" id="firstSectionArticle7">
                 <div className="fifthSectionCard">
                     <p>ILUMINACIÓN</p>
                 </div>
-            </article> : article === 8 ? <article className="firstSectionArticle" id="firstSectionArticle8">
+            </article>}
+            {article >= 8 && <article className="firstSectionArticle" id="firstSectionArticle8">
                 <div className="fifthSectionCard">
                     <p>MONITOREO EN<br />TIEMPO REAL</p>
                 </div>
-            </article> : article === 9 ? <article className="firstSectionArticle" id="firstSectionArticle9">
+            </article>}
+            {article >= 9 && <article className="firstSectionArticle" id="firstSectionArticle9">
                 <div className="fifthSectionCard">
                     <p>MONITOREO EN<br />TIEMPO REAL</p>
                 </div>
-            </article> : article === 10 ? <article className="firstSectionArticle" id="firstSectionArticle10">
+            </article>}
+            {article >= 10 && <article className="firstSectionArticle" id="firstSectionArticle10">
                 <div className="fifthSectionCard">
                     <p>MONITOREO EN<br />TIEMPO REAL</p>
                 </div>
-            </article> : article === 11 ? <article className="firstSectionArticle" id="firstSectionArticle11">
+            </article>}
+            {article >= 11 && <article className="firstSectionArticle" id="firstSectionArticle11">
                 <div className="fifthSectionCard">
                     <p>MONITOREO EN<br />TIEMPO REAL</p>
                 </div>
-            </article> : article === 12 ? <article className="firstSectionArticle" id="firstSectionArticle12">
+            </article>}
+            {article >= 12 && <article className="firstSectionArticle" id="firstSectionArticle12">
                 <div className="fifthSectionCard">
                     <p>MONITOREO EN<br />TIEMPO REAL</p>
                 </div>
-            </article> : null
-        }
+            </article>}
 
         {/* buttons */}
         <button onClick={handleClickPrev} className="fifthSectionButton" id="fifthSectionButtonPrev"><MdPlayArrow className="fifthSectionButtonIcon" /></button>

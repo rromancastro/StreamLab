@@ -12,14 +12,14 @@ export const SeventhSection = () => {
     return <section id="seventhSection">
         <motion.div style={{rotate: rotacion1}} className="sliderContainer2">
             <div className="sliderTrack2">
-                <span className="sliderText2">EXPERIMENTA EL STREAMING</span>
-                <span className="sliderText2">EXPERIMENTA EL STREAMING</span>
+                <span className="sliderText2">EXPERIMENTÁ EL STREAMING</span>
+                <span className="sliderText2">EXPERIMENTÁ EL STREAMING</span>
             </div>
         </motion.div>
         <motion.div style={{rotate: rotacion2}} className="sliderContainer3">
             <div className="sliderTrack3">
-                <span className="sliderText3">EXPERIMENTA EL STREAMING</span>
-                <span className="sliderText3">EXPERIMENTA EL STREAMING</span>
+                <span className="sliderText3">EXPERIMENTÁ EL STREAMING</span>
+                <span className="sliderText3">EXPERIMENTÁ EL STREAMING</span>
             </div>
         </motion.div>
     </section>

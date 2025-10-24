@@ -39,20 +39,21 @@ export const SixthSection = () => {
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 5} textContent={"STREAMERS"} />
             <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 6} textContent={"CURIOSOS"} />
 
-            <img className="sixtSectionImg" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: isMobile ? animationStep >= 7 ? "0%" : '0' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '280px' : '100vh' : animationStep >= 7 ? '490px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
-            <img className="sixtSectionImg" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: isMobile ? animationStep >= 7 ? "5%": '0' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '280px' : '100vh' : animationStep >= 7 ? '490px' : '100vh', opacity: animationStep >= 7 ? 1 : 0}} />
-
+            <img className="sixtSectionImg2" src={"/sixthSection/img2.png"} alt="Imagen 1" style={{right: isMobile ? animationStep >= 7 ? "5%" : '0%' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '330px' : '100vh' : animationStep >= 7 ? '518px' : '100vh', opacity: animationStep >= 7 ? 1 : 0, zIndex: '2'}} />
+            <img className="sixtSectionImg2" src={"/sixthSection/img1.png"} alt="Imagen 1" style={{left: isMobile ? animationStep >= 7 ? "5%": '0%' : animationStep >= 7 ? "25%" : '30%', top: isMobile ? animationStep >= 7 ? '330px' : '100vh' : animationStep >= 7 ? '510px' : '100vh', opacity: animationStep >= 7 ? 1 : 0, zIndex: '1'}} />
+ 
             <div id="sixthSectionLineaVioleta" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>
+            <div id="sixthSectionLineaVioleta2" style={{left: animationStep >= 8 ? 0 : '-100%' }}></div>
 
-            <p id="sixthSectionFinalText" style={{opacity: animationStep >= 9 ? 1 : 0 }}>
-                <span>
-                    <a target="_blank" href="https://www.linkedin.com/in/marinalammertyn/">Marina Lammertyn<FaLinkedin /></a>
-                    Cofundadora y Manager de Stream Lab. Licenciada en Comunicación, productora y locutora integral, con años de experiencia en el mundo del podcasting y los medios digitales. Fanática del streaming y de las nuevas formas de contar historias, me apasiona crear espacios donde las ideas se transformen en contenido profesional y auténtico.
-                </span>
-                <span>
+            <p id="sixthSectionFinalText">
+                <span style={{opacity: animationStep >= 9 ? 1 : 0 }}>
                     <a target="_blank" href="https://www.linkedin.com/in/mariano-eugenio-simonetta-6768204b/">Mariano Simonetta<FaLinkedin /></a>
                     Profesional del mundo audiovisual con más de quince años de experiencia en tecnología de medios, producción y streaming. Desde SVC (Sistemas de Video Comunicación) impulso la conexión entre innovación tecnológica y creatividad, acompañando a creadores, marcas y productoras a profesionalizar sus contenidos.
                     Apasionado por el futuro de la comunicación, lidero proyectos que integran storytelling, herramientas de última generación y una comunidad de creadores que piensan en grande.
+                </span>
+                <span style={{opacity: animationStep >= 9 ? 1 : 0 }}>
+                    <a target="_blank" href="https://www.linkedin.com/in/marinalammertyn/">Marina Lammertyn<FaLinkedin /></a>
+                    Cofundadora y Manager de Stream Lab. Licenciada en Comunicación, productora y locutora integral, con años de experiencia en el mundo del podcasting y los medios digitales. Fanática del streaming y de las nuevas formas de contar historias, me apasiona crear espacios donde las ideas se transformen en contenido profesional y auténtico.
                 </span>
 </p>
         </section>

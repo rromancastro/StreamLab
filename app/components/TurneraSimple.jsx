@@ -520,12 +520,12 @@ export const TurneraSimple = ({setTurnera}) => {
                         <p>Nombre <span>{userName}</span></p>
                     </div>
                     <p className="turneraStep3Total">TOTAL: ${valorSala}</p>
-                    <div style={{ width: '100%', marginTop: '24px' }}>
+                    <div style={{ width: '100%', marginTop: '14px' }}>
                         {!isPaymentReady && !paymentError && (
-                            <p style={{ textAlign: 'center', color: '#8C8C8C', marginBottom: '16px' }}>Estamos cargando Mercado Pago...</p>
+                            <p style={{ textAlign: 'center', color: '#8C8C8C', position: 'absolute', bottom: '-60px' }}>Estamos cargando Mercado Pago...</p>
                         )}
                         {paymentError && (
-                            <p className="turneraErrorMessage" style={{ marginBottom: '16px' }}>{paymentError}</p>
+                            <p className="turneraErrorMessage" style={{ position: 'absolute', bottom: '-60px' }}>{paymentError}</p>
                         )}
                         <div id={PAYMENT_BRICK_CONTAINER_ID} style={{ width: '100%', minHeight: '320px' }}></div>
                     </div>

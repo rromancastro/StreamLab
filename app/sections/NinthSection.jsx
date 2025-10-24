@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { TextUpComponent } from "../components";
+import Link from "next/link";
 
 export const NinthSection = () => {
     //responsive
@@ -45,7 +46,7 @@ export const NinthSection = () => {
                 <a target="_blank" href="#">YOUTUBE</a>
             </div>
             <p style={{opacity: animationStep >= 7 ? 1 : 0}} id="ninthSectionCopyright">
-                Stream Lab © Término Y Condiciones / Políticas De Reserva<br />
+                Stream Lab © <Link href={"/PrivacyPolicy"}>Política de Privacidad</Link><br />
                 Diseño: <span>Francisco Castgnola</span><br />
                 Devs: <span>Roman Castro y Rafael Defelice</span>
             </p>

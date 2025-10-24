@@ -45,7 +45,7 @@ export const SecondSection = () => {
 
     useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      //console.log("Progreso global:", latest.toFixed(2));
+      console.log("Progreso global:", latest.toFixed(2));
     });
     return () => unsubscribe();
   }, [scrollYProgress]);
@@ -57,7 +57,7 @@ export const SecondSection = () => {
                     <span style={{scale: animationStep >= 3 ? 1 : 0}}>2 HS</span>
                 </div>
                 <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 4} textContent={"DE LUNES A"} />
-                <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 5} textContent={"SABADOS"} />
+                <TextUpComponent fontSize={isMobile ? 30 : 72} active={animationStep >= 5} textContent={"SÁBADOS"} />
                 <p style={{opacity: animationStep >=6 ? 1 : 0}}>Elegí un día y un horario que este disponible. Reservá, venís, grabas y listo! Tambíen<br />podes elegir entre nuestros combos si sos un streamer regular. Y si queres te ayudamos<br />con la producción, edición, hosting y otras cositas.</p>
             </section>
 }

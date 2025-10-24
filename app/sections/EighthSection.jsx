@@ -85,8 +85,8 @@ export const EighthSection = () => {
                 <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 8} textContent={"ENCONTRANOS"} />
                 <TextUpComponent fontSize={isMobile ? 30 : 50} active={animationStep >= 9} textContent={"EN"} />
 
-                <p id="eigthSectionUbi" style={{opacity: animationStep >= 10 ? 1 : 0}}>
-                    <LuMapPin color="#9D4EDD"/> UBICACIÓN ACCESIBLE
-                </p>
+                <a target="_blank" href="https://maps.app.goo.gl/7sK7rCdGXqH849Up9" id="eigthSectionUbi" style={{opacity: animationStep >= 10 ? 1 : 0}}>
+                    <LuMapPin color="#9D4EDD"/> Arévalo 1462, Palermo Hollywood.
+                </a>
             </section>
 }

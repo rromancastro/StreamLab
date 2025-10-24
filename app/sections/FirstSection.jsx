@@ -26,17 +26,17 @@ export const FirstSection = () => {
 
     const [turnera, setTurnera] = useState('simple');
 
-    return <section style={{backgroundColor:  isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.16 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.28 && progress <= 0.39 ? '#7B2CBF' : '#ffffff', transition: '.5s', height: isMobile ? turnera === 'mensual' ? '1300px' : null : null}} id="firstSection">
+    return <section style={{backgroundColor:  isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.33 ? '#7B2CBF' : '#ffffff' : progress >= 0.16 && progress <= 0.38 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s', height: isMobile ? turnera === 'mensual' ? '1300px' : null : null}} id="firstSection">
         <Header />
         {!isMobile ? <div className="sliderContainer">
             <div className="sliderTrack">
-                <span className="sliderText">EXPERIMENTA EL STREAMING</span>
-                <span className="sliderText">EXPERIMENTA EL STREAMING</span>
+                <span className="sliderText">EXPERIMENTÁ EL STREAMING</span>
+                <span className="sliderText">EXPERIMENTÁ EL STREAMING</span>
             </div>
         </div> : <div className="sliderContainer">
             <div className="sliderTrack">
-                <span className="sliderText">EXPERIMENTA EL STREAMING</span>
-                <span className="sliderText">EXPERIMENTA EL STREAMING</span>
+                <span className="sliderText">EXPERIMENTÁ EL STREAMING</span>
+                <span className="sliderText">EXPERIMENTÁ EL STREAMING</span>
             </div>
         </div>
         }

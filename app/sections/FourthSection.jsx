@@ -53,8 +53,8 @@ export const FourthSection = () => {
                 <S4Card2 y={0} x={animationStep >= 6 ? 0 : -260} opacity={animationStep >= 5 ? 1 : 0} />
                 <S4Card3 y={0} x={animationStep >= 6 ? 0 : -520} opacity={animationStep >= 5 ? 1 : 0} rotate={0}/>
             </div> : <>
-            <S4Card3 y={animationStep >= 5 ? 350 : 1000} x={animationStep >= 5 ? 230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? 11 : 0}/>
-            <S4Card2 y={animationStep >= 5 ? 325 : 1000} x={animationStep >= 5 ? 0 : 0} opacity={animationStep >= 5 ? 1 : 0} />
-            <S4Card1 y={animationStep >= 5 ? 350 : 1000} x={animationStep >= 5 ? -230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? -11 : 0}/></>}
+            <S4Card3 y={animationStep >= 5 ? 370 : 1000} x={animationStep >= 5 ? 230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? 11 : 0}/>
+            <S4Card2 y={animationStep >= 5 ? 345 : 1000} x={animationStep >= 5 ? 0 : 0} opacity={animationStep >= 5 ? 1 : 0} />
+            <S4Card1 y={animationStep >= 5 ? 370 : 1000} x={animationStep >= 5 ? -230 : 0} opacity={animationStep >= 5 ? 1 : 0} rotate={animationStep >= 5 ? -11 : 0}/></>}
         </section>
 }

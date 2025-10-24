@@ -1,6 +1,6 @@
 
 #eighthSection {
-    height: 110vh;
+    height: 800px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -82,6 +82,8 @@
     gap: 10px;
     margin-top: 20px;
     transition: .5s;
+    color: #000100;
+    text-decoration: none;
 }
 
 @media (max-width: 862px) {
@@ -104,8 +106,16 @@
         gap: 0;
     }
     .eighthSectionRed {
-        width: 130px;
         height: 33px;
+        &:nth-child(1) {
+            width: 110px;
+        }
+        &:nth-child(2) {
+            width: 190px;
+        }
+        &:nth-child(3) {
+            width: 110px;
+        }
         p {
             font-size: 16px;
             &:nth-child(2) {

@@ -59,6 +59,17 @@
     font-size: 12px;
     font-weight: 400;
     color: #0A001A;
+    a {
+        text-decoration: none;
+        color: #0A001A;
+        &:hover {
+            color: #5A189A;
+        }
+        &:active {
+            color: #C77DFF;
+            text-shadow: 0 0 4px #C77DFF99;
+        }
+    }
     span {
         color: #5A189A;
     }
