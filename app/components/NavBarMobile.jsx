@@ -1,29 +1,29 @@
 "use client";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image";
-import {useRef, useState } from "react";
+import {useEffect, useRef, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 
 export const NavBarMobile = () => {
 
     const {turneraSeleccionada} = useAppContext();
     // menu
-        const [dropMenu, setDropMenu] = useState(false);
-        const closeTimeout = useRef(null);
-    
-        const handleDropMenu = (e) => {
-            e.preventDefault();
-            if (closeTimeout.current) clearTimeout(closeTimeout.current); 
-            setDropMenu(true);
-        };
-        const handleMouseLeave = () => {
-            closeTimeout.current = setTimeout(() => {
-                setDropMenu(false);
-            }, 2000);
-        };
-        const handleMouseEnter = () => {
-            if (closeTimeout.current) clearTimeout(closeTimeout.current);
-        };
+    const [dropMenu, setDropMenu] = useState(false);
+    const closeTimeout = useRef(null);
+
+    const handleDropMenu = (e) => {
+        e.preventDefault();
+        if (closeTimeout.current) clearTimeout(closeTimeout.current); 
+        setDropMenu(true);
+    };
+    const handleMouseLeave = () => {
+        closeTimeout.current = setTimeout(() => {
+            setDropMenu(false);
+        }, 3000);
+    };
+    const handleMouseEnter = () => {
+        if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    };
 
     const {scrollYProgress} = useScroll();
     const [isWhite, setIsWhite] = useState(false);
@@ -31,6 +31,15 @@ export const NavBarMobile = () => {
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
         setIsWhite(turneraSeleccionada === 'simple'  ? (latest >= 0.15 && latest < 0.40) || (latest >= 0.60 && latest < 0.64) || (latest >= 0.49 && latest < 0.54) : (latest >= 0.16 && latest < 0.42) || (latest >= 0.62 && latest < 0.66) || (latest >= 0.51 && latest < 0.56));
     });
+
+    useEffect(() => {
+
+        window.addEventListener("scroll", handleMouseLeave, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleMouseLeave);
+        };
+    }, [dropMenu]);
 
     return (<>
         <a href="#firstSection">
