@@ -345,7 +345,7 @@ export const TurneraSimple = ({setTurnera}) => {
     };
 
     return (
-        <div id="turneraContainer">
+        <div id="turneraContainer" style={{height: turneraStep === 5 ? '765px' : null}}>
             {/* STEP 1 */}
             {turneraStep === 1 && <><h2 className="turneraH2">RESERVÁ<br />
                 TU TURNO,<br />
@@ -520,7 +520,7 @@ export const TurneraSimple = ({setTurnera}) => {
                         <p>Nombre <span>{userName}</span></p>
                     </div>
                     <p className="turneraStep3Total">TOTAL: ${valorSala}</p>
-                    <div style={{ width: '100%', marginTop: '14px' }}>
+                    <div style={{ width: '100%', marginBottom: '40px' }}>
                         {!isPaymentReady && !paymentError && (
                             <p style={{ textAlign: 'center', color: '#8C8C8C', position: 'absolute', bottom: '-60px' }}>Estamos cargando Mercado Pago...</p>
                         )}

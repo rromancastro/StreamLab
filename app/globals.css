@@ -875,7 +875,7 @@ nav {
     height: 40px;
   }
   .turneraStep3FechaContainer p:nth-child(1) {
-    padding-left: 14px;
+    padding-left: 4px;
     gap: 10px;
   }
   .turneraStep3FechaContainer p:nth-child(2) {
@@ -892,7 +892,7 @@ nav {
   }
   .turneraStep3UserData p {
     font-size: 12px;
-    padding: 0 16px;
+    padding: 0 8px;
     gap: 8px;
   }
   .turneraStep3Total {
