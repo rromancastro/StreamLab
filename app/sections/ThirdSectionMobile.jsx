@@ -62,14 +62,14 @@ export const ThirdSectionMobile = () => {
 
         <article style={{opacity: inView3 ? 1 : 0, transition: '.5s', transform: inView3 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref3} className="thirdSectionMobileCard">
             <p className="thirdSectionMobileSubtitle">ASISTENCIA</p>
-            <p className="thirdSectionMobileSubtitle">TECNICA</p>
+            <p className="thirdSectionMobileSubtitle">TÉCNICA</p>
             <p className="thirdSectionMobileSubtitle">INCLUIDA</p>
             <div style={{opacity: progress >= 0.15 && progress <= 0.33 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">El alquiler de la sala incluye un operador técnico para asistirte durante toda tu sesión para que vos no tengas que preocuparte por la transmisión, la imagen o el sonido. ¡Recomendamos enviar todo de antemano para que esté listo al momento de tu stream!</p>
         </article>
 
         <article style={{opacity: inView4 ? 1 : 0, transition: '.5s', transform: inView4 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref4} className="thirdSectionMobileCard">
-            <p className="thirdSectionMobileSubtitle">UBICACION</p>
+            <p className="thirdSectionMobileSubtitle">UBICACIÓN</p>
             <p className="thirdSectionMobileSubtitle">ACCESIBLE</p>
             <div style={{opacity: progress >= 0.15 && progress <= 0.33 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileUbi"><LuMapPin color="#ffffff"/> Estamos en Arévalo 1462, Palermo Hollywood. <br /> <a style={{color: '#fff'}} target="_blank" href="https://maps.app.goo.gl/peYEpgTiqd64aP276">Fijate como llegar acá!</a></p>

@@ -34,7 +34,7 @@ export const TurneraSimple = ({setTurnera}) => {
 
 
     useEffect(() => {
-        getAllReservas().then(data => setReservas(data.data));
+        getAllReservas().then(data => setReservas(data.data.filter(reserva => reserva.estado !== 'pendiente')));
     }, []);
 
     useEffect(() => {
@@ -345,7 +345,7 @@ export const TurneraSimple = ({setTurnera}) => {
     };
 
     return (
-        <div id="turneraContainer" style={{height: turneraStep === 5 ? '765px' : null}}>
+        <div id="turneraContainer" style={{height: turneraStep === 5 ? '765px' : null, gap: turneraStep === 5 ? '8px' : null}}>
             {/* STEP 1 */}
             {turneraStep === 1 && <><h2 className="turneraH2">RESERVÁ<br />
                 TU TURNO,<br />
@@ -519,13 +519,13 @@ export const TurneraSimple = ({setTurnera}) => {
                         <p>eMail <span>{userEmail}</span></p>
                         <p>Nombre <span>{userName}</span></p>
                     </div>
-                    <p className="turneraStep3Total">TOTAL: ${valorSala}</p>
-                    <div style={{ width: '100%', marginBottom: '40px' }}>
+                    <p className="turneraStep3Total" style={{bottom: '105px'}}>TOTAL: ${valorSala}</p>
+                    <div style={{ width: '100%', marginBottom: '-30px' }}>
                         {!isPaymentReady && !paymentError && (
-                            <p style={{ textAlign: 'center', color: '#8C8C8C', position: 'absolute', bottom: '-60px' }}>Estamos cargando Mercado Pago...</p>
+                            <p style={{ textAlign: 'center', color: '#8C8C8C', position: 'absolute', bottom: '-40px' }}>Estamos cargando Mercado Pago...</p>
                         )}
                         {paymentError && (
-                            <p className="turneraErrorMessage" style={{ position: 'absolute', bottom: '-60px' }}>{paymentError}</p>
+                            <p className="turneraErrorMessage" style={{ position: 'absolute', bottom: '-40px' }}>{paymentError}</p>
                         )}
                         <div id={PAYMENT_BRICK_CONTAINER_ID} style={{ width: '100%', minHeight: '320px' }}></div>
                     </div>
