@@ -40,7 +40,7 @@ export const ThirdSectionMobile = () => {
         <article style={{opacity: inView1 ? 1 : 0, transition: '.5s', transform: inView1 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref1} className="thirdSectionMobileCard">
             <p className="thirdSectionMobileSubtitle">EQUIPAMIENTO</p>
             <p className="thirdSectionMobileSubtitle">PROFESIONAL</p>
-            <div style={{opacity: progress >= 0.15 && progress <= 0.33 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.15 && progress <= 0.42  ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">
                 En Stream Lab contamos con tecnología de última generación para que tu contenido se vea y suene increíble:
                 <span>Cámaras PTZ 4K  BirdDog Max (x4):</span> imagen nítida en calidad broadcast.
@@ -56,7 +56,7 @@ export const ThirdSectionMobile = () => {
         <article style={{opacity: inView2 ? 1 : 0, transition: '.5s', transform: inView2 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref2} className="thirdSectionMobileCard">
             <p className="thirdSectionMobileSubtitle">TURNOS</p>
             <p className="thirdSectionMobileSubtitle">DE 2 HORAS</p>
-            <div style={{opacity: progress >= 0.15 && progress <= 0.33 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.15 && progress <= 0.42  ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">Elegí el día que quieras, reservá y durante dos horas vas a poder dedicarte 100% a tu contenido.</p>
         </article>
 
@@ -64,14 +64,14 @@ export const ThirdSectionMobile = () => {
             <p className="thirdSectionMobileSubtitle">ASISTENCIA</p>
             <p className="thirdSectionMobileSubtitle">TÉCNICA</p>
             <p className="thirdSectionMobileSubtitle">INCLUIDA</p>
-            <div style={{opacity: progress >= 0.15 && progress <= 0.33 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.15 && progress <= 0.42 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileP">El alquiler de la sala incluye un operador técnico para asistirte durante toda tu sesión para que vos no tengas que preocuparte por la transmisión, la imagen o el sonido. ¡Recomendamos enviar todo de antemano para que esté listo al momento de tu stream!</p>
         </article>
 
         <article style={{opacity: inView4 ? 1 : 0, transition: '.5s', transform: inView4 ? 'translateY(0px)' : 'translateY(50px)'}} ref={ref4} className="thirdSectionMobileCard">
             <p className="thirdSectionMobileSubtitle">UBICACIÓN</p>
             <p className="thirdSectionMobileSubtitle">ACCESIBLE</p>
-            <div style={{opacity: progress >= 0.15 && progress <= 0.33 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
+            <div style={{opacity: progress >= 0.15 && progress <= 0.42 ? 1 : 0, transition: '.5s'}} className="thirdSectionMobileLine"></div>
             <p className="thirdSectionMobileUbi"><LuMapPin color="#ffffff"/> Estamos en Arévalo 1462, Palermo Hollywood. <br /> <a style={{color: '#fff'}} target="_blank" href="https://maps.app.goo.gl/peYEpgTiqd64aP276">Fijate como llegar acá!</a></p>
         </article>
     </section>
