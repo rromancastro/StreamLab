@@ -30,8 +30,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Stream Lab",
+  title: "Stream Lab - El laboratorio de streaming",
   description: "Stream Lab es un estudio de alta calidad diseñado para creadores de contenido que buscan un resultado excepcional en sus proyectos audiovisuales. Combinamos experiencia e innovación para brindar no solo excelencia técnica, sino también una atención cercana y personalizada.",
+  openGraph: {
+    title: "Stream Lab - El laboratorio de streaming",
+    description: "Somos un estudio de streaming en Palermo Hollywood. Vos traé tu proyecto, nosotros nos ocupamos de lo demás!",
+    url: "https://streamlab.com.ar",
+    siteName: "Stream Lab - El laboratorio de streaming",
+    images: [
+      {
+        url: "https://streamlab.com.ar/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Stream Lab - El laboratorio de streaming",
+      },
+    ],
+    locale: "es_ES",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stream Lab - El laboratorio de streaming",
+    description: "Somos un estudio de streaming en Palermo Hollywood. Vos traé tu proyecto, nosotros nos ocupamos de lo demás!",
+    images: ["https://streamlab.com.ar/og-image.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
