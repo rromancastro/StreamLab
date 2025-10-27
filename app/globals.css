@@ -1334,7 +1334,7 @@ nav {
   font-size: 72px;
   text-align: center;
   line-height: 1;
-  transform: translateY(15px);
+  transform: translateY(18px);
 }
 
 @media (max-width: 862px) {
@@ -1364,7 +1364,7 @@ nav {
   #secondSection div span {
     font-size: 30px;
     margin-bottom: 12px;
-    transform: translateY(5px);
+    transform: translateY(8px);
   }
 }
 #thirdSection {
