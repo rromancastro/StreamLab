@@ -57,10 +57,10 @@ export const FifthSection = () => {
         });
 
     return <section  style={{backgroundColor: isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.40 ? '#7B2CBF' : '#ffffff' : progress >= 0.15 && progress <= 0.42 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} id="fifthSection">
-            <h1>EL LABORATORIO<br />DE STREAMING</h1>
+            <h1>CONOCÉ TU<br />PRÓXIMO ESTUDIO</h1>
             <article style={{left: article === 1 ? '0%' : article <= 3 ? '-100%' : '100%', transition: article === 12 || article <= 2 ? '.5s' : '0s', zIndex: 100}} className="firstSectionArticle" id="firstSectionArticle1">
-                <h2>EL LABORATORIO<br />
-                    DE STREAMING
+                <h2>CONOCÉ TU<br />
+                    PRÓXIMO ESTUDIO
                 </h2>
             </article>
             <article style={{left: article === 2 ? '0%' : article === 3 ? '-100%' : '100%', transition: article >= 1 && article <= 4 ? '.5s' : '0s'}} className="firstSectionArticle" id="firstSectionArticle2">
