@@ -12,11 +12,10 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
     const {setTurneraSeleccionada} = useAppContext();
 
-    //fechas ocupadas
+    // Fechas y horarios
     const [reservas, setReservas] = useState([]);
     const [diasReservados, setDiasReservados] = useState([]);
-    const [horariosReservados, setHorariosReservados] = useState([[], [], [], []]); // 4 bloques
-    // Registramos el precio del combo y los ids generados para consolidar la preferencia de pago.
+    const [horariosReservados, setHorariosReservados] = useState([[], [], [], []]);
     const [precioCombo, setPrecioCombo] = useState(0);
     const [reservasCreadas, setReservasCreadas] = useState([]);
     const [externalReference, setExternalReference] = useState('');
@@ -29,16 +28,13 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         setDiasReservados(reservas.map(reserva => reserva.fecha_inicio.slice(0, 10)));
     }, [reservas]);
 
-    // Traemos el precio vigente del combo mensual para usarlo en el resumen y el pago.
     useEffect(() => {
         verSalas()
             .then((data) => {
                 const combo = Number(data?.data?.[0]?.precio_combo) || 0;
                 setPrecioCombo(combo);
             })
-            .catch((err) => {
-                console.error("Error al obtener salas para combo mensual:", err);
-            });
+            .catch((err) => console.error("Error al obtener salas:", err));
     }, []);
 
     const [fechaSeleccionada, setFechaSeleccionada] = useState([new Date(), new Date(), new Date(), new Date()]);
@@ -46,7 +42,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
     const [horarioSeleccionado, setHorarioSeleccionado] = useState([1, 1, 1, 1]);
     const [showCalendar, setShowCalendar] = useState([false, false, false, false]);
     const [showHorarios, setShowHorarios] = useState([false, false, false, false]);
-    // Estados dedicados a la integracion con Mercado Pago (mismo patron que TurneraSimple).
+
     const paymentBrickController = useRef(null);
     const [isPaymentReady, setIsPaymentReady] = useState(false);
     const [paymentError, setPaymentError] = useState('');
@@ -63,102 +59,79 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         "Septiembre", "Octubre", "Noviembre", "Diciembre"
     ];
 
+    // NUEVOS HORARIOS
     const horarios = [
-        "10-12 hs", "12-14 hs", "14-16 hs",
-        "16-18 hs", "18-20 hs", "20-22 hs",
-        "22-00 hs",
+        "09:00-11:00",
+        "11:30-13:30",
+        "14:00-16:00",
+        "16:30-18:30",
+        "19:00-21:00",
     ];
-    // Costo final del paquete mensual (4 sesiones) segun el precio que expone la sala.
+
     const totalCombo = precioCombo * 4;
 
-    // actualizar horarios reservados
+    // Actualizar horarios reservados
     useEffect(() => {
         const newHorarios = fechaSeleccionada.map(fecha => {
             const fechaISO = fecha.toISOString().slice(0, 10);
             if (diasReservados.includes(fechaISO)) {
                 const dia = reservas.filter(r => r.fecha_inicio.slice(0, 10) === fechaISO);
-                return dia.map(d => d.fecha_inicio.slice(11, 13));
+                return dia.map(d => d.fecha_inicio.slice(11, 16)); // incluye minutos HH:MM
             }
             return [];
         });
         setHorariosReservados(newHorarios);
 
-        // primer horario disponible
         const nuevosHorariosSeleccionados = newHorarios.map((horasOcupadas) => {
-            const index = horarios.findIndex(h => !horasOcupadas.includes(h.slice(0, 2)));
+            const index = horarios.findIndex(h => !horasOcupadas.includes(h.split('-')[0])); 
             return index !== -1 ? index + 1 : null;
         });
         setHorarioSeleccionado(nuevosHorariosSeleccionados);
 
     }, [fechaSeleccionada, reservas, diasReservados]);
 
-    //controlar calendario
-    const prevMonth = () => {
-        setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
-    };
+    const prevMonth = () => setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    const nextMonth = () => setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
 
-    const nextMonth = () => {
-        setCurrentMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
-    };
-
-    //flow
     const [turneraStep, setTurneraStep] = useState(1);
-
     const [userEmail, setUserEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const verificarDatos = () => {
-        if (userEmail === '' || userEmail.includes('@') === false || userEmail.includes('.') === false) {
+        if (!userEmail.includes('@') || !userEmail.includes('.')) {
             setErrorMessage('El eMail ingresado no es válido');
         } else if (userName.length < 3) {
             setErrorMessage('El nombre ingresado no es válido');
         } else {
             setTurneraStep(3);
         }
-    }
+    };
 
     function obtenerSemana(fecha) {
         const f = new Date(fecha);
         const primerDiaDelAno = new Date(f.getFullYear(), 0, 1);
         const diasTranscurridos = Math.floor((f - primerDiaDelAno) / (24 * 60 * 60 * 1000));
-
         const numeroSemana = Math.ceil((diasTranscurridos + (primerDiaDelAno.getDay() + 7) % 7) / 7);
-
         return `${f.getFullYear()}-${numeroSemana}`;
     }
 
-    //cerrar al hacer click afuera
     const calendarRef = useRef(null);
     const horariosRef = useRef(null);
 
     useEffect(() => {
-    const handleClickOutside = (event) => {
-        if (
-        calendarRef.current &&
-        !calendarRef.current.contains(event.target) &&
-        !event.target.closest(".seleccionarFechaContainer")
-        ) {
-        setShowCalendar([false, false, false, false]);
-        }
-
-        if (
-        horariosRef.current &&
-        !horariosRef.current.contains(event.target) &&
-        !event.target.closest(".seleccionarFechaContainer")
-        ) {
-        setShowHorarios([false, false, false, false]);
-        }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-    };
+        const handleClickOutside = (event) => {
+            if (calendarRef.current && !calendarRef.current.contains(event.target) && !event.target.closest(".seleccionarFechaContainer")) {
+                setShowCalendar([false, false, false, false]);
+            }
+            if (horariosRef.current && !horariosRef.current.contains(event.target) && !event.target.closest(".seleccionarFechaContainer")) {
+                setShowHorarios([false, false, false, false]);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-
-    //semanas correspondientes
     useEffect(() => {
         const fechaActual = fechaSeleccionada[0];
         let fecha2 = new Date(fechaActual);
@@ -168,7 +141,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         fecha3.setDate(fecha3.getDate() + 14);
         fecha4.setDate(fecha4.getDate() + 21);
         setFechaSeleccionada([fechaActual, fecha2, fecha3, fecha4]);
-    }, [fechaSeleccionada[0]])
+    }, [fechaSeleccionada[0]]);
 
     const [showErrorToast, setShowErrorToast] = useState(false);
 
@@ -187,7 +160,6 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         }
     };
 
-    // Creamos la reserva mensual en un único request y recibimos la preferencia lista para Mercado Pago.
     const handleSubmitReservas = async () => {
         if (!userEmail || !userName) {
             setPaymentError("Completa tus datos antes de continuar con el pago mensual.");
@@ -203,7 +175,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         setPaymentError('');
 
         if (precioCombo <= 0) {
-            setPaymentError("El precio del combo no está disponible, intenta nuevamente en unos segundos.");
+            setPaymentError("El precio del combo no está disponible.");
             setIsPreparingPayment(false);
             return;
         }
@@ -214,19 +186,13 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 if (!horarioSeleccionado[index]) {
                     throw new Error("Selecciona un horario disponible para las cuatro semanas.");
                 }
-
                 const horarioActual = horarios[horarioSeleccionado[index] - 1];
                 const fechaISO = fecha.toISOString().slice(0, 10);
-                const horaInicio = horarioActual?.slice(0, 2);
-                const horaFin = horarioActual?.slice(3, 5);
-
-                if (!horaInicio || !horaFin) {
-                    throw new Error("No pudimos determinar el horario seleccionado.");
-                }
+                const [horaInicio, horaFin] = horarioActual.split('-');
 
                 return {
-                    fecha_inicio: `${fechaISO} ${horaInicio}:00:00`,
-                    fecha_fin: `${fechaISO} ${horaFin}:00:00`,
+                    fecha_inicio: `${fechaISO} ${horaInicio}:00`,
+                    fecha_fin: `${fechaISO} ${horaFin}:00`,
                     titulo: 'Sesion de Gaming',
                     descripcion: 'Stream de videojuegos',
                     tipo_stream: 'gaming',
@@ -267,7 +233,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         }
     };
 
-    // Montamos y desmontamos el Payment Brick cuando el paso 5 (pago) esta activo.
+    // Pago Mercado Pago
     useEffect(() => {
         if (turneraStep !== 5) {
             if (paymentBrickController.current) {
@@ -279,28 +245,16 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
             return;
         }
 
-        if (typeof window === "undefined") {
-            return;
-        }
-
+        if (typeof window === "undefined") return;
         if (!window.MercadoPago) {
-            setPaymentError("No pudimos cargar Mercado Pago. Refresca la pagina e intenta nuevamente.");
+            setPaymentError("No pudimos cargar Mercado Pago.");
             return;
         }
-
         if (!MP_PUBLIC_KEY || MP_PUBLIC_KEY === "YOUR_PUBLIC_KEY") {
-            setPaymentError("Configura la clave publica de Mercado Pago antes de continuar.");
+            setPaymentError("Configura la clave publica de Mercado Pago.");
             return;
         }
-
-        if (!preferenceId) {
-            // Esperamos a que la preferencia se genere via handleSubmitReservas.
-            return;
-        }
-
-        if (HARDCODED_PREFERENCE_ID === "1111" && preferenceId === HARDCODED_PREFERENCE_ID) {
-            console.warn("HARDCODED_PREFERENCE_ID usa un valor de prueba. Reemplazalo por un preferenceId real antes de salir a produccion.");
-        }
+        if (!preferenceId) return;
 
         setPaymentError('');
         setIsPaymentReady(false);
@@ -316,17 +270,8 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                         preferenceId: preferenceId,
                     },
                     customization: {
-                        visual: {
-                            style: {
-                                theme: "dark",
-                            },
-                        },
-                        paymentMethods: {
-                            mercadoPago: "all",
-                            creditCard: "all",
-                            debitCard: "all",
-                            maxInstallments: 1
-                        },
+                        visual: { style: { theme: "dark" } },
+                        paymentMethods: { mercadoPago: "all", creditCard: "all", debitCard: "all", maxInstallments: 1 },
                     },
                     callbacks: {
                         onSubmit: ({ selectedPaymentMethod, formData }) => {
@@ -351,7 +296,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                 crearPago('', 'POST', payload)
                                     .then((response) => {
                                         if (!response?.success) {
-                                            setPaymentError(response?.message ?? "Ocurrio un error al procesar el pago. Intentalo nuevamente.");
+                                            setPaymentError(response?.message ?? "Ocurrio un error al procesar el pago.");
                                             reject(new Error(response?.message ?? 'Pago rechazado'));
                                             return;
                                         }
@@ -360,26 +305,21 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                     })
                                     .catch((error) => {
                                         console.error("Error enviando pago mensual:", error);
-                                        setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
+                                        setPaymentError("Ocurrio un error al procesar el pago.");
                                         reject(error);
                                     });
                             });
                         },
-                        onError: (error) => {
-                            console.error("Payment Brick mensual error:", error);
-                            setPaymentError("Ocurrio un error al procesar el pago. Intentalo nuevamente.");
-                        },
-                        onReady: () => {
-                            setIsPaymentReady(true);
-                        },
+                        onError: (error) => { console.error(error); setPaymentError("Ocurrio un error al procesar el pago."); },
+                        onReady: () => { setIsPaymentReady(true); },
                     },
                 });
 
                 paymentBrickController.current = controller;
                 window.paymentBrickMensualController = controller;
             } catch (error) {
-                console.error("Error creando el Payment Brick mensual:", error);
-                setPaymentError("No pudimos cargar el formulario de pago. Actualiza la pagina e intenta nuevamente.");
+                console.error(error);
+                setPaymentError("No pudimos cargar el formulario de pago.");
             }
         };
 
@@ -392,13 +332,15 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 window.paymentBrickMensualController = null;
             }
         };
-    }, [turneraStep, preferenceId, MP_PUBLIC_KEY, totalCombo, externalReference, reservasCreadas]);
+    }, [turneraStep, preferenceId, totalCombo, externalReference, reservasCreadas]);
 
     const resetMensualFlow = () => {
         clearPagoMensualState();
         setIsPreparingPayment(false);
         setTurneraStep(1);
     };
+
+
 
     return (
         <div style={{height: isMobile ? '735px' : null}} id="turneraContainer">

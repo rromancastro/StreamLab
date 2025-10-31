@@ -12,8 +12,8 @@ export default function Home() {
         <SecondSection />
         <ThirdSection />
         <ThirdSectionMobile />
-        <FourthSection />
         <FifthSection />
+        <FourthSection />
         <SixthSection />
         <SeventhSection />
         <EighthSection />

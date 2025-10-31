@@ -175,20 +175,10 @@ nav {
 #headerImage {
   position: absolute;
   object-fit: contain;
-  top: 80px;
-  height: 820px;
-  width: 780px;
-  mix-blend-mode: darken;
+  top: -50px;
+  height: 920px;
+  width: 980px;
   z-index: 100;
-}
-
-#headerImage2 {
-  position: absolute;
-  object-fit: contain;
-  top: 80px;
-  height: 820px;
-  width: 780px;
-  z-index: 50;
 }
 
 @media (max-width: 862px) {
@@ -197,8 +187,8 @@ nav {
   }
   #headerImage2, #headerImage {
     height: auto;
-    width: 430px;
-    margin-top: 40px;
+    width: 410px;
+    margin-top: 200px;
     overflow-x: hidden;
   }
 }
@@ -792,7 +782,7 @@ nav {
   #turneraContainer {
     width: 358px;
     height: 370px;
-    top: 550;
+    top: 510;
     gap: 16px;
     padding: 16px;
   }
