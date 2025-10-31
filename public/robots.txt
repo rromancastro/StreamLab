@@ -1,4 +1,9 @@
+# *
 User-agent: *
-Disallow:
+Allow: /
 
+# Host
+Host: https://streamlab.com.ar
+
+# Sitemaps
 Sitemap: https://streamlab.com.ar/sitemap.xml

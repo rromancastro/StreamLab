@@ -8,3 +8,4 @@ export * from './S4Card3';
 export * from './TextUpComponent';
 export * from './TurneraMensual';
 export * from './TurneraSimple';
+export * from './Whatsapp';
