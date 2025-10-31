@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { MdPlayArrow } from "react-icons/md";
 import { useAppContext } from "../context/AppContext";
 import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export const FifthSection = () => {
     const {turneraSeleccionada} = useAppContext();
@@ -48,15 +49,27 @@ export const FifthSection = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-    
-        //scroll
-        const { scrollYProgress } = useScroll();
-        const [progress, setProgress] = useState(0);
-        useMotionValueEvent(scrollYProgress, "change", (latest) => {
-            setProgress(latest);
-        });
 
-    return <section  style={{backgroundColor: isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.40 ? '#7B2CBF' : '#ffffff' : progress >= 0.15 && progress <= 0.42 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} id="fifthSection">
+    //scroll
+    const { scrollYProgress } = useScroll();
+    const [progress, setProgress] = useState(0);
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        setProgress(latest);
+    });
+
+    const {inView, ref} = useInView({
+        threshold: 0.8,
+    });
+
+    useEffect(() => {
+        if (inView) {
+            setIsHovered(true);
+        } else {
+            setIsHovered(false);
+        }
+    }, [inView]);
+
+    return <section ref={ref} style={{backgroundColor: isMobile ? turneraSeleccionada === 'simple' ? progress >= 0.15 && progress <= 0.40 ? '#7B2CBF' : '#ffffff' : progress >= 0.15 && progress <= 0.42 ? '#7B2CBF' : '#ffffff' : progress >= 0.265 && progress <= 0.375 ? '#7B2CBF' : '#ffffff', transition: '.5s'}} id="fifthSection">
             <h1>CONOCÉ TU<br />PRÓXIMO ESTUDIO</h1>
             <article style={{left: article === 1 ? '0%' : article <= 3 ? '-100%' : '100%', transition: article === 12 || article <= 2 ? '.5s' : '0s', zIndex: 100}} className="firstSectionArticle" id="firstSectionArticle1">
                 <h2>CONOCÉ TU<br />
