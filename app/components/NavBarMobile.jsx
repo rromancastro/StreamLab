@@ -1,6 +1,5 @@
 "use client";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import Image from "next/image";
 import {useRef, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 
@@ -34,7 +33,7 @@ export const NavBarMobile = () => {
 
     return (<>
         <a href="#firstSection">
-            <Image style={{filter: `invert(${isWhite ? '1' : '0'})`, transition: '.5s'}} src="/logoMobile.png" alt="Logo" width={36} height={40} id="navLogoMobile"/>
+            <img style={{filter: `invert(${isWhite ? '1' : '0'})`, transition: '.5s'}} src="/logoMobile.png" alt="Logo" width={36} height={40} id="navLogoMobile"/>
         </a>
         <div id="navMenuMobileContainer">
             <button style={{opacity: dropMenu ? '0' : '1', color: isWhite ? '#ffffff' : '#0A001A'}} onClick={handleDropMenu} onMouseOut={handleMouseLeave} onMouseOver={handleMouseEnter} id="navMenuMobileButton">MENÚ</button>
