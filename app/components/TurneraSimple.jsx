@@ -244,7 +244,7 @@ export const TurneraSimple = ({ setTurnera }) => {
                   />
                 </div>
                 <Calendar
-                  onChange={setFechaSeleccionada}
+                  onChange={(date) => {setFechaSeleccionada(date); setShowCalendar(false); setShowHorarios(true)}}
                   value={fechaSeleccionada}
                   showNavigation={false}
                   activeStartDate={currentMonth}

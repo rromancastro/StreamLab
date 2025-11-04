@@ -426,6 +426,12 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                                     const nuevasFechas = [...fechaSeleccionada];
                                                     nuevasFechas[i] = date;
                                                     setFechaSeleccionada(nuevasFechas);
+                                                    setShowCalendar([false, false, false, false]);
+                                                    setShowHorarios(prev => {{
+                                                        const nuevo = [...prev];
+                                                        nuevo[i] = true;
+                                                        return nuevo;
+                                                    }});
                                                     }}
 
                                                     value={fechaSeleccionada[i]}
