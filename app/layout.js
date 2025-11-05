@@ -60,6 +60,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <head>
+        <link
+          rel="preload"
+          href="/fonts/Moderniz.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
         <Script
           src="https://sdk.mercadopago.com/js/v2"
           strategy="beforeInteractive" // 👈 lo carga antes de que React monte

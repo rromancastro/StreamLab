@@ -384,7 +384,7 @@ export const TurneraSimple = ({ setTurnera }) => {
                         DE PAGO
                     </h2>
                     <div className="turneraStep4MetodoPago">
-                        <Image src="/turnera/mercadoPagoLogo.png" alt="mercado pago" className="turneraStep4LogoMp" width={24} height={16} />
+                        <img src="/turnera/mercadoPagoLogo.png" alt="mercado pago" className="turneraStep4LogoMp" width={24} height={16} />
                         <p>Mercado Pago</p>
                         <div className="turneraStep4SelectContainer">
                             <div className="turneraStep4SelectFill"></div>
