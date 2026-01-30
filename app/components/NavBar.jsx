@@ -1,6 +1,5 @@
 'use client';
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import Image from "next/image"
 import { useState, useRef, useEffect } from "react";
 
 export const NavBar = () => {
@@ -9,7 +8,7 @@ export const NavBar = () => {
     const [isWhite, setIsWhite] = useState(false);
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        setIsWhite((latest >= 0.265 && latest < 0.375) || (latest >= 0.515 && latest < 0.61));
+        setIsWhite((latest >= 0.265 && latest < 0.375) || (latest >= 0.39 && latest < 0.48));
     });
 
     // menu
@@ -58,9 +57,9 @@ export const NavBar = () => {
 
     return (<nav>
         <a href="#firstSection" id="navLogo" onClick={handClickLogo}>
-                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
+                <img src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop1, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
-                <Image src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
+                <img src="/logo.png" alt="Logo" width={200} height={38} style={{top: positionTop2, filter: `invert(${isWhite ? '1' : '0'})`}} className="navLogoImage"
                 />
             </a>
             <div id="navMenu">

@@ -1,12 +1,22 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ReactCardFlip from "react-card-flip";
 import { MdOutlineWatchLater } from "react-icons/md";
+import { verSalas } from "../helpers/apiCall";
 
 export const S4Card2 = ({x, y, opacity}) => {
 
     const [isFlipped, setIsFlipped] = useState(false);
+        const [valorSala, setValorSala] = useState(0);
+        useEffect(() => {
+            verSalas()
+                .then(data => {
+                console.log("Datos recibidos:", data.data[0]);
+                setValorSala(Number(data.data[0].precio_combo));
+                })
+                .catch(err => console.error("Error al obtener salas:", err));
+        }, []);
 
     return (
         <motion.article style={{x, y, opacity}} onMouseEnter={() => setIsFlipped(!isFlipped)} onMouseLeave={() => setIsFlipped(!isFlipped)} className="s4Card">
@@ -28,7 +38,7 @@ export const S4Card2 = ({x, y, opacity}) => {
                             <br />
                            Lunes a Sábado
                         </p>
-                        <p>Precio: <span>$500.000</span></p>
+                        <p>Precio: <span>${(valorSala*4).toLocaleString("es-ES")}</span></p>
                     </div>
 
                     <a href="#turneraContainer">Reservar</a>

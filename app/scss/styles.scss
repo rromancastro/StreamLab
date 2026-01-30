@@ -6,6 +6,7 @@
 @use './components/turnera';
 @use './components/s4Cards';
 @use './components/textUp';
+@use './components/whatsapp';
 
 @use './sections/firstSection';
 @use './sections/secondSection';
@@ -18,6 +19,7 @@
 @use './sections/eighthSection';
 @use './sections/ninthSection';
 @use './sections/privacyPolicy';
+@use './sections/checkoutSection';
 
 
 
@@ -31,7 +33,7 @@
     src: url('/fonts/Moderniz.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
 }
 
 //INTER

@@ -157,7 +157,8 @@
             font-size: 16px;
             color: #8C8C8C;
             border-radius: 50%;
-            background-color: transparent;
+            opacity: 1  !important;
+            background-color: transparent !important;
             width: 50px;
             height: 50px;
             transition: none;
@@ -173,6 +174,12 @@
         .react-calendar__month-view__days__day--neighboringMonth {
             opacity: 0;
         }
+        //dias pasados
+        .rc-past-day {
+            background-color: transparent !important;
+            pointer-events: none;
+        }
+
         //nav personalizado
         .calendarNav {
             display: flex;
@@ -603,7 +610,7 @@
     #turneraContainer {
         width: 358px;
         height: 370px;
-        top: 550;
+        top: 510;
         gap: 16px;
         padding: 16px;
     }
@@ -615,7 +622,8 @@
         line-height: 28px;
     }
     .calendarContainer {
-        top: 39px;
+        top: 38px;
+        right: -30px;
     }
     .selectersContainer {
         gap: 16px;
@@ -634,7 +642,7 @@
     }
     .turnosContainer {
         top: 95px;
-
+        right: -25px;
     }
     .buttonReservar {
         height: 40px;
@@ -751,6 +759,12 @@
         }
         .fechaContainer {
             margin-bottom: 0px;
+        }
+        .calendarContainer {
+            top: 69px;
+        }
+        .turnosContainer {
+            top: 114px;
         }
     }
     .turneraStep3FechaTurnosContainer {

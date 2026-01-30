@@ -175,20 +175,10 @@ nav {
 #headerImage {
   position: absolute;
   object-fit: contain;
-  top: 80px;
-  height: 820px;
-  width: 780px;
-  mix-blend-mode: darken;
+  top: -50px;
+  height: 920px;
+  width: 980px;
   z-index: 100;
-}
-
-#headerImage2 {
-  position: absolute;
-  object-fit: contain;
-  top: 80px;
-  height: 820px;
-  width: 780px;
-  z-index: 50;
 }
 
 @media (max-width: 862px) {
@@ -197,8 +187,8 @@ nav {
   }
   #headerImage2, #headerImage {
     height: auto;
-    width: 430px;
-    margin-top: 40px;
+    width: 410px;
+    margin-top: 200px;
     overflow-x: hidden;
   }
 }
@@ -359,7 +349,8 @@ nav {
   font-size: 16px;
   color: #8C8C8C;
   border-radius: 50%;
-  background-color: transparent;
+  opacity: 1 !important;
+  background-color: transparent !important;
   width: 50px;
   height: 50px;
   transition: none;
@@ -372,6 +363,10 @@ nav {
 }
 .calendarContainer .react-calendar__month-view__days__day--neighboringMonth {
   opacity: 0;
+}
+.calendarContainer .rc-past-day {
+  background-color: transparent !important;
+  pointer-events: none;
 }
 .calendarContainer .calendarNav {
   display: flex;
@@ -792,7 +787,7 @@ nav {
   #turneraContainer {
     width: 358px;
     height: 370px;
-    top: 550;
+    top: 510;
     gap: 16px;
     padding: 16px;
   }
@@ -804,7 +799,8 @@ nav {
     line-height: 28px;
   }
   .calendarContainer {
-    top: 39px;
+    top: 38px;
+    right: -30px;
   }
   .selectersContainer {
     gap: 16px;
@@ -821,6 +817,7 @@ nav {
   }
   .turnosContainer {
     top: 95px;
+    right: -25px;
   }
   .buttonReservar {
     height: 40px;
@@ -929,6 +926,12 @@ nav {
   }
   .selectersContainerMensual .fechaContainer {
     margin-bottom: 0px;
+  }
+  .selectersContainerMensual .calendarContainer {
+    top: 69px;
+  }
+  .selectersContainerMensual .turnosContainer {
+    top: 114px;
   }
   .turneraStep3FechaTurnosContainer {
     flex-direction: column;
@@ -1242,6 +1245,28 @@ nav {
   font-family: "Moderniz";
   transition: 0.5s ease-in-out;
   line-height: 1;
+}
+
+#whatsappContainer {
+  position: fixed;
+  background-color: green;
+  bottom: 24;
+  right: 24;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 999;
+}
+
+#whatsappContainerIcon {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
 }
 
 #firstSection {
@@ -2248,12 +2273,49 @@ nav {
     padding: 16px;
   }
 }
+.checkOutSection {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkOutSection div {
+  width: 85%;
+  height: 60%;
+  border-radius: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/checkout.webp");
+  background-size: cover;
+  background-position: center;
+}
+.checkOutSection div p {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  width: 50%;
+  text-wrap: initial;
+  color: #ffffff;
+}
+
+@media (max-width: 862px) {
+  .checkOutSection div {
+    width: 95%;
+    height: 90%;
+  }
+  .checkOutSection div p {
+    font-size: 16px;
+  }
+}
 @font-face {
   font-family: "Moderniz";
   src: url("/fonts/Moderniz.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: "Inter";

@@ -22,7 +22,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
     const [externalReference, setExternalReference] = useState('');
 
     useEffect(() => {
-        getAllReservas().then(data => setReservas(data.data));
+        getAllReservas().then(data => setReservas(data.data.filter(reserva => reserva.estado !== 'pendiente')));
     }, []);
 
     useEffect(() => {
@@ -64,33 +64,100 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
     ];
 
     const horarios = [
-        "10-12 hs", "12-14 hs", "14-16 hs",
-        "16-18 hs", "18-20 hs", "20-22 hs",
-        "22-00 hs",
+        "09:00-11:00",
+        "11:30-13:30",
+        "14:00-16:00",
+        "16:30-18:30",
+        "19:00-21:00",
     ];
     // Costo final del paquete mensual (4 sesiones) segun el precio que expone la sala.
     const totalCombo = precioCombo * 4;
+    
 
-    // actualizar horarios reservados
+// ...existing code...
     useEffect(() => {
-        const newHorarios = fechaSeleccionada.map(fecha => {
-            const fechaISO = fecha.toISOString().slice(0, 10);
-            if (diasReservados.includes(fechaISO)) {
-                const dia = reservas.filter(r => r.fecha_inicio.slice(0, 10) === fechaISO);
-                return dia.map(d => d.fecha_inicio.slice(11, 13));
+        const MAX_DAYS = 30;
+        let attempts = 0;
+
+        const slotAvailableOnDate = (fecha, slot) => {
+            const fechaISO = fecha.toISOString().slice(0,10);
+            const [startStr, endStr] = slot.split('-'); // "11:30","13:30"
+            // si es hoy y el inicio ya pasó, no está disponible
+            const now = new Date();
+            if (fechaISO === now.toISOString().slice(0,10)) {
+                const nowHHMM = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+                if (startStr <= nowHHMM) return false;
             }
-            return [];
+            // comprobar solapamientos con reservas del día
+            const reservasDelDia = reservas.filter(r => r.fecha_inicio.slice(0,10) === fechaISO);
+            const startDT = new Date(`${fechaISO}T${startStr}:00`);
+            const endDT = new Date(`${fechaISO}T${endStr}:00`);
+            for (const r of reservasDelDia) {
+                const rStart = new Date(r.fecha_inicio.replace(' ', 'T'));
+                const rEnd = r.fecha_fin ? new Date(r.fecha_fin.replace(' ', 'T')) : new Date(rStart.getTime() + 60*60*1000);
+                if (rStart < endDT && rEnd > startDT) return false;
+            }
+            return true;
+        };
+
+        // Empezamos con la fecha[0] actual (puede haber sido modificada por el usuario)
+        let base = new Date(fechaSeleccionada[0]);
+        let baseChanged = false;
+
+        // Si el primer día NO tiene ningún slot disponible, avanzamos solo el primer día hasta MAX_DAYS
+        let firstHasSlot = false;
+        attempts = 0;
+        while (attempts < MAX_DAYS && !firstHasSlot) {
+            for (const h of horarios) {
+                if (slotAvailableOnDate(base, h)) { firstHasSlot = true; break; }
+            }
+            if (!firstHasSlot) {
+                base.setDate(base.getDate() + 1);
+                baseChanged = true;
+            }
+            attempts++;
+        }
+
+        // Si avanzamos base, construimos las 4 fechas relativas a la nueva base.
+        // Si no avanzamos, respetamos las fechas que el usuario haya seleccionado (fechaSeleccionada).
+        const candidateFechas = baseChanged
+            ? [
+                new Date(base),
+                (() => { const d = new Date(base); d.setDate(d.getDate() + 7); return d; })(),
+                (() => { const d = new Date(base); d.setDate(d.getDate() + 14); return d; })(),
+                (() => { const d = new Date(base); d.setDate(d.getDate() + 21); return d; })()
+              ]
+            : [
+                new Date(fechaSeleccionada[0]),
+                new Date(fechaSeleccionada[1]),
+                new Date(fechaSeleccionada[2]),
+                new Date(fechaSeleccionada[3])
+              ];
+
+        // calcular horariosReservados para cada fecha (HH)
+        const newHorarios = candidateFechas.map(fecha => {
+            const fechaISO = fecha.toISOString().slice(0,10);
+            const dia = reservas.filter(r => r.fecha_inicio.slice(0,10) === fechaISO);
+            return dia.map(d => d.fecha_inicio.slice(11,13).padStart(2,'0'));
         });
         setHorariosReservados(newHorarios);
 
-        // primer horario disponible
-        const nuevosHorariosSeleccionados = newHorarios.map((horasOcupadas) => {
-            const index = horarios.findIndex(h => !horasOcupadas.includes(h.slice(0, 2)));
-            return index !== -1 ? index + 1 : null;
+        // para cada semana, seleccionar primer horario disponible (no ocupado, no pasado)
+        const nuevosHorariosSeleccionados = candidateFechas.map((fecha) => {
+            for (let i = 0; i < horarios.length; i++) {
+                const h = horarios[i];
+                if (slotAvailableOnDate(fecha, h)) return i + 1;
+            }
+            return null;
         });
         setHorarioSeleccionado(nuevosHorariosSeleccionados);
 
+        // si cambiamos la base, actualizamos las fechas en el estado (solo la primera y sus 3 siguientes)
+        if (baseChanged) {
+            setFechaSeleccionada(candidateFechas);
+        }
     }, [fechaSeleccionada, reservas, diasReservados]);
+// ...existing code...
 
     //controlar calendario
     const prevMonth = () => {
@@ -215,21 +282,23 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                     throw new Error("Selecciona un horario disponible para las cuatro semanas.");
                 }
 
-                const horarioActual = horarios[horarioSeleccionado[index] - 1];
+                  const horarioActual = horarios[horarioSeleccionado[index] - 1];
                 const fechaISO = fecha.toISOString().slice(0, 10);
-                const horaInicio = horarioActual?.slice(0, 2);
-                const horaFin = horarioActual?.slice(3, 5);
+                const [start, end] = horarioActual.split('-');
+                const startHour = start.split(':')[0];
+                const endHour = end.split(':')[0];
+
 
                 if (!horaInicio || !horaFin) {
                     throw new Error("No pudimos determinar el horario seleccionado.");
                 }
 
                 return {
-                    fecha_inicio: `${fechaISO} ${horaInicio}:00:00`,
-                    fecha_fin: `${fechaISO} ${horaFin}:00:00`,
-                    titulo: 'Sesion de Gaming',
+                    fecha_inicio: `${fechaISO} ${startHour}:00:00`,
+                    fecha_fin: `${fechaISO} ${endHour}:00:00`,
+                    titulo: 'Sesion de Streaming',
                     descripcion: 'Stream de videojuegos',
-                    tipo_stream: 'gaming',
+                    tipo_stream: 'streaming',
                     observaciones: 'ninguna',
                     estado: 'pendiente',
                     precio_total: precioCombo
@@ -241,9 +310,9 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 sala_id: 1,
                 cliente_id: 1,
                 email: userEmail,
-                titulo: 'Sesion de Gaming',
+                titulo: 'Sesion de Streaming',
                 descripcion: 'Stream de videojuegos',
-                tipo_stream: 'gaming',
+                tipo_stream: 'streaming',
                 observaciones: 'Combo mensual',
                 estado: 'pendiente',
                 precio_por_turno: precioCombo,
@@ -323,9 +392,6 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                         },
                         paymentMethods: {
                             mercadoPago: "all",
-                            creditCard: "all",
-                            debitCard: "all",
-                            maxInstallments: 1
                         },
                     },
                     callbacks: {
@@ -355,7 +421,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                             reject(new Error(response?.message ?? 'Pago rechazado'));
                                             return;
                                         }
-                                        setTurneraStep(6);
+                                        setTurneraStep(1);
                                         resolve();
                                     })
                                     .catch((error) => {
@@ -467,27 +533,28 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                                     <IoTriangleSharp onClick={nextMonth} className="calendarRowsIcon" style={{ rotate: '90deg' }} size={35} />
                                                 </div>
                                                 <Calendar
-                                                onChange={(date) => {
-                                                    if (i !== 0) {
-                                                        const nuevaSemana = obtenerSemana(date);
+                                                    onChange={(date) => {
+                                                        if (i !== 0) {
+                                                            const nuevaSemana = obtenerSemana(date);
 
-                                                        const hayConflicto = fechaSeleccionada.some((f, idx) => {
-                                                            if (idx === i) return false;
-                                                            return obtenerSemana(f) === nuevaSemana;
-                                                        });
+                                                            const hayConflicto = fechaSeleccionada.some((f, idx) => {
+                                                                if (idx === i) return false;
+                                                                return obtenerSemana(f) === nuevaSemana;
+                                                            });
 
-                                                        if (hayConflicto) {
-                                                            setShowErrorToast(true)
-                                                            return;
+                                                            if (hayConflicto) {
+                                                                setShowErrorToast(true)
+                                                                return;
+                                                            }
                                                         }
-                                                    }
-                                                    const nuevasFechas = [...fechaSeleccionada];
-                                                    nuevasFechas[i] = date;
-                                                    setFechaSeleccionada(nuevasFechas);
+                                                        const nuevasFechas = [...fechaSeleccionada];
+                                                        nuevasFechas[i] = date;
+                                                        setFechaSeleccionada(nuevasFechas);
                                                     }}
 
                                                     value={fechaSeleccionada[i]}
                                                     showNavigation={false}
+                                                    minDate={new Date()}
                                                     activeStartDate={currentMonth}
                                                     tileDisabled={({ date: currentDate, view }) => {
                                                         if (view === "month") {
@@ -495,36 +562,60 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                                         }
                                                         return false;
                                                     }}
+                                                    tileClassName={({ date: currentDate, view }) => {
+                                                        if (view !== "month") return null;
+                                                        const today = new Date();
+                                                        today.setHours(0,0,0,0);
+                                                        const dateISO = currentDate.toISOString().slice(0,10);
+                                                        if (currentDate.getMonth() !== currentMonth.getMonth()) return 'rc-other-month';
+                                                        if (currentDate < today) return 'rc-past-day';
+                                                        if (diasReservados.includes(dateISO)) return 'rc-reserved-day';
+                                                        if (dateISO === fechaSeleccionada[i].toISOString().slice(0,10)) return 'rc-selected-day';
+                                                        if (dateISO === today.toISOString().slice(0,10)) return 'rc-today-day';
+                                                        return null;
+                                                    }}
                                                 />
                                             </div>
                                         }
 
                                         {/* Horarios desplegables */}
-                                        {showHorarios[i] &&
-                                            <div ref={horariosRef} className="turnosContainer">
-                                                {horarios.map((horario, index) => {
-                                                    const ocupado = horariosReservados[i].includes(horario.slice(0, 2));
-                                                    const seleccionado = horarioSeleccionado[i] === index + 1;
+{showHorarios[i] &&
+    <div ref={horariosRef} className="turnosContainer">
+        {horarios.map((horario, index) => {
+            const horaKey = horario.split(':')[0]; // "09", "11", etc.
+            const ocupado = horariosReservados[i].includes(horaKey);
+            const seleccionado = horarioSeleccionado[i] === index + 1;
+            
+            // Verificar si el horario es anterior al actual
+            const ahora = new Date();
+            const fechaSeleccionadaISO = fechaSeleccionada[i].toISOString().slice(0, 10);
+            const hoyISO = ahora.toISOString().slice(0, 10);
+            const horaActual = ahora.getHours().toString().padStart(2, '0');
+            
+            const esHoy = fechaSeleccionadaISO === hoyISO;
+            const horaHorario = horario.slice(0, 2);
+            const esPasado = esHoy && horaHorario < horaActual + 1;
+            
+            const deshabilitado = ocupado || esPasado;
 
-                                                    return (
-                                                        <p key={index}
-                                                            style={{
-                                                                color: ocupado ? 'rgba(90, 24, 154, 1)' :
-                                                                    seleccionado ? '#ffffff' : '#8C8C8C',
-                                                                cursor: !ocupado ? 'pointer' : 'default'
-                                                            }}
-                                                            onClick={() => !ocupado ? setHorarioSeleccionado(prev => {
-                                                                const nuevo = [...prev];
-                                                                nuevo[i] = index + 1;
-                                                                return nuevo;
-                                                            }) : null}
-                                                        >
-                                                            {horario}
-                                                        </p>
-                                                    )
-                                                })}
-                                            </div>
-                                        }
+            return (
+                <p key={index}
+                    style={{
+                        color: deshabilitado ? '#5A189A' : seleccionado ? '#ffffff' : '#8C8C8C',
+                        cursor: !deshabilitado ? 'pointer' : 'default',
+                    }}
+                    onClick={() => !deshabilitado ? setHorarioSeleccionado(prev => {
+                        const nuevo = [...prev];
+                        nuevo[i] = index + 1;
+                        return nuevo;
+                    }) : null}
+                >
+                    {horario}
+                </p>
+            )
+        })}
+    </div>
+}
                                     </div>
                                 )
                             })}
@@ -616,7 +707,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                     DE PAGO
                 </h2>
                 <div className="turneraStep4MetodoPago">
-                    <Image src="/turnera/mercadoPagoLogo.png" alt="mercado pago" className="turneraStep4LogoMp" width={24} height={16} />
+                    <img src="/turnera/mercadoPagoLogo.png" alt="mercado pago" className="turneraStep4LogoMp" width={24} height={16} />
                     <p>Mercado Pago</p>
                     <div className="turneraStep4SelectContainer">
                         <div className="turneraStep4SelectFill"></div>
@@ -670,34 +761,6 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 <div className="turneraStep2Buttons">
                     <button onClick={() => { clearPagoMensualState(); setTurneraStep(4); }}>Volver</button>
                 </div>
-            </>}
-
-            {/* STEP 6 */}
-            {turneraStep === 6 && <>
-                <h2 className="turneraStep2Title">
-                    COMBO<br />
-                    RESERVADO
-                </h2>
-                <div className="turneraStep3FechaTurnosContainer">
-                    <p className="turneraStep3FechaTurnoLabel">COMBO<br />MENSUAL</p>
-                    <div className="turneraStep3FechaTurnos">
-                        {fechaSeleccionada.map((fecha, i) => (
-                            <div key={i} className="turneraStep3FechaTurno">
-                                <div className="turneraStep3FechaContainer">
-                                    <p>Mes <span>{meses[fecha.getMonth()]}</span></p>
-                                    <p>Fecha <span>{fecha.getDate()}</span></p>
-                                    <p>Turno <span>{horarios[horarioSeleccionado[i] - 1]}</span></p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="turneraStep3UserData">
-                    <p>eMail <span>{userEmail}</span></p>
-                    <p>Nombre <span>{userName}</span></p>
-                </div>
-                <p className="step5Confirmacion">Tu combo mensual fue reservado exitosamente. Te enviamos un correo con el detalle de las cuatro sesiones.</p>
-                <button className="setp5Button" onClick={() => resetMensualFlow()}>Cerrar</button>
             </>}
         </div>
     )

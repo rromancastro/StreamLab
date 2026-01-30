@@ -21,7 +21,7 @@ export const ThirdSection = () => {
 
     useEffect(() => {
         if (inView) {
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 16; i++) {
                 setTimeout(() => {
                     setAnimationStep(i + 1);
                 }, 300 * i);
@@ -153,12 +153,17 @@ export const ThirdSection = () => {
             >
                 <div style={{ height: drops.drop3 ? '34px' : '50px' }} className="animationTextHorizontal">
                     <motion.p style={{ left: animationStep >= 9 ? 0 : '-450px', fontSize: drops.drop3 ? '24px' : '40px' }}>
-                        TURNOS
+                        ENTREGA
                     </motion.p>
                 </div>
                 <div style={{ height: drops.drop3 ? '34px' : '50px' }} className="animationTextHorizontal">
                     <motion.p style={{ left: animationStep >= 10 ? 0 : '-450px', fontSize: drops.drop3 ? '24px' : '40px' }}>
-                        DE 2 HORAS
+                        DEL MATERIAL
+                    </motion.p>
+                </div>
+                <div style={{ height: drops.drop3 ? '34px' : '50px' }} className="animationTextHorizontal">
+                    <motion.p style={{ left: animationStep >= 11 ? 0 : '-450px', fontSize: drops.drop3 ? '24px' : '40px' }}>
+                        EN EL DÍA
                     </motion.p>
                 </div>
                 <p style={{
@@ -169,9 +174,9 @@ export const ThirdSection = () => {
                     fontSize: '16px',
                     fontWeight: '300'
                 }}>
-                    Elegí el día que quieras, reservá y durante dos horas vas a poder dedicarte 100% a tu contenido.
+                    Ya sea que transmitas en vivo o grabes en diferido te enviamos el material en máxima calidad ese mismo día para que ya lo tengas disponible para vos!
                 </p>
-                <p className="dropButton" style={{ opacity: animationStep >= 11 ? 1 : 0 }}>
+                <p className="dropButton" style={{ opacity: animationStep >= 12 ? 1 : 0 }}>
                     Ver más <MdPlayArrow
                         style={{ rotate: drops.drop3 ? '-90deg' : '90deg' }}
                         className="dropButtonIcon"
@@ -187,12 +192,12 @@ export const ThirdSection = () => {
                 onMouseLeave={() => handleMouseLeave('drop4')}
             >
                 <div style={{ height: drops.drop4 ? '34px' : '50px' }} className="animationTextHorizontal">
-                    <motion.p style={{ right: animationStep >= 12 ? 0 : '-450px', fontSize: drops.drop4 ? '24px' : '40px' }}>
+                    <motion.p style={{ right: animationStep >= 13 ? 0 : '-450px', fontSize: drops.drop4 ? '24px' : '40px' }}>
                         UBICACIÓN
                     </motion.p>
                 </div>
                 <div style={{ height: drops.drop4 ? '34px' : '50px' }} className="animationTextHorizontal">
-                    <motion.p style={{ right: animationStep >= 13 ? 0 : '-450px', fontSize: drops.drop4 ? '24px' : '40px' }}>
+                    <motion.p style={{ right: animationStep >= 14 ? 0 : '-450px', fontSize: drops.drop4 ? '24px' : '40px' }}>
                         ACCESIBLE
                     </motion.p>
                 </div>
@@ -218,7 +223,7 @@ export const ThirdSection = () => {
                         <LuMapPin height={22} width={18} />ABRIR EN MAPS
                     </a>
                 </p>
-                <p className="dropButton" style={{ opacity: animationStep >= 14 ? 1 : 0 }}>
+                <p className="dropButton" style={{ opacity: animationStep >= 15 ? 1 : 0 }}>
                     Ver más <MdPlayArrow
                         style={{ rotate: drops.drop4 ? '-90deg' : '90deg' }}
                         className="dropButtonIcon"

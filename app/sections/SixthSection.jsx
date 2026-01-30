@@ -48,7 +48,7 @@ export const SixthSection = () => {
             <p id="sixthSectionFinalText">
                 <span style={{opacity: animationStep >= 9 ? 1 : 0 }}>
                     <a target="_blank" href="https://www.linkedin.com/in/mariano-eugenio-simonetta-6768204b/">Mariano Simonetta<FaLinkedin /></a>
-                    Profesional del mundo audiovisual con más de quince años de experiencia en tecnología de medios, producción y streaming. Desde SVC (Sistemas de Video Comunicación) impulso la conexión entre innovación tecnológica y creatividad, acompañando a creadores, marcas y productoras a profesionalizar sus contenidos.
+                    Cofundador y Director de Stream Lab. Profesional del mundo audiovisual con más de quince años de experiencia en tecnología de medios, producción y streaming. Desde SVC (Sistemas de Video Comunicación) impulso la conexión entre innovación tecnológica y creatividad, acompañando a creadores, marcas y productoras a profesionalizar sus contenidos.
                     Apasionado por el futuro de la comunicación, lidero proyectos que integran storytelling, herramientas de última generación y una comunidad de creadores que piensan en grande.
                 </span>
                 <span style={{opacity: animationStep >= 9 ? 1 : 0 }}>

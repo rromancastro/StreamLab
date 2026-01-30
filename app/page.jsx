@@ -1,4 +1,4 @@
-import { NavBar, NavBarMobile } from "./components";
+import { NavBar, NavBarMobile, Whatsapp } from "./components";
 import { EighthSection, FifthSection, FirstSection, FourthSection, SecondSection, SeventhSection, SixthSection, ThirdSection, ThirdSectionMobile } from "./sections";
 import { NinthSection } from "./sections/NinthSection";
 
@@ -12,11 +12,12 @@ export default function Home() {
         <SecondSection />
         <ThirdSection />
         <ThirdSectionMobile />
-        <FourthSection />
         <FifthSection />
+        <FourthSection />
         <SixthSection />
         <SeventhSection />
         <EighthSection />
         <NinthSection />
+        <Whatsapp />
     </>)
 }
