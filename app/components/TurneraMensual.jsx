@@ -70,6 +70,15 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         "16:30-18:30",
         "19:00-21:00",
     ];
+
+    
+    const horas = Array.from({ length: 13 }, (_, i) => i + 9);
+    const [bloques, setBloques] = useState([
+        { inicio: null, fin: null, paso: "inicio" },
+        { inicio: null, fin: null, paso: "inicio" },
+        { inicio: null, fin: null, paso: "inicio" },
+        { inicio: null, fin: null, paso: "inicio" },
+    ]);
     // Costo final del paquete mensual (4 sesiones) segun el precio que expone la sala.
     const totalCombo = precioCombo * 4;
     

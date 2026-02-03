@@ -5,9 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
 import { crearPago, getAllReservas, subirReserva, verSalas } from "../helpers/apiCall";
-import Image from "next/image";
 import { useAppContext } from "../context/AppContext";
-import { set } from "date-fns";
 
 export const TurneraSimple = ({setTurnera}) => {
 
@@ -17,6 +15,24 @@ export const TurneraSimple = ({setTurnera}) => {
     const [reservas, setReservas] = useState([]);
     const [diasReservados, setDiasReservados] = useState([]);
     const [horariosReservados, setHorariosReservados] = useState([]);
+    const puedeSerHoraInicio = (hora) => {
+        const siguienteHora = hora + 1;
+        if (!horarios.includes(siguienteHora)) return false;
+
+        if (
+            horariosReservados.includes(hora) ||
+            horariosReservados.includes(siguienteHora)
+        ) {
+            return false;
+        }
+
+        if (generaSolapeConReservas(fechaSeleccionada, hora, hora + 2)) {
+            return false;
+        }
+
+        return true;
+        };
+
 
     // valor de la sala
     const [valorSala, setValorSala] = useState(0);
@@ -36,6 +52,7 @@ export const TurneraSimple = ({setTurnera}) => {
     useEffect(() => {
         getAllReservas().then(data => setReservas(data.data.filter(reserva => reserva.estado !== 'pendiente')));
     }, []);
+    
 
     useEffect(() => {
         setDiasReservados(reservas.map(reserva => reserva.fecha_inicio.slice(0, 10)));
@@ -46,9 +63,51 @@ export const TurneraSimple = ({setTurnera}) => {
     const diaSeleccionado = fechaSeleccionada.getDate();
     const mesSeleccionado = fechaSeleccionada.getMonth();
 
+    const [isHorarioDisponiblee, setIsHorarioDisponiblee] = useState(false);
+
+    const [seleccionPaso, setSeleccionPaso] = useState("inicio");
+
     const [showCalendar, setShowCalendar] = useState(false);
     const [showHorarios, setShowHorarios] = useState(false);
-    const [horarioSeleccionado, setHorarioSeleccionado] = useState(1);
+
+    
+    const [horaInicio, setHoraInicio] = useState(9);
+    const [horaFin, setHoraFin] = useState(11);
+
+    const getPrimeraHoraDisponible = (fecha) => {
+        const ahora = new Date();
+        const esHoy = fecha.toDateString() === ahora.toDateString();
+
+        for (let h of horarios) {
+            // hora pasada
+            if (esHoy && h <= ahora.getHours()) continue;
+
+            // necesita mínimo 2hs
+            const finMinimo = h + 2;
+            if (!horarios.includes(finMinimo - 1)) continue;
+
+            // no pisa reservas
+            if (generaSolapeConReservas(fecha, h, finMinimo)) continue;
+
+            return h;
+        }
+
+        return null; // no hay horarios disponibles
+    };
+
+    const total = (horaFin - horaInicio) * valorSala;
+
+    const handleHoraClick = (hora) => {
+        if (seleccionPaso === "inicio") {
+            setHoraInicio(hora);
+            setHoraFin(hora + 2); // mínimo 2hs
+            setSeleccionPaso("fin");
+        } else {
+            if (hora <= horaInicio) return; // evita menos de 2hs
+            setHoraFin(hora + 1);
+            setSeleccionPaso("inicio");
+        }
+    };
 
     const meses = [
         "Enero",
@@ -64,100 +123,93 @@ export const TurneraSimple = ({setTurnera}) => {
         "Noviembre",
         "Diciembre"
     ]
+    useEffect(() => {
+  setHoraInicio(9);
+  setHoraFin(11);
+  setSeleccionPaso("inicio");
+}, [fechaSeleccionada]);
+
+const generaSolapeConReservas = (fecha, inicio, fin) => {
+  if (!fecha || fin <= inicio) return false;
+
+  const fechaISO = fecha.toISOString().slice(0, 10);
+  const startDT = new Date(`${fechaISO}T${inicio.toString().padStart(2,'0')}:00:00`);
+  const endDT   = new Date(`${fechaISO}T${fin.toString().padStart(2,'0')}:00:00`);
+
+  return reservas.some(r => {
+    const rStart = new Date(r.fecha_inicio.replace(' ', 'T'));
+    const rEnd   = new Date(r.fecha_fin.replace(' ', 'T'));
+    return rStart < endDT && rEnd > startDT;
+  });
+};
 
 useEffect(() => {
-        const fechaISO = fechaSeleccionada.toISOString().slice(0, 10);
-        if (diasReservados.includes(fechaISO)) {
-            const diaSeleccionado = reservas.filter(reserva => reserva.fecha_inicio.slice(0, 10) === fechaISO);
-            const ocupadas = diaSeleccionado
-                .map(dia => dia.fecha_inicio.slice(11, 13).padStart(2, '0'))
-                .filter(Boolean);
-            setHorariosReservados(ocupadas);
-            console.log("horarios reservados: ", ocupadas);
-        } else {
-            // limpiar cuando no haya reservas en esa fecha
-            setHorariosReservados([]);
-            console.log('no reservado');
-        }
-    }, [fechaSeleccionada, reservas, diasReservados]);
+  const primera = getPrimeraHoraDisponible(fechaSeleccionada);
+
+  if (primera !== null) {
+    setHoraInicio(primera);
+    setHoraFin(primera + 2);
+    setSeleccionPaso("inicio");
+  } else {
+    // opcional: bloquear todo el día
+    setHoraInicio(null);
+    setHoraFin(null);
+  }
+}, [fechaSeleccionada, reservas]);
 
 
-    const horarios = [
-        "09:00-11:00",
-        "11:30-13:30",
-        "14:00-16:00",
-        "16:30-18:30",
-        "19:00-21:00",
-    ];
+useEffect(() => {
+  const fechaISO = fechaSeleccionada.toISOString().slice(0, 10);
 
+  const reservasDelDia = reservas.filter(
+    r => r.fecha_inicio.slice(0, 10) === fechaISO
+  );
 
-    const [isHorarioDisponiblee, setIsHorarioDisponiblee] = useState(true);
-    const isHorarioDisponible = (fecha, horarioIndex, reservasList = reservas, horariosList = horarios) => {
-        if (!fecha || !horarioIndex || horarioIndex < 1 || horarioIndex > horariosList.length) {
-            return { available: false, reason: 'invalid' };
-        }
+  const ocupadas = [];
+
+  reservasDelDia.forEach(r => {
+    const start = new Date(r.fecha_inicio.replace(' ', 'T')).getHours();
+    const end   = new Date(r.fecha_fin.replace(' ', 'T')).getHours();
+
+    for (let h = start; h < end; h++) {
+      ocupadas.push(h);
+    }
+  });
+
+  setHorariosReservados(ocupadas);
+}, [fechaSeleccionada, reservas]);
+
+    const horarios = [9,10,11,12,13,14,15,16,17,18,19];
+
+    const isRangoDisponible = (fecha, inicio, fin) => {
+        if (!fecha || fin <= inicio) return false;
+        if (fin - inicio < 2) return false;
 
         const fechaISO = fecha.toISOString().slice(0, 10);
-        const horarioStr = horariosList[horarioIndex - 1];
-        const [startStr, endStr] = horarioStr.split('-'); 
+        const startDT = new Date(`${fechaISO}T${inicio.toString().padStart(2,'0')}:00:00`);
+        const endDT   = new Date(`${fechaISO}T${fin.toString().padStart(2,'0')}:00:00`);
 
         const ahora = new Date();
-        const hoyISO = ahora.toISOString().slice(0, 10);
-        const esHoy = fechaISO === hoyISO;
-        const horaActualCompleta = `${ahora.getHours().toString().padStart(2,'0')}:${ahora.getMinutes().toString().padStart(2,'0')}`;
+        if (startDT < ahora) return false;
 
-        if (esHoy && startStr <= horaActualCompleta) {
-            return { available: false, reason: 'pasado' };
-        }
-
-        const startDT = new Date(`${fechaISO}T${startStr}:00`);
-        const endDT = new Date(`${fechaISO}T${endStr}:00`);
-
-        const solapa = reservasList.some(r => {
+        return !reservas.some(r => {
             const rStart = new Date(r.fecha_inicio.replace(' ', 'T'));
-            const rEnd = r.fecha_fin ? new Date(r.fecha_fin.replace(' ', 'T')) : new Date(rStart.getTime() + 60*60*1000);
-
-            if (rStart.toISOString().slice(0,10) !== fechaISO) return false;
-            return rStart < endDT && rEnd > startDT;
+            const rEnd   = new Date(r.fecha_fin.replace(' ', 'T'));
+            return rStart < endDT && rEnd > startDT; // solapamiento real
         });
-
-        if (solapa) return setIsHorarioDisponiblee(false), { available: false, reason: 'ocupado' };
-        return setIsHorarioDisponiblee(true), { available: true, reason: 'disponible'};
     };
 
     useEffect(() => {
-        const { available } = isHorarioDisponible(fechaSeleccionada, horarioSeleccionado, reservas, horarios);
-        setIsHorarioDisponiblee(available);
-    }, [fechaSeleccionada, horarioSeleccionado, reservas]);
+        setIsHorarioDisponiblee(
+            isRangoDisponible(fechaSeleccionada, horaInicio, horaFin)
+        );
+    }, [fechaSeleccionada, horaInicio, horaFin, reservas]);
 
-    //primer Horario
-
-useEffect(() => {
-        const fechaISO = fechaSeleccionada.toISOString().slice(0, 10);
-        const ahora = new Date();
-        const hoyISO = ahora.toISOString().slice(0, 10);
-        const horaActualCompleta = `${ahora.getHours().toString().padStart(2, '0')}:${ahora.getMinutes().toString().padStart(2, '0')}`;
-        const esHoy = fechaISO === hoyISO;
-
-        // Buscar el primer horario disponible (no ocupado, no pasado)
-        const primerDisponible = horarios.findIndex((horario) => {
-            const horaKey = horario.slice(0, 2).padStart(2, '0');
-            const ocupado = horariosReservados.includes(horaKey);
-            const horaHorarioInicio = horario.slice(0, 5); // "09:00"
-            const esPasado = esHoy && horaHorarioInicio <= horaActualCompleta;
-            return !ocupado && !esPasado;
-        });
-
-        if (primerDisponible !== -1) {
-            setHorarioSeleccionado(primerDisponible + 1); // <-- CORREGIDO +1
-        } else {
-            // avanzar al siguiente día si todos los horarios están ocupados/pasados
-            const siguienteDia = new Date(fechaSeleccionada);
-            siguienteDia.setDate(siguienteDia.getDate() + 1);
-            setFechaSeleccionada(siguienteDia);
-            setHorarioSeleccionado(1);
-        }
-    }, [fechaSeleccionada, reservas, diasReservados, horariosReservados]);
+    useEffect(() => {
+    if (horaFin <= horaInicio || horaFin - horaInicio < 2) {
+        setHoraFin(horaInicio + 2);
+    }
+    }, [horaInicio]);
 
     //controlar calendario
     const prevMonth = () => {
@@ -356,22 +408,21 @@ useEffect(() => {
 
     //SUBIR RESERVA
     const handleSubmitReserva = async () => {
+        const fechaISO = fechaSeleccionada.toISOString().slice(0, 10);
         try {
-            const horarioSel = horarios[horarioSeleccionado - 1];
-            const [start, end] = horarioSel.split('-'); // start = "09:00", end = "11:00"
             const reserva = await subirReserva('/reservas', 'POST', {
             action: 'crear_reserva',
             sala_id: 1,
             cliente_id: 1,
             titulo: 'Sesión de Streaming',
             descripcion: 'Stream de videojuegos',
-            fecha_inicio: `${fechaSeleccionada.toISOString().slice(0, 10)} ${start}:00`,
-            fecha_fin: `${fechaSeleccionada.toISOString().slice(0, 10)} ${end}:00`,
+            fecha_inicio: `${fechaISO} ${horaInicio}:00:00`,
+            fecha_fin:    `${fechaISO} ${horaFin}:00:00`,
             tipo_stream: 'streaming',
             observaciones: 'ninguna',
             estado: 'pendiente',
             email: userEmail,
-            precio_total: valorSala,
+            precio_total: (horaFin - horaInicio) * valorSala,
             });
 
             if (reserva?.success && reserva.data?.reserva_id) {
@@ -404,12 +455,15 @@ useEffect(() => {
                         </div>
                     </div>
 
-                    <div className="fechaContainer">
-                        <p className="fechaContainerLabel">Turnos</p>
-                        <div className="seleccionarFechaContainer">
-                            <p>{horarios[horarioSeleccionado - 1]}</p>
-                            <IoTriangleSharp style={{rotate: showHorarios ? '0deg' : '180deg'}} onClick={()=>setShowHorarios(!showHorarios)} className="seleccionarFechaIcon" />
+                    <div className="turnossContainer">
+                        <p className="turnossContainerLabel">Turnos</p>
+                        <div>
+                            <p>Desde: <span>{horaInicio}hs</span></p>
                         </div>
+                        <div>
+                            <p>Hasta: <span>{horaFin}hs</span></p>
+                        </div>
+                        <IoTriangleSharp style={{rotate: showHorarios ? '0deg' : '180deg'}} onClick={()=>setShowHorarios(!showHorarios)} className="seleccionarFechaIcon" />
                     </div>
                 </div>
 
@@ -459,36 +513,65 @@ useEffect(() => {
 
 {
     showHorarios && <div ref={horariosRef} className="turnosContainer">
-        {
-            horarios.map((horario, index) => {
-                const horaKey = horario.split(':')[0];
-                const ocupado = horariosReservados.find(hr => hr === horaKey);
-                const seleccionado = horarios[horarioSeleccionado - 1] === horario;
-                
-                const ahora = new Date();
-                const fechaSeleccionadaISO = fechaSeleccionada.toISOString().slice(0, 10);
-                const hoyISO = ahora.toISOString().slice(0, 10);
-                const horaActualCompleta = `${ahora.getHours().toString().padStart(2, '0')}:${ahora.getMinutes().toString().padStart(2, '0')}`;
-                
-                const esHoy = fechaSeleccionadaISO === hoyISO;
-                const horaHorarioInicio = horario.slice(0, 5); // "09:00", "11:30", etc.
-                const esPasado = esHoy && horaHorarioInicio < horaActualCompleta;
-                
-                const deshabilitado = ocupado || esPasado;
-                
-                return <p
-                    key={index}
-                    style={{
-                        color: deshabilitado ? '#5A189A' : seleccionado ? '#ffffff' : '#8C8C8C',
-                        cursor: !deshabilitado ? 'pointer' : 'default',
-                    }}
-                    onClick={() => !deshabilitado ? setHorarioSeleccionado(index + 1) : null}
-                >
-                    {horario}
-                </p>
-            })
-        }
+        {<>
+        <p style={{alignSelf: 'flex-start'}}>Seleccioná el {seleccionPaso} de turno</p>
+            <div>
+                {horarios.map((h) => {
+                    const selected =
+                    horaInicio !== null &&
+                    h >= horaInicio &&
+                    h < horaFin;
+                    const ocupada = horariosReservados.includes(h);
+                    const generaSolape =
+                    seleccionPaso === "fin" &&
+                    generaSolapeConReservas(fechaSeleccionada, horaInicio, h);
+                    const inicioInvalido =
+                    seleccionPaso === "inicio" && !puedeSerHoraInicio(h);
+
+                    const ahora = new Date();
+
+                    const esHoy =
+                    fechaSeleccionada.toDateString() === ahora.toDateString();
+
+                    const horaPasada =
+                    esHoy && h <= ahora.getHours();
+
+                    return (
+                    <div
+                        key={h}
+                        onClick={() => !ocupada && !generaSolape && !horaPasada && !inicioInvalido && handleHoraClick(h)}
+                        style={{
+                        cursor:
+                            ocupada || generaSolape || horaPasada || inicioInvalido
+                                ? "not-allowed"
+                                : "pointer",
+
+                        backgroundColor: ocupada ? '#5A189A99' : selected ? "#5A189A" : "transparent",
+                        cursor: ocupada || generaSolape ? "not-allowed" : "pointer",
+                        borderRadius: horaInicio === h ? "8px 0 0 8px " : horaFin -1 === h ? "0px 8px 8px 0px " : null
+                        }}
+                    >
+                        <p
+                            style={{
+                            color: selected
+                            ? "#FFFFFF"
+                            : horaPasada
+                                ? "#555"
+                                : ocupada
+                                ? "#7B2CBF"
+                                : "#FFFFFF",}}
+                        >{h}</p>
+                    </div>
+                    );
+            })}
+  </div>
+                        <p id="p20hs">
+                            20
+                        </p>
+            <p>El tiempo mínimo por turno es de <span>2hs</span>, podés agregar más tiempo si necesitas. Las horas que agregues tiene un <span>10% de descuento.</span> </p>
+        </>}
     </div>
+    
 }
 
                 <div className="selectTipoTurno">
@@ -549,7 +632,7 @@ useEffect(() => {
                             <div className="turneraStep3FechaContainer">
                                 <p>Mes <span>{meses[mesSeleccionado]}</span></p>
                                 <p>Fecha <span>{diaSeleccionado}</span></p>
-                                <p>Turno <span>{horarios[horarioSeleccionado - 1]}</span></p>
+                                <p>Turno <span>2</span></p>
                             </div>
                         </div>
                         <div className="turneraStep3UserData">
@@ -557,7 +640,7 @@ useEffect(() => {
                             <p>Nombre <span>{userName}</span></p>
                         </div>
                     </div>
-                    <p className="turneraStep3Total">TOTAL: ${valorSala}</p>
+                    <p className="turneraStep3Total">TOTAL: ${total}</p>
                     <div className="turneraStep2Buttons">
                         <button onClick={() => setTurneraStep(2)}>Cancelar</button>
                         <button  onClick={() => setTurneraStep(4)}>Continuar</button>
@@ -598,14 +681,14 @@ useEffect(() => {
                         <div className="turneraStep3FechaContainer">
                             <p>Mes <span>{meses[mesSeleccionado]}</span></p>
                             <p>Fecha <span>{diaSeleccionado}</span></p>
-                            <p>Turno <span>{horarios[horarioSeleccionado - 1]}</span></p>
+                            <p>Turno <span>2</span></p>
                         </div>
                     </div>
                     <div className="turneraStep3UserData">
                         <p>eMail <span>{userEmail}</span></p>
                         <p>Nombre <span>{userName}</span></p>
                     </div>
-                    <p className="turneraStep3Total" style={{bottom: '105px'}}>TOTAL: ${valorSala}</p>
+                    <p className="turneraStep3Total" style={{bottom: '105px'}}>TOTAL: ${total}</p>
                     <div style={{ width: '100%', marginBottom: '-30px' }}>
                         {!isPaymentReady && !paymentError && (
                             <p style={{ textAlign: 'center', color: '#8C8C8C', position: 'absolute', bottom: '-40px' }}>Estamos cargando Mercado Pago...</p>
