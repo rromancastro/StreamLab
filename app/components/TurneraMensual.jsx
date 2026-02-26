@@ -5,7 +5,6 @@ import 'react-calendar/dist/Calendar.css';
 
 import { IoTriangleSharp } from "react-icons/io5";
 import { crearPago, getAllReservas, subirReserva, verSalas } from "../helpers/apiCall";
-import Image from "next/image";
 import { useAppContext } from "../context/AppContext";
 
 export const TurneraMensual = ({ setTurnera, isMobile}) => {
@@ -52,7 +51,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
     const [paymentError, setPaymentError] = useState('');
     const [preferenceId, setPreferenceId] = useState(null);
     const [isPreparingPayment, setIsPreparingPayment] = useState(false);
-    const MP_PUBLIC_KEY = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY ?? "TEST-73f12ddd-3882-4d6a-a34a-887fb09119f1";
+    const MP_PUBLIC_KEY = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY ?? "APP_USR-c14c2245-05ab-47af-8fb9-f0682ceaf3e9";
     const MP_SITE_ID = process.env.NEXT_PUBLIC_MP_SITE_ID ?? "MLA";
     const PAYMENT_BRICK_CONTAINER_ID = "paymentBrick_container_mensual";
     const HARDCODED_PREFERENCE_ID = "1111";
@@ -71,14 +70,81 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         "19:00-21:00",
     ];
 
-    
-    const horas = Array.from({ length: 13 }, (_, i) => i + 9);
+
+    const horas = Array.from({ length: 11 }, (_, i) => i + 9);
     const [bloques, setBloques] = useState([
         { inicio: null, fin: null, paso: "inicio" },
         { inicio: null, fin: null, paso: "inicio" },
         { inicio: null, fin: null, paso: "inicio" },
         { inicio: null, fin: null, paso: "inicio" },
     ]);
+
+    const horasOcupadas = (fecha) => {
+        const iso = fecha.toISOString().slice(0,10);
+        return reservas
+            .filter(r => r.fecha_inicio.slice(0,10) === iso)
+            .flatMap(r => {
+            const start = Number(r.fecha_inicio.slice(11,13));
+            const end = r.fecha_fin
+                ? Number(r.fecha_fin.slice(11,13))
+                : start + 1;
+            return Array.from({ length: end - start }, (_, i) => start + i);
+            });
+    };
+
+    const puedeSerInicio = (fecha, hora) => {
+        const ocupadas = horasOcupadas(fecha);
+        if (ocupadas.includes(hora)) return false;
+        if (ocupadas.includes(hora + 1)) return false;
+        if (!horas.includes(hora + 1)) return false;
+
+        const now = new Date();
+        if (fecha.toISOString().slice(0,10) === now.toISOString().slice(0,10)) {
+            if (hora <= now.getHours()) return false;
+        }
+
+        return true;
+    };
+
+    const primerInicioDisponible = (fecha) => {
+        for (const h of horas) {
+            if (puedeSerInicio(fecha, h)) {
+            return h;
+            }
+        }
+        return null;
+    };
+
+
+    const clickHora = (semana, hora) => {
+        setBloques(prev => {
+            const copy = [...prev];
+            const b = copy[semana];
+
+            if (b.paso === "inicio") {
+            if (!puedeSerInicio(fechaSeleccionada[semana], hora)) return prev;
+            copy[semana] = {
+                inicio: hora,
+                fin: hora + 2,
+                paso: "fin"
+            };
+            return copy;
+            }
+
+            if (hora <= b.inicio) return prev;
+
+            copy[semana] = {
+            ...b,
+            fin: hora + 1,
+            paso: "inicio"
+            };
+            return copy;
+        });
+    };
+
+
+
+
     // Costo final del paquete mensual (4 sesiones) segun el precio que expone la sala.
     const totalCombo = precioCombo * 4;
     
@@ -165,6 +231,23 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
         if (baseChanged) {
             setFechaSeleccionada(candidateFechas);
         }
+
+        setBloques(prev => {
+  return candidateFechas.map((fecha, i) => {
+    const inicio = primerInicioDisponible(fecha);
+
+    if (inicio === null) {
+      return { inicio: 8, fin: null, paso: "inicio" };
+    }
+
+    return {
+      inicio,
+      fin: inicio + 2,
+      paso: "inicio"
+    };
+  });
+});
+
     }, [fechaSeleccionada, reservas, diasReservados]);
 // ...existing code...
 
@@ -182,6 +265,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
     const [userEmail, setUserEmail] = useState('');
     const [userName, setUserName] = useState('');
+    const [userPhone, setUserPhone] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const verificarDatos = () => {
@@ -189,8 +273,10 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
             setErrorMessage('El eMail ingresado no es válido');
         } else if (userName.length < 3) {
             setErrorMessage('El nombre ingresado no es válido');
+        } else if (userPhone.length < 10) {
+            setErrorMessage('El teléfono ingresado no es válido');
         } else {
-            setTurneraStep(3);
+            setTurneraStep(4);
         }
     }
 
@@ -287,29 +373,24 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
         try {
             const turnosPayload = fechaSeleccionada.map((fecha, index) => {
-                if (!horarioSeleccionado[index]) {
-                    throw new Error("Selecciona un horario disponible para las cuatro semanas.");
-                }
+                 const { inicio, fin } = bloques[index];
 
-                  const horarioActual = horarios[horarioSeleccionado[index] - 1];
-                const fechaISO = fecha.toISOString().slice(0, 10);
-                const [start, end] = horarioActual.split('-');
-                const startHour = start.split(':')[0];
-                const endHour = end.split(':')[0];
+  if (inicio === null || fin === null || fin - inicio < 2) {
+    throw new Error("Cada semana debe tener mínimo 2 horas.");
+  }
 
-
-                if (!horaInicio || !horaFin) {
-                    throw new Error("No pudimos determinar el horario seleccionado.");
-                }
+  const fechaISO = fecha.toISOString().slice(0, 10); 
 
                 return {
-                    fecha_inicio: `${fechaISO} ${startHour}:00:00`,
-                    fecha_fin: `${fechaISO} ${endHour}:00:00`,
+                    fecha_inicio: `${fechaISO} ${inicio.toString().padStart(2, '0')}:00:00`,
+                    fecha_fin: `${fechaISO} ${fin.toString().padStart(2, '0')}:00:00`,
                     titulo: 'Sesion de Streaming',
                     descripcion: 'Stream de videojuegos',
                     tipo_stream: 'streaming',
                     observaciones: 'ninguna',
                     estado: 'pendiente',
+                    nombre: userName,
+                    telefono: userPhone,
                     precio_total: precioCombo
                 };
             });
@@ -324,6 +405,8 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                 tipo_stream: 'streaming',
                 observaciones: 'Combo mensual',
                 estado: 'pendiente',
+                nombre: userName,
+                telefono: userPhone,
                 precio_por_turno: precioCombo,
                 turnos: turnosPayload
             });
@@ -420,7 +503,9 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                     email: formData?.email ?? formData?.payer?.email ?? userEmail,
                                     reserva_id: externalReference,
                                     reservas: reservasCreadas,
-                                    tipo_turno: 'mensual'
+                                    tipo_turno: 'mensual',
+                                    nombre: userName,
+                                    telefono: userPhone,
                                 };
 
                                 crearPago('', 'POST', payload)
@@ -515,7 +600,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                     <div className="fechaContainer">
                                         <p className="fechaContainerLabel">Turnos</p>
                                         <div className="seleccionarFechaContainer">
-                                            <p>{horarios[horarioSeleccionado[i] - 1]}</p>
+                                            <p>{bloques[i].inicio}-{bloques[i].fin} hs</p>
                                             <IoTriangleSharp
                                                 style={{ rotate: showHorarios[i] ? '0deg' : '180deg' }}
                                                 onClick={() => {
@@ -589,42 +674,80 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
 
                                         {/* Horarios desplegables */}
 {showHorarios[i] &&
-    <div ref={horariosRef} className="turnosContainer">
-        {horarios.map((horario, index) => {
-            const horaKey = horario.split(':')[0]; // "09", "11", etc.
-            const ocupado = horariosReservados[i].includes(horaKey);
-            const seleccionado = horarioSeleccionado[i] === index + 1;
-            
-            // Verificar si el horario es anterior al actual
-            const ahora = new Date();
-            const fechaSeleccionadaISO = fechaSeleccionada[i].toISOString().slice(0, 10);
-            const hoyISO = ahora.toISOString().slice(0, 10);
-            const horaActual = ahora.getHours().toString().padStart(2, '0');
-            
-            const esHoy = fechaSeleccionadaISO === hoyISO;
-            const horaHorario = horario.slice(0, 2);
-            const esPasado = esHoy && horaHorario < horaActual + 1;
-            
-            const deshabilitado = ocupado || esPasado;
+  <div className="turnosContainer">
+    { <>
+        <p style={{alignSelf: 'flex-start'}}>Seleccioná el {bloques[i].paso} de turno</p>
+        <div>
+    {horas.map((h) => {
 
-            return (
-                <p key={index}
-                    style={{
-                        color: deshabilitado ? '#5A189A' : seleccionado ? '#ffffff' : '#8C8C8C',
-                        cursor: !deshabilitado ? 'pointer' : 'default',
-                    }}
-                    onClick={() => !deshabilitado ? setHorarioSeleccionado(prev => {
-                        const nuevo = [...prev];
-                        nuevo[i] = index + 1;
-                        return nuevo;
-                    }) : null}
-                >
-                    {horario}
-                </p>
-            )
-        })}
+      const bloque = bloques[i];
+
+      const selected =
+        bloque.inicio !== null &&
+        h >= bloque.inicio &&
+        h < bloque.fin;
+
+      const ocupada = horasOcupadas(fechaSeleccionada[i]).includes(h);
+
+      const inicioInvalido =
+        bloque.paso === "inicio" &&
+        !puedeSerInicio(fechaSeleccionada[i], h);
+
+      const ahora = new Date();
+      const esHoy =
+        fechaSeleccionada[i].toDateString() === ahora.toDateString();
+
+      const horaPasada =
+        esHoy && h <= ahora.getHours();
+
+      const disabled =
+        ocupada || horaPasada || inicioInvalido;
+
+      return (
+        <div
+          key={h}
+          onClick={() => !disabled && clickHora(i, h)}
+          style={{
+            cursor: disabled ? "not-allowed" : "pointer",
+            backgroundColor: ocupada
+              ? "#5A189A99"
+              : selected
+              ? "#5A189A"
+              : "transparent",
+            borderRadius:
+              bloque.inicio === h
+                ? "8px 0 0 8px"
+                : bloque.fin - 1 === h
+                ? "0px 8px 8px 0px"
+                : null
+          }}
+        >
+          <p
+            style={{
+              color: selected
+                ? "#FFFFFF"
+                : horaPasada
+                ? "#555"
+                : ocupada
+                ? "#7B2CBF"
+                : "#FFFFFF"
+            }}
+          >
+            {h}
+          </p>
+        </div>
+      );
+    })}
     </div>
+    <p id="p20hs">
+                            20
+                        </p>
+            <p>El tiempo mínimo por turno es de <span>2hs</span>, podés agregar más tiempo si necesitas. Las horas que agregues tiene un <span>10% de descuento.</span> </p>
+
+    </>}
+  </div>
 }
+
                                     </div>
                                 )
                             })}
@@ -648,7 +771,7 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                 </p>
                             </div>
                         </div>
-                        <button className="buttonReservar" onClick={() => setTurneraStep(2)}>Reservar</button>
+                        <button className="buttonReservar" onClick={() => setTurneraStep(3)}>Reservar</button>
                     </div>
                 </>
             }
@@ -691,21 +814,32 @@ export const TurneraMensual = ({ setTurnera, isMobile}) => {
                                     <div className="turneraStep3FechaContainer">
                                             <p>Mes <span>{meses[fecha.getMonth()]}</span></p>
                                             <p>Fecha <span>{fecha.getDate()}</span></p>
-                                            <p>Turno <span>{horarios[horarioSeleccionado[i] - 1]}</span></p>
+                                            <p>Turno <span>{bloques[i].inicio}-{bloques[i].fin} hs</span></p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className="turneraStep3UserData">
-                        <p>eMail <span>{userEmail}</span></p>
-                        <p>Nombre <span>{userName}</span></p>
-                    </div>
+                    <div className="turneraStep2Inputs">
+                            <p>Nombre</p>
+                            <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Tu nombre"/>
+                        </div>
+                        <div className="turneraStep3UserData">
+                            <div className="turneraStep2Inputs turneraStep3Inputs">
+                                <p>Teléfono</p>
+                                <input type="number" value={userPhone} onChange={(e) => setUserPhone(e.target.value)} placeholder="Tu teléfono"/>
+                            </div>
+                            <div className="turneraStep2Inputs turneraStep3Inputs" style={{borderLeft: '1px solid rgba(255, 255, 255, 0.27)'}}>
+                                <p>eMail</p>
+                                <input type="text" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Tu eMail"/>
+                            </div>
+                        </div>
                 </div>
                 <p className="turneraStep3Total">TOTAL: ${totalCombo.toLocaleString("es-AR")}</p>
+                <p className="turneraErrorMessage">{errorMessage}</p>
                 <div className="turneraStep2Buttons">
-                    <button onClick={() => setTurneraStep(2)}>Cancelar</button>
-                    <button onClick={() => setTurneraStep(4)}>Continuar</button>
+                    <button onClick={() => setTurneraStep(1)}>Cancelar</button>
+                    <button onClick={() => verificarDatos()}>Continuar</button>
                 </div>
             </>}
 

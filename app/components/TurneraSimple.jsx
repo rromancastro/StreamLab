@@ -74,6 +74,10 @@ export const TurneraSimple = ({setTurnera}) => {
     const [horaInicio, setHoraInicio] = useState(9);
     const [horaFin, setHoraFin] = useState(11);
 
+    useEffect(() => {
+        setShowCalendar(false);
+    }, [fechaSeleccionada]);
+
     const getPrimeraHoraDisponible = (fecha) => {
         const ahora = new Date();
         const esHoy = fecha.toDateString() === ahora.toDateString();
@@ -182,8 +186,9 @@ useEffect(() => {
     const horarios = [9,10,11,12,13,14,15,16,17,18,19];
 
     const isRangoDisponible = (fecha, inicio, fin) => {
-        if (!fecha || fin <= inicio) return false;
-        if (fin - inicio < 2) return false;
+    if (!fecha || inicio == null || fin == null) return false;
+    if (fin <= inicio) return false;
+    if (fin - inicio < 2) return false;
 
         const fechaISO = fecha.toISOString().slice(0, 10);
         const startDT = new Date(`${fechaISO}T${inicio.toString().padStart(2,'0')}:00:00`);
@@ -229,6 +234,7 @@ useEffect(() => {
 
     const [userEmail, setUserEmail] = useState('');
     const [userName, setUserName] = useState('');
+    const [userPhone, setUserPhone] = useState('');
 
     const [errorMessage, setErrorMessage] = useState('');
     const paymentBrickController = useRef(null);
@@ -312,13 +318,15 @@ useEffect(() => {
                         }
 
                         const payload = {
-                        ...formData,
-                        selectedPaymentMethod: selectedPaymentMethod ?? 'mercadopago',
-                        transactionAmount: valorSala,      // 💥 fijo
-                        transaction_amount: valorSala,     // 💥 compatibilidad backend
-                        titulo: 'Reserva Turno Simple',
-                        email: formData?.email ?? formData?.payer?.email ?? userEmail,
-                        reserva_id: external_reference,    // 💥 clave para vincular con la reserva
+                            ...formData,
+                            selectedPaymentMethod: selectedPaymentMethod ?? 'mercadopago',
+                            transactionAmount: valorSala,      // 💥 fijo
+                            transaction_amount: valorSala,     // 💥 compatibilidad backend
+                            titulo: 'Reserva Turno Simple',
+                            email: formData?.email ?? formData?.payer?.email ?? userEmail,
+                            reserva_id: external_reference,    // 💥 clave para vincular con la reserva
+                            nombre: userName,
+                            telefono: userPhone,
                         };
 
                         console.log("Payload final que se envía al backend:", payload);
@@ -376,8 +384,10 @@ useEffect(() => {
             setErrorMessage('El eMail ingresado no es valido');
         } else if(userName.length < 3) {
             setErrorMessage('El nombre ingresado no es valido');
+        } else if(userPhone.length < 10) {
+            setErrorMessage('El teléfono ingresado no es valido');
         } else {
-            setTurneraStep(3);
+            setTurneraStep(4);
         }
     };
 
@@ -464,6 +474,14 @@ useEffect(() => {
                             <p>Hasta: <span>{horaFin}hs</span></p>
                         </div>
                         <IoTriangleSharp style={{rotate: showHorarios ? '0deg' : '180deg'}} onClick={()=>setShowHorarios(!showHorarios)} className="seleccionarFechaIcon" />
+                    </div>
+                    <div className="turnosInfoMobile">
+                        <div>
+                            <p>Desde: <span>{horaInicio}hs</span></p>
+                        </div>
+                        <div>
+                            <p>Hasta: <span>{horaFin}hs</span></p>
+                        </div>
                     </div>
                 </div>
 
@@ -592,31 +610,8 @@ useEffect(() => {
                         </p>
                     </div>
                 </div>
-                <button className="buttonReservar" onClick={()=>setTurneraStep(2)}>Reservar</button>
+                <button className="buttonReservar" onClick={()=>setTurneraStep(3)}>Reservar</button>
             </div></>}
-
-
-            {/* STEP 2 */}
-            {turneraStep === 2 && <>
-                <h2 className="turneraStep2Title">
-                    TUS
-                    <br />
-                    DATOS
-                </h2>
-                <div className="turneraStep2Inputs">
-                    <p>eMail</p>
-                    <input type="text" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="tumail@ejemplo.com"/>
-                </div>
-                <div className="turneraStep2Inputs">
-                    <p>Nombre</p>
-                    <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Tu nombre"/>
-                </div>
-                <p className="turneraErrorMessage">{errorMessage}</p>
-                <div className="turneraStep2Buttons">
-                    <button onClick={() => setTurneraStep(1)}>Cancelar</button>
-                    <button onClick={() => verificarDatos()}>Continuar</button>
-                </div>
-            </>}
 
             {/* STEP 3 */}
             {
@@ -632,18 +627,28 @@ useEffect(() => {
                             <div className="turneraStep3FechaContainer">
                                 <p>Mes <span>{meses[mesSeleccionado]}</span></p>
                                 <p>Fecha <span>{diaSeleccionado}</span></p>
-                                <p>Turno <span>2</span></p>
+                                <p>Turno <span>{horaInicio}-{horaFin} hs</span></p>
                             </div>
                         </div>
+                        <div className="turneraStep2Inputs">
+                            <p>Nombre</p>
+                            <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Tu nombre"/>
+                        </div>
                         <div className="turneraStep3UserData">
-                            <p>eMail <span>{userEmail}</span></p>
-                            <p>Nombre <span>{userName}</span></p>
+                            <div className="turneraStep2Inputs turneraStep3Inputs">
+                                <p>Teléfono</p>
+                                <input type="number" value={userPhone} onChange={(e) => setUserPhone(e.target.value)} placeholder="Tu teléfono"/>
+                            </div>
+                            <div className="turneraStep2Inputs turneraStep3Inputs" style={{borderLeft: '1px solid rgba(255, 255, 255, 0.2)'}}>
+                                <p>eMail</p>
+                                <input type="text" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Tu eMail"/>
+                            </div>
                         </div>
                     </div>
                     <p className="turneraStep3Total">TOTAL: ${total}</p>
                     <div className="turneraStep2Buttons">
-                        <button onClick={() => setTurneraStep(2)}>Cancelar</button>
-                        <button  onClick={() => setTurneraStep(4)}>Continuar</button>
+                        <button onClick={() => setTurneraStep(1)}>Cancelar</button>
+                        <button  onClick={() => verificarDatos()}>Continuar</button>
                     </div>
                 </>
             }
@@ -681,12 +686,12 @@ useEffect(() => {
                         <div className="turneraStep3FechaContainer">
                             <p>Mes <span>{meses[mesSeleccionado]}</span></p>
                             <p>Fecha <span>{diaSeleccionado}</span></p>
-                            <p>Turno <span>2</span></p>
+                            <p>Turno <span>{horaInicio}-{horaFin} hs</span></p>
                         </div>
                     </div>
-                    <div className="turneraStep3UserData">
-                        <p>eMail <span>{userEmail}</span></p>
-                        <p>Nombre <span>{userName}</span></p>
+                    <div className="turneraStep3UserData" style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <p style={{color: '#fff', padding: '40px',width: '100%', borderRight: '1px solid rgba(255, 255, 255, 0.2)'}}>eMail <span>{userEmail}</span></p>
+                        <p style={{color: '#fff', padding: '40px',width: '100%'}}>Nombre <span>{userName}</span></p>
                     </div>
                     <p className="turneraStep3Total" style={{bottom: '105px'}}>TOTAL: ${total}</p>
                     <div style={{ width: '100%', marginBottom: '-30px' }}>

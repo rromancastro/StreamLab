@@ -171,6 +171,10 @@
     }
 }
 
+.turnosInfoMobile {
+    display: none;
+}
+
 .calendarContainer {
         position: absolute;
         top: 48px;
@@ -395,18 +399,18 @@
     grid-template-columns: 15% 85%;
     grid-template-rows: 1fr;
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 16px;
     backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    
     align-items: center;
     justify-items: center;
 }
 
 .turneraStep2Inputs p {
     font-size: 16px;
-    color: #ffffff;
+    color: #B8B7B7;
     font-weight: 400;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
     width: 100%;
     text-align: center;
     height: 100%;
@@ -441,6 +445,13 @@
     box-shadow: 0 0 0px 1000px #1F1A29 inset !important;
 }
 
+.turneraStep3Inputs {
+    padding-left: 34px;
+    border: none;
+    gap: 30px;
+    border-radius: 0;
+
+}
 .turneraStep2Buttons {
     margin-top: 72px;
     display: flex;
@@ -547,28 +558,10 @@
     height: 48px;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     backdrop-filter: blur(30px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    p {
-        padding: 0 32px;
-        color: #B8B7B7;
-        width: 100%;
-        font-size: 16px;
-        padding: 16px 32px;
-        height: 100%;
-        display: flex;
-        gap: 24px;
-        display: flex;
-        align-items: center;
-        span {
-            color: #ffffff;
-        }
-        &:nth-child(1) {
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-        }
-    }
+    overflow: hidden;
 }
 
 .turneraStep3Total {
@@ -697,7 +690,7 @@
 @media (max-width: 862px) {
     #turneraContainer {
         width: 358px;
-        height: 370px;
+        height: 426px;
         top: 510;
         gap: 16px;
         padding: 16px;
@@ -731,6 +724,69 @@
     .turnosContainer {
         top: 95px;
         right: -25px;
+        width: 375px;
+        padding: 8px;
+        p {
+            font-size: 12px;
+        }
+        div {
+            height: 35px;
+            div {
+                font-size: 10px;
+            }
+        }
+        #p20hs {
+            right: 12px;
+            top: 77px;
+            color: #FFFFFF;
+                font-size: 12px;
+        }
+    }
+    .turnossContainer {
+        grid-template-columns: 20% 80%;
+        height: 40px;
+        .turnossContainerLabel {
+            font-size: 14px;
+            height: 40px;
+        }
+        div {
+            display: none;
+        }
+    }
+    .turnosInfoMobile {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 1fr;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        height: 40px;
+        align-items: center;
+        div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            &:nth-child(1) {
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            &:nth-child(2) {
+                border-right: 1px solid rgba(255, 255, 255, 0.2);
+                justify-content: flex-end;
+            }
+            p {
+                font-size: 14px;
+                padding: 0px 16px;
+                color: #ffffff;
+                font-weight: 300;
+                display: flex;
+                gap: 24px;
+                span {
+                    color: #8C8C8C;
+                }
+            }
+        }
     }
     .buttonReservar {
         height: 40px;
@@ -755,6 +811,13 @@
     }
     .turneraStep2Inputs input {
         font-size: 14px;
+    }
+    .turneraStep3Inputs {
+        padding-left: 16px;
+        gap: 8px;
+        p {
+            font-size: 14px;
+        }
     }
     .turneraStep2Buttons {
         margin-top: 26px;
